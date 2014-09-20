@@ -39,7 +39,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.0.4";
+        public string Version = "1.0.5";
 
         #endregion
 
@@ -1142,36 +1142,7 @@ namespace WebAutomation
         #endregion
 
         #region functions
-        /*
-        public string extract(string xpath)
-        {
-            string result = "";
 
-            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
-            if (wb != null)
-            {
-                if (xpath.StartsWith("/"))
-                {
-                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
-
-                    if (elm != null)
-                    {
-                        UpdateUrlAbsolute(wb.Document, elm);
-                        result = elm.OuterHtml;
-                    }
-                }
-                else
-                {
-                    var id = xpath;
-                    GeckoHtmlElement elm = wb.Document.GetHtmlElementById(id);
-                    UpdateUrlAbsolute(wb.Document, elm);
-                    result = elm.OuterHtml;
-                }
-            }
-
-            return result;
-        }
-        */
         public string extract(string xpath, string type)
         {
             string result = string.Empty;
@@ -1387,9 +1358,9 @@ namespace WebAutomation
         public void log(string text)
         {
             tbxPreview.Text += text + "\n";
-            tbxPreview.SelectionStart = tbxPreview.Text.Length;
-            tbxPreview.ScrollToCaret();
-            //tbxPreview.Scrolling.ScrollBy(0, tbxPreview.Lines.Count);
+            //tbxPreview.SelectionStart = tbxPreview.Text.Length;
+            //tbxPreview.ScrollToCaret();
+            tbxPreview.Scrolling.ScrollBy(0, tbxPreview.Lines.Count);
         }
 
         public void clearlog()
@@ -3034,10 +3005,15 @@ namespace WebAutomation
 
             GeckoWebBrowser wbBrowser = new GeckoWebBrowser();
 
+            wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
             wbBrowser.ProgressChanged += wbBrowser_ProgressChanged;
+            wbBrowser.Navigated -= wbBrowser_Navigated;
             wbBrowser.Navigated += wbBrowser_Navigated;
+            wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
             wbBrowser.DocumentCompleted += wbBrowser_DocumentCompleted;
+            wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
             wbBrowser.CanGoBackChanged += wbBrowser_CanGoBackChanged;
+            wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
             wbBrowser.CanGoForwardChanged += wbBrowser_CanGoForwardChanged;
 
             if (cfgShowImages.Checked)
