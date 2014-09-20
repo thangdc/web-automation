@@ -1,0 +1,21 @@
+C:\Users\Dynamic\Downloads\Projects\ThangDC\ThangDC\bin\Debug\ThangDC.dll
+C:\Users\Dynamic\Downloads\Projects\ThangDC\ThangDC\bin\Debug\ThangDC.pdb
+C:\Users\Dynamic\Downloads\Projects\ThangDC\ThangDC\obj\Debug\ThangDC.dll
+C:\Users\Dynamic\Downloads\Projects\ThangDC\ThangDC\obj\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\bin\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\bin\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\obj\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\obj\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\bin\Debug\Ionic.Zip.dll
+D:\Sync\SkyDrive\My Projects\Pattern\Code\ThangDC\ThangDC\obj\Debug\ThangDC.csprojResolveAssemblyReference.cache
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Code (Webkit)\ThangDC\bin\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Code (Webkit)\ThangDC\bin\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Code (Webkit)\ThangDC\obj\Debug\ThangDC.csprojResolveAssemblyReference.cache
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Code (Webkit)\ThangDC\obj\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Code (Webkit)\ThangDC\obj\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\bin\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\bin\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\bin\Debug\MouseKeyboardLibrary.dll
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.dll
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.pdb
+D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.csprojResolveAssemblyReference.cache

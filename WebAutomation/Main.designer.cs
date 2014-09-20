@@ -88,8 +88,15 @@
             this.btnSaveScript = new System.Windows.Forms.ToolStripButton();
             this.btnSaveAsScript = new System.Windows.Forms.ToolStripButton();
             this.btnScriptClear = new System.Windows.Forms.ToolStripButton();
-            this.tbxCode = new System.Windows.Forms.RichTextBox();
+            this.tbxCode = new ScintillaNET.Scintilla();
+            this.tbxCode.ConfigurationManager.Language = "js";
+            this.tbxCode.Margins[0].Width = 40;
+            //this.tbxCode = new System.Windows.Forms.RichTextBox();
             this.tabTemplate = new System.Windows.Forms.TabPage();
+            this.tbxTemplate = new ScintillaNET.Scintilla();
+            this.tbxTemplate.ConfigurationManager.Language = "js";
+            this.tbxTemplate.Margins[0].Width = 40;
+            //this.tbxTemplate = new System.Windows.Forms.RichTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnOpenTemplate = new System.Windows.Forms.ToolStripButton();
@@ -97,8 +104,11 @@
             this.btnSaveAsTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnTemplateClear = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            //this.tbxPreview = new System.Windows.Forms.RichTextBox();
+            this.tbxPreview = new ScintillaNET.Scintilla();
+            this.tbxPreview.ConfigurationManager.Language = "js";
+            this.tbxPreview.Margins[0].Width = 40;
             this.tabDownload = new System.Windows.Forms.TabPage();
-            this.downloadList1 = new WebAutomation.UI.DownloadList();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolNewDownload = new System.Windows.Forms.ToolStripButton();
             this.toolStart = new System.Windows.Forms.ToolStripButton();
@@ -125,8 +135,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.notifyIconAutomation = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tbxTemplate = new System.Windows.Forms.RichTextBox();
-            this.tbxPreview = new System.Windows.Forms.RichTextBox();
+            this.downloadList1 = new WebAutomation.UI.DownloadList();
             this.mainStatusStrip.SuspendLayout();
             this.mainMenuStrip.SuspendLayout();
             this.maintoolStrip.SuspendLayout();
@@ -740,6 +749,15 @@
             this.tabTemplate.Text = "Template";
             this.tabTemplate.UseVisualStyleBackColor = true;
             // 
+            // tbxTemplate
+            // 
+            this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
+            this.tbxTemplate.Name = "tbxTemplate";
+            this.tbxTemplate.Size = new System.Drawing.Size(989, 142);
+            this.tbxTemplate.TabIndex = 2;
+            this.tbxTemplate.Text = "";
+            // 
             // toolStrip2
             // 
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -810,6 +828,15 @@
             this.tabPage2.Text = "Preview";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tbxPreview
+            // 
+            this.tbxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxPreview.Location = new System.Drawing.Point(3, 3);
+            this.tbxPreview.Name = "tbxPreview";
+            this.tbxPreview.Size = new System.Drawing.Size(989, 167);
+            this.tbxPreview.TabIndex = 0;
+            this.tbxPreview.Text = "";
+            // 
             // tabDownload
             // 
             this.tabDownload.Controls.Add(this.downloadList1);
@@ -820,15 +847,6 @@
             this.tabDownload.TabIndex = 4;
             this.tabDownload.Text = "Download";
             this.tabDownload.UseVisualStyleBackColor = true;
-            // 
-            // downloadList1
-            // 
-            this.downloadList1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.downloadList1.IsSelected = false;
-            this.downloadList1.Location = new System.Drawing.Point(0, 25);
-            this.downloadList1.Name = "downloadList1";
-            this.downloadList1.Size = new System.Drawing.Size(995, 148);
-            this.downloadList1.TabIndex = 2;
             // 
             // toolStrip3
             // 
@@ -1037,23 +1055,14 @@
             this.notifyIconAutomation.Visible = true;
             this.notifyIconAutomation.Click += new System.EventHandler(this.notifyIconAutomation_Click);
             // 
-            // tbxTemplate
+            // downloadList1
             // 
-            this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
-            this.tbxTemplate.Name = "tbxTemplate";
-            this.tbxTemplate.Size = new System.Drawing.Size(989, 142);
-            this.tbxTemplate.TabIndex = 2;
-            this.tbxTemplate.Text = "";
-            // 
-            // tbxPreview
-            // 
-            this.tbxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxPreview.Location = new System.Drawing.Point(3, 3);
-            this.tbxPreview.Name = "tbxPreview";
-            this.tbxPreview.Size = new System.Drawing.Size(989, 167);
-            this.tbxPreview.TabIndex = 0;
-            this.tbxPreview.Text = "";
+            this.downloadList1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.downloadList1.IsSelected = false;
+            this.downloadList1.Location = new System.Drawing.Point(0, 25);
+            this.downloadList1.Name = "downloadList1";
+            this.downloadList1.Size = new System.Drawing.Size(995, 148);
+            this.downloadList1.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -1142,8 +1151,8 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripRunning;
-        //private ScintillaNET.Scintilla tbxCode;
-        //private ScintillaNET.Scintilla tbxPreview;
+        private ScintillaNET.Scintilla tbxCode;
+        private ScintillaNET.Scintilla tbxPreview;
         private System.Windows.Forms.ContextMenuStrip contextMenuBrowser;
         private System.Windows.Forms.ToolStripMenuItem goToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
@@ -1151,7 +1160,7 @@
         private System.Windows.Forms.ToolStripButton btnSaveScript;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage tabTemplate;
-        //private ScintillaNET.Scintilla tbxTemplate;
+        private ScintillaNET.Scintilla tbxTemplate;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton btnOpenTemplate;
         private System.Windows.Forms.ToolStripButton btnSaveTemplate;
@@ -1214,9 +1223,9 @@
         private System.Windows.Forms.ToolStripButton toolRemove;
         private System.Windows.Forms.ToolStripButton toolRemoveCompleted;
         private System.Windows.Forms.ToolStripButton toolNewDownload;
-        private System.Windows.Forms.RichTextBox tbxCode;
-        private System.Windows.Forms.RichTextBox tbxTemplate;
-        private System.Windows.Forms.RichTextBox tbxPreview;
+        //private System.Windows.Forms.RichTextBox tbxCode;
+        //private System.Windows.Forms.RichTextBox tbxTemplate;
+        //private System.Windows.Forms.RichTextBox tbxPreview;
     }
 }
 

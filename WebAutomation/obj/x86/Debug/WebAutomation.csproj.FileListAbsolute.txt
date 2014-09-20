@@ -10,7 +10,6 @@ C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebB
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\HtmlAgilityPack.dll
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\MouseKeyboardLibrary.dll
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\NPOI.dll
-C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\ScintillaNET.dll
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\ThangDC.dll
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\obj\x86\Debug\WebAutomation.Language.Resource.resources
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\obj\x86\Debug\WebAutomation.frmMain.resources
@@ -33,3 +32,4 @@ C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebB
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\obj\x86\Debug\WebAutomation.exe
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\obj\x86\Debug\WebAutomation.pdb
 C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\obj\x86\Debug\WebAutomation.csprojResolveAssemblyReference.cache
+C:\Users\thang\OneDrive\My Projects\WebAutomation\Code\Version 5 - GeckoFx (WebBrowser)\WebAutomation\WebAutomation\bin\Debug\ScintillaNET.dll
