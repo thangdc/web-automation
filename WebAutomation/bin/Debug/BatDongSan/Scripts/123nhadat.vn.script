@@ -1,0 +1,177 @@
+clearlog();
+log('Đang mở trang 123nhadat.vn');
+go('http://123nhadat.vn/');
+log('Đợi 1 giây để trang web tải xong');
+sleep(1, false);
+
+var duongdanfileExcel = getCurrentPath() + "\\BatDongSan\\DuLieu\\BatDongSan.xls";
+var sheetName = '123nhadat';
+var cot_dangbai = 14;
+var dong_cuoicung = 5;
+
+log('Lấy thông tin đăng nhập từ phần mềm');
+var account = getAccountBy("123nhadat.vn");
+if(account == ''){
+	log('Bạn chưa đăng nhập phần mềm web automation');
+	alert('Bạn chưa đăng nhập phần mềm web automation');
+}
+else{
+	log('Kiểm tra xem bạn đã đăng nhập chưa');
+	var dangnhap = extract("/html/body/div/div/div[5]/div[2]/div/a");
+	
+	if(dangnhap != ''){
+		log('Bạn chưa đăng nhập');
+		var login = toObject(dangnhap).firstChild.innerText;
+		if(login == 'Đăng nhập'){
+			log('Nhấn vào link đăng nhập');
+			click("/html/body/div/div/div[5]/div[2]/div/a");
+			log('Chờ 1 giây để website tải xong');
+			sleep(1, false);
+			log('Đang điền email đăng nhập');
+			fill("/html/body/div/div[2]/form/div/div/div[2]/input", account.Username);
+			sleep(1, false);
+			log('Đang điền mật khẩu');
+			fill("/html/body/div/div[2]/form/div/div/div[3]/input", account.Password);
+			sleep(1, false);
+			log('Nhấn nút đăng nhập');
+			click("/html/body/div/div[2]/form/div/div/div[4]/input");
+			sleep(5,false);
+			log('Đọc file excel');
+			DocFileExcel();
+		}
+	}
+	else{
+		log('Bạn đã đăng nhập');
+		log('Đọc file excel');
+		DocFileExcel();
+	}
+}
+function DocFileExcel(){
+	
+	for(var dong = 1; dong <= dong_cuoicung; dong++)
+	{
+		log('Nhấn nút đăng tin');
+		click("/html/body/div/div/div[3]/form/div[3]/div[2]/div/a");
+		sleep(1, false);
+		
+		log('Đang đọc dòng số ' + dong + ' trong file excel');
+		var codangbai = readCellExcel(duongdanfileExcel, sheetName, dong, cot_dangbai);
+		if(codangbai == "Có"){
+			log('Dòng số ' + dong + ' có bài cần đăng.');
+			DangTin(dong);
+			release();
+		}
+		else{
+			log('Dòng số ' + dong + ' không có bài cần đăng.');
+		}
+	}
+}
+function DangTin(dong){
+	
+	var tieude = readCellExcel(duongdanfileExcel, sheetName, dong, 1);
+	log('Đang điền tiêu đề: ' + tieude);
+	fill("/html/body/div/div[2]/div[2]/form/div/div/div/div[2]/input",tieude);
+	
+	sleep(1, false);
+	var thoihandang = readCellExcel(duongdanfileExcel, sheetName, dong, 4);
+	var ngaybatdau = extract("/html/body/div/div[2]/div[2]/form/div[2]/div[2]/div/div[2]/input");
+	//var thoigianbatdau = toObject(ngaybatdau).firstChild.value;
+	var thoigianketthuc = AddDay(thoihandang);
+	
+	log('Đang điền thời gian kết thúc của bài đăng: ' + thoigianketthuc);
+	fill("/html/body/div/div[2]/div[2]/form/div[2]/div[2]/div/div[3]/input",thoigianketthuc);
+	
+	sleep(1, false);
+	var noidung = readCellExcel(duongdanfileExcel, sheetName, dong, 2);
+	log('Đang điền nội dung của bài đăng: ' + noidung);
+	fill("/html/body/div/div[2]/div[2]/form/div[3]/div[2]/div/div[2]/textarea",noidung);
+	
+	sleep(1, false);
+	var hinhthuc = readCellExcel(duongdanfileExcel, sheetName, dong, 5);
+	log('Đang chọn hình thức của bài đăng: ' + hinhthuc);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[2]/div/div[2]/select",hinhthuc);
+	
+	sleep(1, false);
+	var loai = readCellExcel(duongdanfileExcel, sheetName, dong, 6);
+	log('Đang điền loại của bài đăng: ' + loai);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[3]/div/div[2]/select", loai);
+	
+	sleep(1, false);
+	log('Đang chọn vị trí nhà đất: Không cập nhật');
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[3]/div[2]/div[2]/select","Không cập nhật");
+	
+	sleep(1, false);
+	var diachi = readCellExcel(duongdanfileExcel, sheetName, dong, 7);
+	log('Đang điền địa chỉ của bài đăng: ' + diachi);
+	fill("/html/body/div/div[2]/div[2]/form/div[4]/div[4]/div/div[2]/input",diachi);
+	
+	sleep(1, false);
+	log('Đang chọn tỉnh là TpHCM');
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[5]/div/div[2]/select", "Tp.HCM");
+	
+	sleep(1, false);
+	log('Đang chọn quận là Quận 7');
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[5]/div[2]/div[2]/select", "Quận 7");
+	
+	sleep(1, false);
+	var phuongxa = readCellExcel(duongdanfileExcel, sheetName, dong, 8);
+	log('Đang chọn phường: ' + phuongxa);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[6]/div/div[2]/select", phuongxa);
+	
+	sleep(1, false);
+	var duongpho = readCellExcel(duongdanfileExcel, sheetName, dong, 9);
+	log('Đang chọn đường phố là: ' + duongpho);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[6]/div[2]/div[2]/select",duongpho);
+	
+	sleep(1, false);
+	var duan = readCellExcel(duongdanfileExcel, sheetName, dong, 10);
+	log('Đang chọn dự án là: ' + duan);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[7]/div/div[2]/select", duan);
+	
+	sleep(1, false);
+	var dientich = readCellExcel(duongdanfileExcel, sheetName, dong, 11);
+	log('Đang điền diện tích là: ' + dientich);
+	fill("/html/body/div/div[2]/div[2]/form/div[4]/div[8]/div/div[2]/input",dientich);
+	
+	sleep(1, false);
+	var gia = readCellExcel(duongdanfileExcel, sheetName, dong, 12);
+	log('Đang điền giá là: ' + gia);
+	fill("/html/body/div/div[2]/div[2]/form/div[4]/div[9]/div/div[2]/input", gia);
+	
+	sleep(1, false);
+	var donvi = readCellExcel(duongdanfileExcel, sheetName, dong, 13);
+	log('Đang điền đơn vị là: ' + donvi);
+	filldropdown("/html/body/div/div[2]/div[2]/form/div[4]/div[9]/div[2]/div[2]/select", donvi);
+	
+	sleep(1, false);
+	extract("/html/body/div/div[2]/div[2]/form/div[8]/div/div/div[3]/img");
+	var capcha = prompt('Vui lòng điền mã capcha như trong hình');
+	fill("/html/body/div/div[2]/div[2]/form/div[8]/div/div/div[2]/input",capcha);
+	
+	sleep(1, false);
+	log('Nhấn nút đăng tin');
+	click("/html/body/div/div[2]/div[2]/form/div[8]/div[4]/div/input");
+	sleep(5, false);
+}
+
+function AddDay(day) 
+{ 
+	var myDate = new Date(); 
+	myDate.setDate(myDate.getDate()+ 7 ); 
+	var vFormat="dd/MM/yyyy"; 
+	var vDay = addZero(myDate.getDate()); 
+	var vMonth = addZero(myDate.getMonth()+1); 
+	var vYearLong = addZero(myDate.getFullYear()); 
+	var vYearShort = addZero(myDate.getFullYear().toString().substring(3,4)); 
+	var vYear = (vFormat.indexOf("yyyy")>-1?vYearLong:vYearShort) 
+	var vHour = addZero(myDate.getHours()); 
+	var vMinute = addZero(myDate.getMinutes()); 
+	var vSecond = addZero(myDate.getSeconds()); 
+	var myDateString = vFormat.replace(/dd/g, vDay).replace(/MM/g, vMonth).replace(/y{1,4}/g, vYear) 
+	myDateString = myDateString.replace(/hh/g, vHour).replace(/mm/g, vMinute).replace(/ss/g, vSecond) 
+	return myDateString; 
+} 
+
+function addZero(vNumber){ 
+	return ((vNumber < 10) ? "0" : "") + vNumber ;
+}

@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>Giới Thiệu</value>
+  </data>
+  <data name="AccountIncorrect" xml:space="preserve">
+    <value>Tài khoản chưa đúng, vui lòng thử lại</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Thêm mới</value>
+  </data>
+  <data name="Autobot" xml:space="preserve">
+    <value>Bot tự động</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hủy bỏ</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>Kiểm tra cập nhật</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Xóa nội dung</value>
+  </data>
+  <data name="CloseAllTab" xml:space="preserve">
+    <value>Đóng tấc cả tab</value>
+  </data>
+  <data name="CloseTab" xml:space="preserve">
+    <value>Đóng tab</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Mã lệnh</value>
+  </data>
+  <data name="ColorElement" xml:space="preserve">
+    <value>Màu sắc</value>
+  </data>
+  <data name="Configs" xml:space="preserve">
+    <value>Cấu hình</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Xóa</value>
+  </data>
+  <data name="DeveloperTools" xml:space="preserve">
+    <value>Công cụ lập trình</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Tiếng Anh</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Tập tin</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Trợ giúp</value>
+  </data>
+  <data name="HideDetection" xml:space="preserve">
+    <value>Ẩn kiểm tra phần tử</value>
+  </data>
+  <data name="HideDeveloperTools" xml:space="preserve">
+    <value>Ẩn công cụ lập trình</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="LoginSuccessful" xml:space="preserve">
+    <value>Đăng nhập thành công</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+  </data>
+  <data name="LogoutSuccessful" xml:space="preserve">
+    <value>Đăng xuất thành công</value>
+  </data>
+  <data name="MacroComplete" xml:space="preserve">
+    <value>Macro chạy xong</value>
+  </data>
+  <data name="ManageConnections" xml:space="preserve">
+    <value>Quản lý kết nối cơ sở dữ liệu</value>
+  </data>
+  <data name="ManageEmails" xml:space="preserve">
+    <value>Quản lý tài khoản email</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Quản Trị</value>
+  </data>
+  <data name="ManageRoles" xml:space="preserve">
+    <value>Quản lý quyền</value>
+  </data>
+  <data name="ManageUsers" xml:space="preserve">
+    <value>Quản lý người dùng</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Tạo mới</value>
+  </data>
+  <data name="NewTab" xml:space="preserve">
+    <value>Mở tab mới</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Mở tập tin</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Vui lòng nhập mật khẩu</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Xem trước</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Làm mới</value>
+  </data>
+  <data name="RowNotSelectedForDelete" xml:space="preserve">
+    <value>Vui lòng chọn dòng muốn xóa</value>
+  </data>
+  <data name="RowNotSelectedForUpdate" xml:space="preserve">
+    <value>Vui lòng chọn dòng muốn chỉnh sửa</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Chạy</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Lưu tập tin</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Lưu với tên khác</value>
+  </data>
+  <data name="ScrollToView" xml:space="preserve">
+    <value>Tự động cuộn</value>
+  </data>
+  <data name="ShowDetection" xml:space="preserve">
+    <value>Hiện kiểm tra phần tử</value>
+  </data>
+  <data name="ShowDeveloperTools" xml:space="preserve">
+    <value>Hiện công cụ lập trình</value>
+  </data>
+  <data name="ShowHideDetection" xml:space="preserve">
+    <value>Ẩn/Hiện kiểm tra phần tử</value>
+  </data>
+  <data name="ShowHideDeveloper" xml:space="preserve">
+    <value>Ẩn/Hiện công cụ</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Dừng</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Mẫu</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Công cụ</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Cập nhật</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Vui lòng nhập tên đăng nhập</value>
+  </data>
+  <data name="UserNotExists" xml:space="preserve">
+    <value>Người dùng không tồn tại</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Phiên bản</value>
+  </data>
+  <data name="WebAutomation" xml:space="preserve">
+    <value>Web Automation</value>
+  </data>
+  <data name="AddSuccess" xml:space="preserve">
+    <value>Thêm mới thành công</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Xóa thành công</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Tên</value>
+  </data>
+  <data name="NameExists" xml:space="preserve">
+    <value>Tên bạn nhập đã tồn tại, vui lòng chọn tên khác</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Vui lòng nhập tên</value>
+  </data>
+  <data name="NotNumber" xml:space="preserve">
+    <value>Vui lòng nhập số cho cột này</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Cổng</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Máy chủ</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>Cập nhật thành công</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Cơ sở dữ liệu</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="ManageAccounts" xml:space="preserve">
+    <value>Quản lý tài khoản</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Ghi</value>
+  </data>
+  <data name="HideWindow" xml:space="preserve">
+    <value>Ẩn cửa sổ</value>
+  </data>
+  <data name="BallonTipText" xml:space="preserve">
+    <value>Bạn đã ẩn thành công chương trình xuống khay hệ thống</value>
+  </data>
+  <data name="BallonTipTitle" xml:space="preserve">
+    <value>Ẩn xuống khay hệ thống</value>
+  </data>
+  <data name="About.Description" xml:space="preserve">
+    <value>Phần mềm Web Automation xây dựng với mục đích giúp người sử dụng tự động các tác vụ và công việc hàng ngày một cách hiệu quả.
+
+Liên hệ: Đinh Công Thắng
+Điện Thoại: 0972424100
+Email: dinhcongthang113@gmail.com
+Tài khoản Ngân Hàng Đông Á: 596667 </value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Bạn có muốn xóa mẫu tin này hay không?</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Mật khẩu mới</value>
+  </data>
+  <data name="NewPasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>Mật khẩu mới và mật khẩu xác nhận không giống nhau</value>
+  </data>
+  <data name="NewPasswordRequire" xml:space="preserve">
+    <value>Vui lòng nhập mật khẩu mới</value>
+  </data>
+  <data name="NewScript" xml:space="preserve">
+    <value>Tạo mã mới</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Đồng ý</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Mật khẩu cũ</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Mật khẩu cũ không đúng</value>
+  </data>
+  <data name="OpenScriptTitle" xml:space="preserve">
+    <value>Tập tin chứa mã</value>
+  </data>
+  <data name="ReadOnlyFile" xml:space="preserve">
+    <value>Tập tin chỉ đọc</value>
+  </data>
+  <data name="RunBegin" xml:space="preserve">
+    <value>JS Macro đang chạy....</value>
+  </data>
+  <data name="RunComplete" xml:space="preserve">
+    <value>JS Macro đã chạy xong.</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Đã lưu</value>
+  </data>
+  <data name="SaveScriptTitle" xml:space="preserve">
+    <value>Lưu tập tin mã</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Đang lưu...</value>
+  </data>
+  <data name="UnicodeScriptFile" xml:space="preserve">
+    <value>Tập tin mã  (*.script)|*.script</value>
+  </data>
+  <data name="UserAccountUpdate" xml:space="preserve">
+    <value>Cập nhật tài khoản đăng nhập</value>
+  </data>
+  <data name="ConfirmRequrired" xml:space="preserve">
+    <value>Vui lòng nhập Mật khẩu xác nhận</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Email đã tồn tại</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Email bạn nhập không hợp lệ</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Vui lòng nhập Email của bạn</value>
+  </data>
+  <data name="PasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>Mật khẩu và mật khẩu xác nhận chưa khớp</value>
+  </data>
+  <data name="RegisterSuccessful" xml:space="preserve">
+    <value>Đăng ký thành công</value>
+  </data>
+  <data name="ConfirmUpdate" xml:space="preserve">
+    <value>Bạn có muốn cập nhật phiên bản mới hay không?</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>Hiện tại đã có phiên bản mới</value>
+  </data>
+  <data name="OldVersion" xml:space="preserve">
+    <value>Phiên bản của bạn đang dùng là mới nhất</value>
+  </data>
+  <data name="ConfirmGoWebsite" xml:space="preserve">
+    <value>Bạn có muốn đi đến trang web này hay không?</value>
+  </data>
+  <data name="ConfirmSleep" xml:space="preserve">
+    <value>Bạn có muốn dừng cho đến khi trang web được tải xong hay không?</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="Sleep" xml:space="preserve">
+    <value>Sleep</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Trang Web</value>
+  </data>
+  <data name="NewTemplate" xml:space="preserve">
+    <value>Mẫu mới</value>
+  </data>
+  <data name="OpenTemplateTitle" xml:space="preserve">
+    <value>Mở tập tin mẫu</value>
+  </data>
+  <data name="SaveTemplateTitle" xml:space="preserve">
+    <value>Lưu tập tin mẫu</value>
+  </data>
+  <data name="UnicodeTemplateFile" xml:space="preserve">
+    <value>Tập tin mẫu (*.template)|*.template</value>
+  </data>
+  <data name="PrivateKey" xml:space="preserve">
+    <value>Khóa riêng</value>
+  </data>
+  <data name="PublicKey" xml:space="preserve">
+    <value>Khóa chung</value>
+  </data>
+  <data name="StartRegconization" xml:space="preserve">
+    <value>Bật nhận dạng giọng nói</value>
+  </data>
+  <data name="StopRegconization" xml:space="preserve">
+    <value>Tắt nhận dạng giọng nói</value>
+  </data>
+  <data name="ShowImages" xml:space="preserve">
+    <value>Bật/Khóa Flash</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Quay Lại</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Button</value>
+  </data>
+  <data name="CaptchaBorder" xml:space="preserve">
+    <value>Captcha Border</value>
+  </data>
+  <data name="Capture" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="CheckElement" xml:space="preserve">
+    <value>Check Element</value>
+  </data>
+  <data name="ClearLog" xml:space="preserve">
+    <value>Xóa Log</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="ClickControl" xml:space="preserve">
+    <value>Click Control</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>Create Folder</value>
+  </data>
+  <data name="CreateTask" xml:space="preserve">
+    <value>Create Task</value>
+  </data>
+  <data name="CurrentPath" xml:space="preserve">
+    <value>Current Path</value>
+  </data>
+  <data name="Descypt" xml:space="preserve">
+    <value>Giải mã</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Hiển thị</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Tải về</value>
+  </data>
+  <data name="DownloadWebSite" xml:space="preserve">
+    <value>Tải website</value>
+  </data>
+  <data name="Dropdown" xml:space="preserve">
+    <value>Dropdown</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>Mã hóa</value>
+  </data>
+  <data name="Excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="ExcuteQuery" xml:space="preserve">
+    <value>Excute Query</value>
+  </data>
+  <data name="Execute" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="ExecuteQuery" xml:space="preserve">
+    <value>Execute Query</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="Extract" xml:space="preserve">
+    <value>Trích xuất</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>File Upload</value>
+  </data>
+  <data name="FillDropDownList" xml:space="preserve">
+    <value>Fill Dropdown List</value>
+  </data>
+  <data name="FillIframe" xml:space="preserve">
+    <value>Fill iFrame</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Thư mục</value>
+  </data>
+  <data name="ForceLogOff" xml:space="preserve">
+    <value>Force Log Off</value>
+  </data>
+  <data name="GenerateKey" xml:space="preserve">
+    <value>Generate Key</value>
+  </data>
+  <data name="GetAccount" xml:space="preserve">
+    <value>Get Account</value>
+  </data>
+  <data name="GetAccountBy" xml:space="preserve">
+    <value>Get Account By</value>
+  </data>
+  <data name="GetColumn" xml:space="preserve">
+    <value>Get Column</value>
+  </data>
+  <data name="GetCurrentContent" xml:space="preserve">
+    <value>Get Content</value>
+  </data>
+  <data name="GetCurrentLogin" xml:space="preserve">
+    <value>Get Current Login</value>
+  </data>
+  <data name="GetCurrentMouse" xml:space="preserve">
+    <value>Get Current Mouse</value>
+  </data>
+  <data name="GetCurrentPath" xml:space="preserve">
+    <value>Get Current Path</value>
+  </data>
+  <data name="GetCurrentUrl" xml:space="preserve">
+    <value>Get Current Url</value>
+  </data>
+  <data name="GetDatabase" xml:space="preserve">
+    <value>Get Database</value>
+  </data>
+  <data name="GetFiles" xml:space="preserve">
+    <value>Get Files</value>
+  </data>
+  <data name="GetFolders" xml:space="preserve">
+    <value>Get Folders</value>
+  </data>
+  <data name="GetHeight" xml:space="preserve">
+    <value>Get Height</value>
+  </data>
+  <data name="GetRow" xml:space="preserve">
+    <value>Get Row</value>
+  </data>
+  <data name="GetTitle" xml:space="preserve">
+    <value>Get Title</value>
+  </data>
+  <data name="Hibernate" xml:space="preserve">
+    <value>Hibernate</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="iFrame" xml:space="preserve">
+    <value>iFrame</value>
+  </data>
+  <data name="ImageToText" xml:space="preserve">
+    <value>Image to Text</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="KeyDown" xml:space="preserve">
+    <value>Key Down</value>
+  </data>
+  <data name="KeyUp" xml:space="preserve">
+    <value>Key Up</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="LoadHtml" xml:space="preserve">
+    <value>Load Html</value>
+  </data>
+  <data name="LockWorkStation" xml:space="preserve">
+    <value>Lock WorkStation</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="MouseClick" xml:space="preserve">
+    <value>Mouse Click</value>
+  </data>
+  <data name="MouseDoubleClick" xml:space="preserve">
+    <value>Mouse Double Click</value>
+  </data>
+  <data name="MouseDown" xml:space="preserve">
+    <value>Mouse Down</value>
+  </data>
+  <data name="MouseMove" xml:space="preserve">
+    <value>Mouse Move</value>
+  </data>
+  <data name="MouseUp" xml:space="preserve">
+    <value>Mouse Up</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Đi Tới</value>
+  </data>
+  <data name="OCR" xml:space="preserve">
+    <value>OCR</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="ReadCellExcel" xml:space="preserve">
+    <value>Read Cell Excel</value>
+  </data>
+  <data name="ReadExcel" xml:space="preserve">
+    <value>Read Excel</value>
+  </data>
+  <data name="Reboot" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="RemoveFile" xml:space="preserve">
+    <value>Remove File</value>
+  </data>
+  <data name="RemoveFolder" xml:space="preserve">
+    <value>Remove Folder</value>
+  </data>
+  <data name="ReplaceMSWord" xml:space="preserve">
+    <value>Replace Microsoft Word</value>
+  </data>
+  <data name="RunCommand" xml:space="preserve">
+    <value>Run Command</value>
+  </data>
+  <data name="SaveImageFromElement" xml:space="preserve">
+    <value>Save Image From Element</value>
+  </data>
+  <data name="ScrollTo" xml:space="preserve">
+    <value>Scroll To</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="SetControlText" xml:space="preserve">
+    <value>Set Control Text</value>
+  </data>
+  <data name="ShowPicture" xml:space="preserve">
+    <value>Show Picture</value>
+  </data>
+  <data name="ShutDown" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Sql" xml:space="preserve">
+    <value>Sql</value>
+  </data>
+  <data name="Src" xml:space="preserve">
+    <value>Src</value>
+  </data>
+  <data name="StandBy" xml:space="preserve">
+    <value>StandBy</value>
+  </data>
+  <data name="TakeSnapShot" xml:space="preserve">
+    <value>Take SnapShot</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Textbox" xml:space="preserve">
+    <value>Textbox</value>
+  </data>
+  <data name="TextToJson" xml:space="preserve">
+    <value>Text to Json</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ToObject" xml:space="preserve">
+    <value>To Object</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="WriteCellExcel" xml:space="preserve">
+    <value>Write Cell Excel</value>
+  </data>
+  <data name="WriteExcel" xml:space="preserve">
+    <value>Write Excel</value>
+  </data>
+  <data name="GetTable" xml:space="preserve">
+    <value>Get Table</value>
+  </data>
+  <data name="MouseWheel" xml:space="preserve">
+    <value>Mouse Scroll</value>
+  </data>
+  <data name="TextToXml" xml:space="preserve">
+    <value>Text To Xml</value>
+  </data>
+  <data name="Utility" xml:space="preserve">
+    <value>Utility</value>
+  </data>
+  <data name="CreateFile" xml:space="preserve">
+    <value>Create File</value>
+  </data>
+  <data name="OpenExplore" xml:space="preserve">
+    <value>Open Explore</value>
+  </data>
+  <data name="AttributeMessage" xml:space="preserve">
+    <value>Bạn muốn lấy thuộc tính nào?</value>
+  </data>
+  <data name="RepeatElement" xml:space="preserve">
+    <value>Repeat Element</value>
+  </data>
+  <data name="CopyUrlToClipboard" xml:space="preserve">
+    <value>Chép Url vào Clipboard</value>
+  </data>
+  <data name="DeleteCompleted" xml:space="preserve">
+    <value>Xóa tập tin đã tải về</value>
+  </data>
+  <data name="NewDownload" xml:space="preserve">
+    <value>Thêm mới tải về</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Tạm dừng</value>
+  </data>
+  <data name="PauseAll" xml:space="preserve">
+    <value>Tạm dừng tấc cả</value>
+  </data>
+  <data name="ShowInExplore" xml:space="preserve">
+    <value>Hiển thị trong explore</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
+  <data name="EmptyUrl" xml:space="preserve">
+    <value>Please enter URL</value>
+  </data>
+</root>

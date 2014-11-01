@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AccountIncorrect" xml:space="preserve">
+    <value>Account incorrect, please try again!</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new</value>
+  </data>
+  <data name="Autobot" xml:space="preserve">
+    <value>Auto Bot</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>Check for Update</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CloseAllTab" xml:space="preserve">
+    <value>Close All Tab</value>
+  </data>
+  <data name="CloseTab" xml:space="preserve">
+    <value>Close Tab</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="ColorElement" xml:space="preserve">
+    <value>Color Element</value>
+  </data>
+  <data name="Configs" xml:space="preserve">
+    <value>Configs</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeveloperTools" xml:space="preserve">
+    <value>Developer Tools</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HideDetection" xml:space="preserve">
+    <value>Hide Detection</value>
+  </data>
+  <data name="HideDeveloperTools" xml:space="preserve">
+    <value>Hide Developer Tools</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LoginSuccessful" xml:space="preserve">
+    <value>Login successful</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LogoutSuccessful" xml:space="preserve">
+    <value>Logout successful</value>
+  </data>
+  <data name="MacroComplete" xml:space="preserve">
+    <value>JS Macro run completed.</value>
+  </data>
+  <data name="ManageConnections" xml:space="preserve">
+    <value>Manage Connections</value>
+  </data>
+  <data name="ManageEmails" xml:space="preserve">
+    <value>Manage Emails</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="ManageRoles" xml:space="preserve">
+    <value>Manage Roles</value>
+  </data>
+  <data name="ManageUsers" xml:space="preserve">
+    <value>Manage Users</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewTab" xml:space="preserve">
+    <value>New Tab</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>Please enter your Password</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="RowNotSelectedForDelete" xml:space="preserve">
+    <value>Please select row to delete</value>
+  </data>
+  <data name="RowNotSelectedForUpdate" xml:space="preserve">
+    <value>Please select row to update</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="ScrollToView" xml:space="preserve">
+    <value>Scroll To View</value>
+  </data>
+  <data name="ShowDetection" xml:space="preserve">
+    <value>Show Detection</value>
+  </data>
+  <data name="ShowDeveloperTools" xml:space="preserve">
+    <value>Show Developer Tools</value>
+  </data>
+  <data name="ShowHideDetection" xml:space="preserve">
+    <value>Show/Hide Detection</value>
+  </data>
+  <data name="ShowHideDeveloper" xml:space="preserve">
+    <value>Show/Hide Developer</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Tools</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>Please enter your Username</value>
+  </data>
+  <data name="UserNotExists" xml:space="preserve">
+    <value>User not exists</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="WebAutomation" xml:space="preserve">
+    <value>Web Automation</value>
+  </data>
+  <data name="AddSuccess" xml:space="preserve">
+    <value>Add new successful</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>Delete successful</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameExists" xml:space="preserve">
+    <value>The Name you enter exists, please enter another one</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Please enter your Name</value>
+  </data>
+  <data name="NotNumber" xml:space="preserve">
+    <value>Please enter number for this field</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>Update successful</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="ManageAccounts" xml:space="preserve">
+    <value>Manage Accounts</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="HideWindow" xml:space="preserve">
+    <value>Hide Window</value>
+  </data>
+  <data name="BallonTipText" xml:space="preserve">
+    <value>You have successfully minimized your form.</value>
+  </data>
+  <data name="BallonTipTitle" xml:space="preserve">
+    <value>Minimize to Tray App</value>
+  </data>
+  <data name="About.Description" xml:space="preserve">
+    <value>Web Automation software built with the aim to help users automate everyday tasks and work effectively.
+
+Contact: Đinh Công Thắng
+Phone: 0972424100
+Email: dinhcongthang113@gmail.com
+Dong A Bank Account: 596667</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>Are you sure to delete this item?</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="NewPasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>New Password and Confirm not the same</value>
+  </data>
+  <data name="NewPasswordRequire" xml:space="preserve">
+    <value>Please enter new Password</value>
+  </data>
+  <data name="NewScript" xml:space="preserve">
+    <value>New Script</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Old Password not correct</value>
+  </data>
+  <data name="OpenFileError" xml:space="preserve">
+    <value>Can not open file, error: {0}</value>
+  </data>
+  <data name="OpenScriptTitle" xml:space="preserve">
+    <value>Open a script file.</value>
+  </data>
+  <data name="ReadOnlyFile" xml:space="preserve">
+    <value>File readonly, can't save</value>
+  </data>
+  <data name="RunBegin" xml:space="preserve">
+    <value>JS Macro running....</value>
+  </data>
+  <data name="RunComplete" xml:space="preserve">
+    <value>JS Macro run completed.</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="SaveFileError" xml:space="preserve">
+    <value>Can not save file, error: {0}</value>
+  </data>
+  <data name="SaveScriptTitle" xml:space="preserve">
+    <value>Save a script file.</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving...</value>
+  </data>
+  <data name="UnicodeScriptFile" xml:space="preserve">
+    <value>Unicode script file (*.script)|*.script</value>
+  </data>
+  <data name="UserAccountUpdate" xml:space="preserve">
+    <value>User Account Update</value>
+  </data>
+  <data name="ConfirmRequrired" xml:space="preserve">
+    <value>Please enter Confirm Password</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>Email already exists</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>Your Email not valid</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Please enter your Email</value>
+  </data>
+  <data name="PasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>Password and Confirm not the same</value>
+  </data>
+  <data name="RegisterSuccessful" xml:space="preserve">
+    <value>Register Successful</value>
+  </data>
+  <data name="ConfirmUpdate" xml:space="preserve">
+    <value>Do you want to update new version?</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>New Version of Software Release</value>
+  </data>
+  <data name="OldVersion" xml:space="preserve">
+    <value>Your version currently up to date</value>
+  </data>
+  <data name="ConfirmGoWebsite" xml:space="preserve">
+    <value>Do you want go to website?</value>
+  </data>
+  <data name="ConfirmSleep" xml:space="preserve">
+    <value>Sleep until browser loaded?</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="Sleep" xml:space="preserve">
+    <value>Sleep</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="NewTemplate" xml:space="preserve">
+    <value>New template</value>
+  </data>
+  <data name="OpenTemplateTitle" xml:space="preserve">
+    <value>Open a template file.</value>
+  </data>
+  <data name="SaveTemplateTitle" xml:space="preserve">
+    <value>Save a template file.</value>
+  </data>
+  <data name="UnicodeTemplateFile" xml:space="preserve">
+    <value>Unicode template file (*.template)|*.template</value>
+  </data>
+  <data name="PrivateKey" xml:space="preserve">
+    <value>Private Key</value>
+  </data>
+  <data name="PublicKey" xml:space="preserve">
+    <value>Public Key</value>
+  </data>
+  <data name="StartRegconization" xml:space="preserve">
+    <value>Start Regconization</value>
+  </data>
+  <data name="StopRegconization" xml:space="preserve">
+    <value>Stop Regconization</value>
+  </data>
+  <data name="ShowImages" xml:space="preserve">
+    <value>Enable/Disable Flash</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Button</value>
+  </data>
+  <data name="CaptchaBorder" xml:space="preserve">
+    <value>Captcha Border</value>
+  </data>
+  <data name="Capture" xml:space="preserve">
+    <value>Capture</value>
+  </data>
+  <data name="CheckElement" xml:space="preserve">
+    <value>Check Element</value>
+  </data>
+  <data name="ClearLog" xml:space="preserve">
+    <value>Clear Log</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="ClickControl" xml:space="preserve">
+    <value>Click Control</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>Create Folder</value>
+  </data>
+  <data name="CreateTask" xml:space="preserve">
+    <value>Create Task</value>
+  </data>
+  <data name="CurrentPath" xml:space="preserve">
+    <value>Current Path</value>
+  </data>
+  <data name="Descypt" xml:space="preserve">
+    <value>Descrypt</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="DownloadWebSite" xml:space="preserve">
+    <value>Download website</value>
+  </data>
+  <data name="Dropdown" xml:space="preserve">
+    <value>Dropdown</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>Encrypt</value>
+  </data>
+  <data name="Excel" xml:space="preserve">
+    <value>Excel</value>
+  </data>
+  <data name="ExcuteQuery" xml:space="preserve">
+    <value>Excute Query</value>
+  </data>
+  <data name="Execute" xml:space="preserve">
+    <value>Execute</value>
+  </data>
+  <data name="ExecuteQuery" xml:space="preserve">
+    <value>Execute Query</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="Extract" xml:space="preserve">
+    <value>Extract</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>File Upload</value>
+  </data>
+  <data name="FillDropDownList" xml:space="preserve">
+    <value>Fill Dropdown List</value>
+  </data>
+  <data name="FillIframe" xml:space="preserve">
+    <value>Fill iFrame</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="ForceLogOff" xml:space="preserve">
+    <value>Force Log Off</value>
+  </data>
+  <data name="GenerateKey" xml:space="preserve">
+    <value>Generate Key</value>
+  </data>
+  <data name="GetAccount" xml:space="preserve">
+    <value>Get Account</value>
+  </data>
+  <data name="GetAccountBy" xml:space="preserve">
+    <value>Get Account By</value>
+  </data>
+  <data name="GetColumn" xml:space="preserve">
+    <value>Get Column</value>
+  </data>
+  <data name="GetCurrentContent" xml:space="preserve">
+    <value>Get Content</value>
+  </data>
+  <data name="GetCurrentLogin" xml:space="preserve">
+    <value>Get Current Login</value>
+  </data>
+  <data name="GetCurrentMouse" xml:space="preserve">
+    <value>Get Current Mouse</value>
+  </data>
+  <data name="GetCurrentPath" xml:space="preserve">
+    <value>Get Current Path</value>
+  </data>
+  <data name="GetCurrentUrl" xml:space="preserve">
+    <value>Get Current Url</value>
+  </data>
+  <data name="GetDatabase" xml:space="preserve">
+    <value>Get Database</value>
+  </data>
+  <data name="GetFiles" xml:space="preserve">
+    <value>Get Files</value>
+  </data>
+  <data name="GetFolders" xml:space="preserve">
+    <value>Get Folders</value>
+  </data>
+  <data name="GetHeight" xml:space="preserve">
+    <value>Get Height</value>
+  </data>
+  <data name="GetRow" xml:space="preserve">
+    <value>Get Row</value>
+  </data>
+  <data name="GetTitle" xml:space="preserve">
+    <value>Get Title</value>
+  </data>
+  <data name="Hibernate" xml:space="preserve">
+    <value>Hibernate</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="iFrame" xml:space="preserve">
+    <value>iFrame</value>
+  </data>
+  <data name="ImageToText" xml:space="preserve">
+    <value>Image to Text</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="KeyDown" xml:space="preserve">
+    <value>Key Down</value>
+  </data>
+  <data name="KeyUp" xml:space="preserve">
+    <value>Key Up</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="LoadHtml" xml:space="preserve">
+    <value>Load Html</value>
+  </data>
+  <data name="LockWorkStation" xml:space="preserve">
+    <value>Lock WorkStation</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>Mouse</value>
+  </data>
+  <data name="MouseClick" xml:space="preserve">
+    <value>Mouse Click</value>
+  </data>
+  <data name="MouseDoubleClick" xml:space="preserve">
+    <value>Mouse Double Click</value>
+  </data>
+  <data name="MouseDown" xml:space="preserve">
+    <value>Mouse Down</value>
+  </data>
+  <data name="MouseMove" xml:space="preserve">
+    <value>Mouse Move</value>
+  </data>
+  <data name="MouseUp" xml:space="preserve">
+    <value>Mouse Up</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="OCR" xml:space="preserve">
+    <value>OCR</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="ReadCellExcel" xml:space="preserve">
+    <value>Read Cell Excel</value>
+  </data>
+  <data name="ReadExcel" xml:space="preserve">
+    <value>Read Excel</value>
+  </data>
+  <data name="Reboot" xml:space="preserve">
+    <value>Reboot</value>
+  </data>
+  <data name="RemoveFile" xml:space="preserve">
+    <value>Remove File</value>
+  </data>
+  <data name="RemoveFolder" xml:space="preserve">
+    <value>Remove Folder</value>
+  </data>
+  <data name="ReplaceMSWord" xml:space="preserve">
+    <value>Replace Microsoft Word</value>
+  </data>
+  <data name="RunCommand" xml:space="preserve">
+    <value>Run Command</value>
+  </data>
+  <data name="SaveImageFromElement" xml:space="preserve">
+    <value>Save Image From Element</value>
+  </data>
+  <data name="ScrollTo" xml:space="preserve">
+    <value>Scroll To</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="SetControlText" xml:space="preserve">
+    <value>Set Control Text</value>
+  </data>
+  <data name="ShowPicture" xml:space="preserve">
+    <value>Show Picture</value>
+  </data>
+  <data name="ShutDown" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Sql" xml:space="preserve">
+    <value>Sql</value>
+  </data>
+  <data name="Src" xml:space="preserve">
+    <value>Src</value>
+  </data>
+  <data name="StandBy" xml:space="preserve">
+    <value>StandBy</value>
+  </data>
+  <data name="TakeSnapShot" xml:space="preserve">
+    <value>Take SnapShot</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Textbox" xml:space="preserve">
+    <value>Textbox</value>
+  </data>
+  <data name="TextToJson" xml:space="preserve">
+    <value>Text to Json</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ToObject" xml:space="preserve">
+    <value>To Object</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="WriteCellExcel" xml:space="preserve">
+    <value>Write Cell Excel</value>
+  </data>
+  <data name="WriteExcel" xml:space="preserve">
+    <value>Write Excel</value>
+  </data>
+  <data name="GetTable" xml:space="preserve">
+    <value>Get Table</value>
+  </data>
+  <data name="MouseWheel" xml:space="preserve">
+    <value>Mouse Scroll</value>
+  </data>
+  <data name="TextToXml" xml:space="preserve">
+    <value>Text To Xml</value>
+  </data>
+  <data name="Utility" xml:space="preserve">
+    <value>Utility</value>
+  </data>
+  <data name="CreateFile" xml:space="preserve">
+    <value>Create File</value>
+  </data>
+  <data name="OpenExplore" xml:space="preserve">
+    <value>Open Explore</value>
+  </data>
+  <data name="AttributeMessage" xml:space="preserve">
+    <value>What do you want go get attribute?</value>
+  </data>
+  <data name="RepeatElement" xml:space="preserve">
+    <value>Repeat Element</value>
+  </data>
+  <data name="CopyUrlToClipboard" xml:space="preserve">
+    <value>Copy Url To Clipboard</value>
+  </data>
+  <data name="DeleteCompleted" xml:space="preserve">
+    <value>Delete Completed</value>
+  </data>
+  <data name="NewDownload" xml:space="preserve">
+    <value>New Download</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="PauseAll" xml:space="preserve">
+    <value>Pause All</value>
+  </data>
+  <data name="ShowInExplore" xml:space="preserve">
+    <value>Show in Explore</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="EmptyUrl" xml:space="preserve">
+    <value>Please enter URL</value>
+  </data>
+</root>
