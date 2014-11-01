@@ -19,3 +19,9 @@ D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\bin\Debug\Mous
 D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.dll
 D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.pdb
 D:\Sync\SkyDrive\My Projects\WebAutomation\Code\Version 2\ThangDC\obj\Debug\ThangDC.csprojResolveAssemblyReference.cache
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\obj\Debug\ThangDC.csprojResolveAssemblyReference.cache
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\bin\Debug\ThangDC.dll
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\bin\Debug\ThangDC.pdb
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\bin\Debug\Ionic.Zip.dll
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\obj\Debug\ThangDC.dll
+C:\Users\thang\Downloads\web-automation-master\web-automation-master\ThangDC\obj\Debug\ThangDC.pdb
