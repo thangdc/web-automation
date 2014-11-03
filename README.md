@@ -21,4 +21,4 @@
 
 - Make sure all thirdparty exists in output folder
 - Click WebAutomation.sln to open project
-- You can find this dll follow the links
+- Because all dll above was inorge when upload to github so please get it from links above.
