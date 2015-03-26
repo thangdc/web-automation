@@ -1,8 +1,6 @@
 ##Which thirdparty was used in the Web Automation project?
 
-For anyone who can not build this project because still missing dll, please get full source code with dll here: http://1drv.ms/1HqawYB
-
-I will update full source, dll and thirdparty later because I think I can add dll to github.
+![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
 
 1. [GeckoFx](https://bitbucket.org/geckofx)
   - Replace web browser control
