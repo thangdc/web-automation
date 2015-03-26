@@ -1,6 +1,6 @@
 ##Which thirdparty was used in the Web Automation project?
 
-![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
+![](http://2.bp.blogspot.com/-sRnQxHtZTpU/VML_NbVUNUI/AAAAAAAAHec/rgY79ffraN4/s1600/vietsofts-phanmemviet-web-automation-1.png)
 
 1. [GeckoFx](https://bitbucket.org/geckofx)
   - Replace web browser control
