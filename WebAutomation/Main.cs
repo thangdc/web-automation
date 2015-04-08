@@ -1094,8 +1094,8 @@ namespace WebAutomation
             TooglePanel();
 
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
-            
-            Language.Resource.Culture = CultureInfo.CreateSpecificCulture("vi-VN");
+
+            Language.Resource.Culture = CultureInfo.CreateSpecificCulture("en-US");
             InitLanguage();
             InitContextMenu();
 
