@@ -1,6 +1,31 @@
-##Which thirdparty was used in the Web Automation project?
+##What web automation work?
 
-![](http://2.bp.blogspot.com/-sRnQxHtZTpU/VML_NbVUNUI/AAAAAAAAHec/rgY79ffraN4/s1600/vietsofts-phanmemviet-web-automation-1.png)
+Web automation is a web browser which can help automation the browser like fill text, click on button, extract the data, save file from web automatically by javascript only.
+
+##Example
+
+1. Login to Gmail
+
+  - Open gmail: go('gmail.com');
+  - Wait 5 seconds: sleep(5, false);
+  - Fill username: fill("Email", "test");
+  - Wait 1 second: sleep(1, false);
+  - Fill password: fill("Passwd", "test");
+  - Wait 1 second: sleep(1, false);
+  - Click button Sign In: click("signIn");
+  - Waith 2 seconds: sleep(2, false);
+  - Get error message: var text = extract("errormsg_0_Passwd", "text");
+  - Show error: alert(text);
+
+2. Take website image
+
+  //Take Snapshot
+  - Location to save image: var location = getCurrentPath() + '\\image.png';
+  - Save to image: takesnapshot(location);
+
+![](https://github.com/thangdc/web-automation/raw/master/web-automation.png)
+
+##Which thirdparty was used in the Web Automation project?
 
 1. [GeckoFx](https://bitbucket.org/geckofx)
   - Replace web browser control
