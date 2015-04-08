@@ -1,4 +1,4 @@
-##What web automation work?
+##How is web automation work?
 
 Web automation is a web browser which can help automation the browser like fill text, click on button, extract the data, save file from web automatically by javascript only.
 
