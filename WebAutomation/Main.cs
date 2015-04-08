@@ -2563,7 +2563,7 @@ namespace WebAutomation
             else if (item == Language.Resource.Download)
             {
                 tbxCode.AppendText("//Download File" + Environment.NewLine);
-                tbxCode.AppendText("download('url', 'path');" + Environment.NewLine);
+                tbxCode.AppendText("download('path', 'url');" + Environment.NewLine);
             }
             else if (item == Language.Resource.OpenExplore)
             {
