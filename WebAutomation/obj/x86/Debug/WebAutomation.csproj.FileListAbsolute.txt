@@ -28,7 +28,6 @@ C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\bin\Debug\MouseKeyb
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\bin\Debug\NPOI.dll
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\bin\Debug\ScintillaNET.dll
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\bin\Debug\ThangDC.dll
-C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\obj\x86\Debug\WebAutomation.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\obj\x86\Debug\en-US\WebAutomation.resources.dll
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\obj\x86\Debug\vi-VN\WebAutomation.resources.dll
 C:\Users\Admin\Documents\GitHub\web-automation\WebAutomation\obj\x86\Debug\WebAutomation.exe

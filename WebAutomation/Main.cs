@@ -2483,8 +2483,8 @@ namespace WebAutomation
             }
             else if (item == Language.Resource.TakeSnapShot)
             {
-                tbxCode.AppendText("//Take Snapshot (Still not implement)" + Environment.NewLine);
-                tbxCode.AppendText("var location = getCurrentPath() + '\\image.png';" + Environment.NewLine);
+                tbxCode.AppendText("//Take Snapshot" + Environment.NewLine);
+                tbxCode.AppendText("var location = getCurrentPath() + '\\\\image.png';" + Environment.NewLine);
                 tbxCode.AppendText("takesnapshot(location);" + Environment.NewLine);
                 
             }
