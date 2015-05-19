@@ -1879,8 +1879,9 @@ namespace WebAutomation
 
         public void SaveImageFromElement(string xpath, string path)
         {
-            
+            saveImage(xpath, path);
         }
+
 
         public string GetCurrentMouseX()
         {
