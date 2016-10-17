@@ -1,0 +1,828 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>정보</value>
+  </data>
+  <data name="AccountIncorrect" xml:space="preserve">
+    <value>계정정보가 올바르지 않습니다. 다시 시도하세요!</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add new</value>
+  </data>
+  <data name="Autobot" xml:space="preserve">
+    <value>오토봇</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="CheckUpdate" xml:space="preserve">
+    <value>업데이트 확인</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CloseAllTab" xml:space="preserve">
+    <value>모든 탭 닫기</value>
+  </data>
+  <data name="CloseTab" xml:space="preserve">
+    <value>탭 닫기</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>코드</value>
+  </data>
+  <data name="ColorElement" xml:space="preserve">
+    <value>코드 요소</value>
+  </data>
+  <data name="Configs" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="DeveloperTools" xml:space="preserve">
+    <value>Developer Tools</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>이메일</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>종료</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>파일</value>
+  </data>
+  <data name="Go" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="HideDetection" xml:space="preserve">
+    <value>Hide Detection</value>
+  </data>
+  <data name="HideDeveloperTools" xml:space="preserve">
+    <value>Hide Developer Tools</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>로그인</value>
+  </data>
+  <data name="LoginSuccessful" xml:space="preserve">
+    <value>로그인 성공</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>로그아웃</value>
+  </data>
+  <data name="LogoutSuccessful" xml:space="preserve">
+    <value>로그아웃 성공</value>
+  </data>
+  <data name="MacroComplete" xml:space="preserve">
+    <value>JS매크로 수행 완료.</value>
+  </data>
+  <data name="ManageConnections" xml:space="preserve">
+    <value>연결 관리</value>
+  </data>
+  <data name="ManageEmails" xml:space="preserve">
+    <value>이메일 관리</value>
+  </data>
+  <data name="Manager" xml:space="preserve">
+    <value>관리자</value>
+  </data>
+  <data name="ManageRoles" xml:space="preserve">
+    <value>역할 관리</value>
+  </data>
+  <data name="ManageUsers" xml:space="preserve">
+    <value>유저 관리</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>메시지</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewTab" xml:space="preserve">
+    <value>새 탭</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>열기</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>패스워드</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>패스워드를 입력하세요.</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>미리보기</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>등록</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>다시 로드</value>
+  </data>
+  <data name="RowNotSelectedForDelete" xml:space="preserve">
+    <value>삭제할 열을 선택하세요</value>
+  </data>
+  <data name="RowNotSelectedForUpdate" xml:space="preserve">
+    <value>업데이트할 열을 선택하세요</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>수행</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>저장</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>다른 이름으로 저장</value>
+  </data>
+  <data name="ScrollToView" xml:space="preserve">
+    <value>Scroll To View</value>
+  </data>
+  <data name="ShowDetection" xml:space="preserve">
+    <value>감지 보여주기</value>
+  </data>
+  <data name="ShowDeveloperTools" xml:space="preserve">
+    <value>개발자 툴 보여주기</value>
+  </data>
+  <data name="ShowHideDetection" xml:space="preserve">
+    <value>감지 보여주기/숨기기</value>
+  </data>
+  <data name="ShowHideDeveloper" xml:space="preserve">
+    <value>개발자모드 보여주기/숨기기</value>
+  </data>
+  <data name="Stop" xml:space="preserve">
+    <value>중지</value>
+  </data>
+  <data name="Template" xml:space="preserve">
+    <value>템플릿</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>도구</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>업데이트</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>사용자 이름</value>
+  </data>
+  <data name="UsernameRequired" xml:space="preserve">
+    <value>사용자 이름을 입력하세요.</value>
+  </data>
+  <data name="UserNotExists" xml:space="preserve">
+    <value>사용자가 존재하지 않습니다.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="WebAutomation" xml:space="preserve">
+    <value>웹자동화</value>
+  </data>
+  <data name="AddSuccess" xml:space="preserve">
+    <value>Add new successful</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>삭제가 완료되었습니다.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="NameExists" xml:space="preserve">
+    <value>이름이 이미 존재합니다. 다른 이름으로 시도해주세요.</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>이름을 입력하세요.</value>
+  </data>
+  <data name="NotNumber" xml:space="preserve">
+    <value>Please enter number for this field</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>포트</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>서버</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>업데이트 완료</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>데이터베이스</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>공급자</value>
+  </data>
+  <data name="ManageAccounts" xml:space="preserve">
+    <value>계정 관리</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>녹화시작</value>
+  </data>
+  <data name="HideWindow" xml:space="preserve">
+    <value>윈도우 숨기기</value>
+  </data>
+  <data name="BallonTipText" xml:space="preserve">
+    <value>You have successfully minimized your form.</value>
+  </data>
+  <data name="BallonTipTitle" xml:space="preserve">
+    <value>앱을 트레이로 최소화</value>
+  </data>
+  <data name="About.Description" xml:space="preserve">
+    <value>웹자동화 소프트웨어는 매일 반복적으로 수행하는 작업에 대해 사용자가 효율적으로 수행 할 수 있도록 도움을 주는 툴입니다.
+연락처: Đinh Công Thắng
+전화: 0972424100이메일: dinhcongthang113@gmail.com
+Dong A 은행계좌: 596667</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>경고</value>
+  </data>
+  <data name="DeleteConfirm" xml:space="preserve">
+    <value>이 아이템을 지우시겠습니까?</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>새로운 패스워드</value>
+  </data>
+  <data name="NewPasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>패스워드가 일치하지 않습니다.</value>
+  </data>
+  <data name="NewPasswordRequire" xml:space="preserve">
+    <value>패스워드를 입력하세요.</value>
+  </data>
+  <data name="NewScript" xml:space="preserve">
+    <value>새 스크립트</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Old Password not correct</value>
+  </data>
+  <data name="OpenFileError" xml:space="preserve">
+    <value>Can not open file, error: {0}</value>
+  </data>
+  <data name="OpenScriptTitle" xml:space="preserve">
+    <value>스크립트 파일 열기</value>
+  </data>
+  <data name="ReadOnlyFile" xml:space="preserve">
+    <value>읽기 전용 파일이므로 저장할 수 없습니다.</value>
+  </data>
+  <data name="RunBegin" xml:space="preserve">
+    <value>JS 매크로 수행중...</value>
+  </data>
+  <data name="RunComplete" xml:space="preserve">
+    <value>JS 매크로 수행 완료</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="SaveFileError" xml:space="preserve">
+    <value>파일 저장 불가, 에러: {0}</value>
+  </data>
+  <data name="SaveScriptTitle" xml:space="preserve">
+    <value>스크립트 파일 저장</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>저장중...</value>
+  </data>
+  <data name="UnicodeScriptFile" xml:space="preserve">
+    <value>유니코드 스크립트 파일 (*.script)|*.script</value>
+  </data>
+  <data name="UserAccountUpdate" xml:space="preserve">
+    <value>사용자 계정 업데이트</value>
+  </data>
+  <data name="ConfirmRequrired" xml:space="preserve">
+    <value>패스워드를 확인해 주세요.</value>
+  </data>
+  <data name="EmailExists" xml:space="preserve">
+    <value>이메일이 이미 존재합니다.</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>이메일이 올바르지 않습니다.</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>이메일을 입력하세요.</value>
+  </data>
+  <data name="PasswordAndConfirmNotTheSame" xml:space="preserve">
+    <value>Password and Confirm not the same</value>
+  </data>
+  <data name="RegisterSuccessful" xml:space="preserve">
+    <value>등록 성공</value>
+  </data>
+  <data name="ConfirmUpdate" xml:space="preserve">
+    <value>새로운 버전으로 업데이트 하시겠습니까?</value>
+  </data>
+  <data name="NewVersion" xml:space="preserve">
+    <value>새로 릴리즈된 소프트웨어</value>
+  </data>
+  <data name="OldVersion" xml:space="preserve">
+    <value>Your version currently up to date</value>
+  </data>
+  <data name="ConfirmGoWebsite" xml:space="preserve">
+    <value>웹사이트를 방문하시겠습니까?</value>
+  </data>
+  <data name="ConfirmSleep" xml:space="preserve">
+    <value>브라우저가 로딩될때까지 Sleep하시겠습니까?</value>
+  </data>
+  <data name="Fill" xml:space="preserve">
+    <value>채우기</value>
+  </data>
+  <data name="Sleep" xml:space="preserve">
+    <value>Sleep</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>웹사이트</value>
+  </data>
+  <data name="NewTemplate" xml:space="preserve">
+    <value>New template</value>
+  </data>
+  <data name="OpenTemplateTitle" xml:space="preserve">
+    <value>템플릿 파일 열기.</value>
+  </data>
+  <data name="SaveTemplateTitle" xml:space="preserve">
+    <value>템플릿 파일 저장</value>
+  </data>
+  <data name="UnicodeTemplateFile" xml:space="preserve">
+    <value>유니코드 템플릿 파일 (*.template)|*.template</value>
+  </data>
+  <data name="PrivateKey" xml:space="preserve">
+    <value>개인 키</value>
+  </data>
+  <data name="PublicKey" xml:space="preserve">
+    <value>공개 키</value>
+  </data>
+  <data name="StartRegconization" xml:space="preserve">
+    <value>감지 시작</value>
+  </data>
+  <data name="StopRegconization" xml:space="preserve">
+    <value>감지 중지</value>
+  </data>
+  <data name="ShowImages" xml:space="preserve">
+    <value>플래시 활성/비활성</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>속성</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>뒤로</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>버튼</value>
+  </data>
+  <data name="CaptchaBorder" xml:space="preserve">
+    <value>Captcha Border</value>
+  </data>
+  <data name="Capture" xml:space="preserve">
+    <value>캡쳐</value>
+  </data>
+  <data name="CheckElement" xml:space="preserve">
+    <value>엘리먼트 확인</value>
+  </data>
+  <data name="ClearLog" xml:space="preserve">
+    <value>로그 Clear</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>클릭</value>
+  </data>
+  <data name="ClickControl" xml:space="preserve">
+    <value>컨트롤 클릭</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>내용</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>생성</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>폴더 생성</value>
+  </data>
+  <data name="CreateTask" xml:space="preserve">
+    <value>태스크 생성</value>
+  </data>
+  <data name="CurrentPath" xml:space="preserve">
+    <value>현재 경로</value>
+  </data>
+  <data name="Descypt" xml:space="preserve">
+    <value>Descrypt</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>출력</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>다운로드</value>
+  </data>
+  <data name="DownloadWebSite" xml:space="preserve">
+    <value>웹사이트 다운로드</value>
+  </data>
+  <data name="Dropdown" xml:space="preserve">
+    <value>Dropdown</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="Encrypt" xml:space="preserve">
+    <value>Encrypt</value>
+  </data>
+  <data name="Excel" xml:space="preserve">
+    <value>엑셀</value>
+  </data>
+  <data name="ExcuteQuery" xml:space="preserve">
+    <value>쿼리 실행</value>
+  </data>
+  <data name="Execute" xml:space="preserve">
+    <value>실행</value>
+  </data>
+  <data name="ExecuteQuery" xml:space="preserve">
+    <value>쿼리 실행</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explore</value>
+  </data>
+  <data name="Extract" xml:space="preserve">
+    <value>추출</value>
+  </data>
+  <data name="FileUpload" xml:space="preserve">
+    <value>파일 업로드</value>
+  </data>
+  <data name="FillDropDownList" xml:space="preserve">
+    <value>드롭다운 리스트 채우기</value>
+  </data>
+  <data name="FillIframe" xml:space="preserve">
+    <value>IFRAME 채우기</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>폴더</value>
+  </data>
+  <data name="ForceLogOff" xml:space="preserve">
+    <value>강제 로그 오프</value>
+  </data>
+  <data name="GenerateKey" xml:space="preserve">
+    <value>키 생성</value>
+  </data>
+  <data name="GetAccount" xml:space="preserve">
+    <value>계정 얻기</value>
+  </data>
+  <data name="GetAccountBy" xml:space="preserve">
+    <value>Get Account By</value>
+  </data>
+  <data name="GetColumn" xml:space="preserve">
+    <value>Get Column</value>
+  </data>
+  <data name="GetCurrentContent" xml:space="preserve">
+    <value>Get Content</value>
+  </data>
+  <data name="GetCurrentLogin" xml:space="preserve">
+    <value>Get Current Login</value>
+  </data>
+  <data name="GetCurrentMouse" xml:space="preserve">
+    <value>Get Current Mouse</value>
+  </data>
+  <data name="GetCurrentPath" xml:space="preserve">
+    <value>Get Current Path</value>
+  </data>
+  <data name="GetCurrentUrl" xml:space="preserve">
+    <value>Get Current Url</value>
+  </data>
+  <data name="GetDatabase" xml:space="preserve">
+    <value>Get Database</value>
+  </data>
+  <data name="GetFiles" xml:space="preserve">
+    <value>Get Files</value>
+  </data>
+  <data name="GetFolders" xml:space="preserve">
+    <value>Get Folders</value>
+  </data>
+  <data name="GetHeight" xml:space="preserve">
+    <value>Get Height</value>
+  </data>
+  <data name="GetRow" xml:space="preserve">
+    <value>Get Row</value>
+  </data>
+  <data name="GetTitle" xml:space="preserve">
+    <value>Get Title</value>
+  </data>
+  <data name="Hibernate" xml:space="preserve">
+    <value>Hibernate</value>
+  </data>
+  <data name="Html" xml:space="preserve">
+    <value>Html</value>
+  </data>
+  <data name="iFrame" xml:space="preserve">
+    <value>iFrame</value>
+  </data>
+  <data name="ImageToText" xml:space="preserve">
+    <value>Image to Text</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>키보드</value>
+  </data>
+  <data name="KeyDown" xml:space="preserve">
+    <value>Key Down</value>
+  </data>
+  <data name="KeyUp" xml:space="preserve">
+    <value>Key Up</value>
+  </data>
+  <data name="Link" xml:space="preserve">
+    <value>링크</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>목록</value>
+  </data>
+  <data name="LoadHtml" xml:space="preserve">
+    <value>HTML 로드</value>
+  </data>
+  <data name="LockWorkStation" xml:space="preserve">
+    <value>Lock WorkStation</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>로그</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>로그오프</value>
+  </data>
+  <data name="Mouse" xml:space="preserve">
+    <value>마우스</value>
+  </data>
+  <data name="MouseClick" xml:space="preserve">
+    <value>마우스 클릭</value>
+  </data>
+  <data name="MouseDoubleClick" xml:space="preserve">
+    <value>마우스 더블 클릭</value>
+  </data>
+  <data name="MouseDown" xml:space="preserve">
+    <value>마우스 아래로</value>
+  </data>
+  <data name="MouseMove" xml:space="preserve">
+    <value>마우스 움직이기</value>
+  </data>
+  <data name="MouseUp" xml:space="preserve">
+    <value>마우스 위로</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>다음</value>
+  </data>
+  <data name="OCR" xml:space="preserve">
+    <value>OCR</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>읽기</value>
+  </data>
+  <data name="ReadCellExcel" xml:space="preserve">
+    <value>엑셀 셀 읽기</value>
+  </data>
+  <data name="ReadExcel" xml:space="preserve">
+    <value>엑셀 읽기</value>
+  </data>
+  <data name="Reboot" xml:space="preserve">
+    <value>재부팅</value>
+  </data>
+  <data name="RemoveFile" xml:space="preserve">
+    <value>파일 삭제</value>
+  </data>
+  <data name="RemoveFolder" xml:space="preserve">
+    <value>폴더 삭제</value>
+  </data>
+  <data name="ReplaceMSWord" xml:space="preserve">
+    <value>Microsoft Word 대체</value>
+  </data>
+  <data name="RunCommand" xml:space="preserve">
+    <value>수행 명령</value>
+  </data>
+  <data name="SaveImageFromElement" xml:space="preserve">
+    <value>요소로 부터 이미지 저장하기.</value>
+  </data>
+  <data name="ScrollTo" xml:space="preserve">
+    <value>Scroll To</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>이메일전송</value>
+  </data>
+  <data name="SetControlText" xml:space="preserve">
+    <value>컨트롤 텍스트 설정</value>
+  </data>
+  <data name="ShowPicture" xml:space="preserve">
+    <value>사진 보기</value>
+  </data>
+  <data name="ShutDown" xml:space="preserve">
+    <value>Shutdown</value>
+  </data>
+  <data name="Sql" xml:space="preserve">
+    <value>Sql</value>
+  </data>
+  <data name="Src" xml:space="preserve">
+    <value>Src</value>
+  </data>
+  <data name="StandBy" xml:space="preserve">
+    <value>StandBy</value>
+  </data>
+  <data name="TakeSnapShot" xml:space="preserve">
+    <value>스냅샷 찍기</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>텍스트</value>
+  </data>
+  <data name="Textbox" xml:space="preserve">
+    <value>텍스트박스</value>
+  </data>
+  <data name="TextToJson" xml:space="preserve">
+    <value>텍스트를 Json으로 변환</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>제목</value>
+  </data>
+  <data name="ToObject" xml:space="preserve">
+    <value>오브젝트로</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
+  </data>
+  <data name="WriteCellExcel" xml:space="preserve">
+    <value>엑셀 셀 쓰기</value>
+  </data>
+  <data name="WriteExcel" xml:space="preserve">
+    <value>엑셀 쓰기</value>
+  </data>
+  <data name="GetTable" xml:space="preserve">
+    <value>Get Table</value>
+  </data>
+  <data name="MouseWheel" xml:space="preserve">
+    <value>마우스 스크롤</value>
+  </data>
+  <data name="TextToXml" xml:space="preserve">
+    <value>텍스트를 Xml로 변환</value>
+  </data>
+  <data name="Utility" xml:space="preserve">
+    <value>유틸리티</value>
+  </data>
+  <data name="CreateFile" xml:space="preserve">
+    <value>파일 생성</value>
+  </data>
+  <data name="OpenExplore" xml:space="preserve">
+    <value>Explore 열기</value>
+  </data>
+  <data name="AttributeMessage" xml:space="preserve">
+    <value>What do you want go get attribute?</value>
+  </data>
+  <data name="RepeatElement" xml:space="preserve">
+    <value>요소 반복</value>
+  </data>
+  <data name="CopyUrlToClipboard" xml:space="preserve">
+    <value>Copy Url To Clipboard</value>
+  </data>
+  <data name="DeleteCompleted" xml:space="preserve">
+    <value>삭제 완료</value>
+  </data>
+  <data name="NewDownload" xml:space="preserve">
+    <value>New Download</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>잠시 중지</value>
+  </data>
+  <data name="PauseAll" xml:space="preserve">
+    <value>모두 잠시 중지</value>
+  </data>
+  <data name="ShowInExplore" xml:space="preserve">
+    <value>익스플로어에서 보기</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>시작</value>
+  </data>
+  <data name="EmptyUrl" xml:space="preserve">
+    <value>URL을 입력하세요.</value>
+  </data>
+</root>

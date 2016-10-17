@@ -872,6 +872,14 @@ namespace WebAutomation
                 System.IO.Stream file = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("WebAutomation.Resources.vn.png");
                 sddLanguage.Image = Image.FromStream(file);
             }
+            else if(Language.Resource.Culture.Name == "vi-VN")
+            {
+                Language.Resource.Culture = CultureInfo.CreateSpecificCulture("ko-KR");
+                sddLanguage.Text = Language.Resource.English;
+
+                System.IO.Stream file = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("WebAutomation.Resources.kor.png");
+                sddLanguage.Image = Image.FromStream(file);
+            }
             else
             {
                 Language.Resource.Culture = CultureInfo.CreateSpecificCulture("en-US");
