@@ -189,7 +189,11 @@
     <Compile Include="UI\UserAccount.designer.cs">
       <DependentUpon>UserAccount.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Resources\kor.png" />
     <Content Include="ThirdParty\ThangDC.dll" />
+    <EmbeddedResource Include="Language\Resource.en-US.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\link_add.png" />
     <EmbeddedResource Include="Resources\download.png" />
     <EmbeddedResource Include="Resources\play_basic_blue.png" />
@@ -224,7 +228,7 @@
     <EmbeddedResource Include="Resources\speech.png" />
     <EmbeddedResource Include="Resources\usa.png" />
     <EmbeddedResource Include="Resources\vn.png" />
-    <EmbeddedResource Include="Language\Resource.en-US.resx">
+    <EmbeddedResource Include="Language\Resource.ko-KR.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Language\Resource.resx">
