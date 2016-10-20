@@ -3359,17 +3359,25 @@ namespace WebAutomation
 
         public void writeCellExcel(string filePath, string sheetname, string cellName, string value)
         {
-            /*Magnolia.FileUtilities.ExcelWrapper excel = new Magnolia.FileUtilities.ExcelWrapper(filePath);
-            bool isSheetExists = excel.SheetExists(sheetname);
-            if (isSheetExists)
+            NPOI.HSSF.UserModel.HSSFWorkbook workbook;
+            using (var input = new StreamReader(filePath))
             {
-                excel.WriteCellValue(cellName, value);
-                excel.SaveFile();
+                workbook = new NPOI.HSSF.UserModel.HSSFWorkbook(new NPOI.POIFS.FileSystem.POIFSFileSystem(input.BaseStream));
+                if (workbook != null)
+                {
+                    var sheet = workbook.GetSheet(sheetname);
+                    NPOI.SS.Util.CellReference celRef = new NPOI.SS.Util.CellReference(cellName); 
+                    var row = sheet.CreateRow(celRef.Row);
+                    var cell = row.CreateCell(celRef.Col);
+                    cell.SetCellValue(value);
+                }
             }
-            else
-            {
 
-            }*/
+            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Write))
+            {
+                workbook.Write(file);
+                file.Close();
+            }
         }
 
         #endregion
