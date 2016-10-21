@@ -3464,14 +3464,21 @@ namespace WebAutomation
 
         #region Mouse Keyboard Library Event
 
+        int mouseX = 0;
+        int mouseY = 0;
+        int mouseTickCount = 0;
+
         void mouseHook_MouseMove(object sender, MouseEventArgs e)
         {
-            tbxCode.AppendText("MouseMove(" + e.X + "," + e.Y + ",true, " + (Environment.TickCount - lastTimeRecorded) + ");" + Environment.NewLine);
-            lastTimeRecorded = Environment.TickCount;
+            mouseX = e.X;
+            mouseY = e.Y;
+            mouseTickCount = Environment.TickCount;
         }
 
         void mouseHook_MouseDown(object sender, MouseEventArgs e)
         {
+            tbxCode.AppendText("MouseMove(" + mouseX + "," + mouseY + ",true, " + (Environment.TickCount - mouseTickCount) + ");" + Environment.NewLine);
+            tbxCode.AppendText("MouseClick('Left', 0);" + Environment.NewLine);
             tbxCode.AppendText("MouseDown('" + e.Button.ToString() + "', " + (Environment.TickCount - lastTimeRecorded) + ");" + Environment.NewLine);
             lastTimeRecorded = Environment.TickCount;
         }
