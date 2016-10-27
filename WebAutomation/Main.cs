@@ -1504,7 +1504,7 @@ namespace WebAutomation
             {
                 if (System.IO.Directory.Exists(path))
                 {
-                    System.IO.Directory.Delete(path);
+                    System.IO.Directory.Delete(path, true);
                 }
             }
             catch { }
@@ -3324,7 +3324,6 @@ namespace WebAutomation
                         result = "";
                     }
 
-
                     NPOI.HSSF.UserModel.HSSFFormulaEvaluator formulaEvaluator = new NPOI.HSSF.UserModel.HSSFFormulaEvaluator(workbook);
                     NPOI.HSSF.UserModel.HSSFDataFormatter dataFormatter = new NPOI.HSSF.UserModel.HSSFDataFormatter(new CultureInfo("vi-VN"));
 
@@ -3341,7 +3340,14 @@ namespace WebAutomation
                             NPOI.SS.UserModel.ICell cell = row.GetCell(icolumn);
                             if (cell != null)
                             {
-                                result = dataFormatter.FormatCellValue(cell, formulaEvaluator);
+                                if (cell.CellType == NPOI.SS.UserModel.CellType.FORMULA)
+                                {
+                                    result = cell.StringCellValue;
+                                }
+                                else
+                                {
+                                    result = dataFormatter.FormatCellValue(cell, formulaEvaluator);
+                                }
                             }
                         }
 
