@@ -2,6 +2,8 @@
 
 Web automation is a web browser which can help automation the browser like fill text, click on button, extract the data, save file from web automatically by javascript only.
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/HBultD9tnTw/0.jpg)](https://www.youtube.com/watch?v=HBultD9tnTw)
+
 ##Example
 
 1. Login to Gmail
