@@ -827,4 +827,13 @@ Dong A Bank Account: 596667</value>
   <data name="EmptyUrl" xml:space="preserve">
     <value>Please enter URL</value>
   </data>
+  <data name="CopyFile" xml:space="preserve">
+    <value>Copy File</value>
+  </data>
+  <data name="CopyFolder" xml:space="preserve">
+    <value>Copy Folder</value>
+  </data>
+  <data name="a" xml:space="preserve">
+    <value />
+  </data>
 </root>
