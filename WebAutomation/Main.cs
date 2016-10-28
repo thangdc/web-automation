@@ -1504,10 +1504,86 @@ namespace WebAutomation
             {
                 if (System.IO.Directory.Exists(path))
                 {
-                    System.IO.Directory.Delete(path, true);
+                    File.SetAttributes(path, FileAttributes.Normal);
+
+                    string[] files = Directory.GetFiles(path);
+                    string[] dirs = Directory.GetDirectories(path);
+
+                    foreach (string file in files)
+                    {
+                        File.SetAttributes(file, FileAttributes.Normal);
+                        File.Delete(file);
+                    }
+
+                    foreach (string dir in dirs)
+                    {
+                        removefolder(dir);
+                    }
+
+                    Directory.Delete(path, false);
                 }
             }
             catch { }
+        }
+
+        public void copyFolder(string source, string target, bool copySubDirs)
+        {
+            DirectoryInfo dir = new DirectoryInfo(source);
+
+            if (!dir.Exists)
+            {
+                log("Source directory does not exist or could not be found: " + source);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            // If the destination directory doesn't exist, create it.
+            if (!Directory.Exists(target))
+            {
+                Directory.CreateDirectory(target);
+            }
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(target, file.Name);
+                if (File.Exists(temppath))
+                    File.SetAttributes(temppath, FileAttributes.Normal);
+                file.CopyTo(temppath, true);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(target, subdir.Name);
+                    copyFolder(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
+        public void copyFile(string source, string target, bool isOverride)
+        {
+            if (File.Exists(target))
+                File.SetAttributes(target, FileAttributes.Normal);
+
+            FileInfo file = new FileInfo(source);
+            file.CopyTo(target, isOverride);
+        }
+
+        public void replaceTextinFile(string path, string pattern, string value)
+        {
+            if (File.Exists(path))
+                File.SetAttributes(path, FileAttributes.Normal);
+
+            string text = File.ReadAllText(path);
+            var regex = new Regex(pattern);
+            if (regex.IsMatch(text))
+            {
+                text = text.Replace(regex.Match(text).Groups[0].Value, value);
+                File.WriteAllText(path, text);
+            }
         }
 
         public void excute(string script)
@@ -1523,10 +1599,10 @@ namespace WebAutomation
                 startInfo.WorkingDirectory = getCurrentPath();
                 startInfo.FileName = path;
                 startInfo.Arguments = parameters;
-                startInfo.RedirectStandardOutput = true;
-                startInfo.RedirectStandardError = true;
-                startInfo.UseShellExecute = false;
-                startInfo.CreateNoWindow = true;
+                //startInfo.RedirectStandardOutput = true;
+                //startInfo.RedirectStandardError = true;
+                //startInfo.UseShellExecute = false;
+                //startInfo.CreateNoWindow = true;
                 try
                 {
                     Process p = Process.Start(startInfo);
@@ -1893,12 +1969,12 @@ namespace WebAutomation
 
         public string GetCurrentMouseX()
         {
-            return frmMain.MousePosition.X.ToString();
+            return Cursor.Position.X.ToString();
         }
 
         public string GetCurrentMouseY()
         {
-            return frmMain.MousePosition.Y.ToString();
+            return Cursor.Position.Y.ToString();
         }
 
         public void Mouse_Down(string mouseButton, int LastTime)
@@ -2347,6 +2423,8 @@ namespace WebAutomation
             var removefileItem = new ToolStripMenuItem(Language.Resource.RemoveFile);
             var downloadFileItem = new ToolStripMenuItem(Language.Resource.Download);
             var openExploreItem = new ToolStripMenuItem(Language.Resource.OpenExplore);
+            var copyFolderItem = new ToolStripMenuItem(Language.Resource.CopyFolder);
+            var copyFileItem = new ToolStripMenuItem(Language.Resource.CopyFile);
 
             runCommandItem.Click += item_Click;
             createfolderItem.Click += item_Click;
@@ -2357,6 +2435,8 @@ namespace WebAutomation
             removefileItem.Click += item_Click;
             downloadFileItem.Click += item_Click;
             openExploreItem.Click += item_Click;
+            copyFolderItem.Click += item_Click;
+            copyFileItem.Click += item_Click;
 
             exploreItem.DropDownItems.Add(runCommandItem);
             exploreItem.DropDownItems.Add(createfolderItem);
@@ -2379,6 +2459,8 @@ namespace WebAutomation
             contextMenuBrowser.Items.Add(utilityItem);
             contextMenuBrowser.Items.Add(excelItem);
             contextMenuBrowser.Items.Add(exploreItem);
+            exploreItem.DropDownItems.Add(copyFolderItem);
+            exploreItem.DropDownItems.Add(copyFileItem);
         }
 
         int repeatCount = 0;
@@ -2400,59 +2482,46 @@ namespace WebAutomation
             {
                 tbxCode.AppendText("var x = getCurrentMouseX();" + Environment.NewLine);
                 tbxCode.AppendText("var y = getCurrentMouseY();" + Environment.NewLine);
-                tbxCode.AppendText("//Show current position of mouse in "+ Language.Resource.Preview +" tab" + Environment.NewLine);
                 tbxCode.AppendText("log(x + ',' + y);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseMove)
             {
-                var x = GetCurrentMouseX();
-                var y = GetCurrentMouseY();
-                tbxCode.AppendText("//MouseMove(Position X, Position Y, IsShowMouseWhenMove, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//IsShowMouseWhenMove: true/false" + Environment.NewLine);
-                tbxCode.AppendText("MouseMove(" + x + ", " + y + ", true, 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseDown)
             {
-                tbxCode.AppendText("//MouseDown(MouseButton, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//MouseButton: Left, Right or Middle" + Environment.NewLine);
-                tbxCode.AppendText("MouseDown('Left', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("MouseDown('Left', 10);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseUp)
             {
-                tbxCode.AppendText("//MouseUp(MouseButton, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//MouseButton: Left, Right or Middle" + Environment.NewLine);
-                tbxCode.AppendText("MouseUp('Left', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("MouseUp('Left', 10);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseClick)
             {
-                tbxCode.AppendText("//MouseClick(MouseButton, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//MouseButton: Left, Right or Middle" + Environment.NewLine);
-                tbxCode.AppendText("MouseClick('Left', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("MouseClick('Left', 10);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseDoubleClick)
             {
-                tbxCode.AppendText("//MouseDoubleClick(MouseButton, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//MouseButton: Left, Right or Middle" + Environment.NewLine);
-                tbxCode.AppendText("MouseDoubleClick('Left', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("MouseDoubleClick('Left', 10);" + Environment.NewLine);
             }
             else if (item == Language.Resource.MouseWheel)
             {
-                tbxCode.AppendText("//MouseWheel(Delta, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("MouseWheel(-15, 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("MouseWheel(-15, 5);" + Environment.NewLine);
             }
             else if (item == Language.Resource.KeyDown)
             {
-                tbxCode.AppendText("//KeyDown(KeyCode, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//KeyCode: Keyboard characters" + Environment.NewLine);
-
-                tbxCode.AppendText("KeyDown('A', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("KeyDown('A', 5);" + Environment.NewLine);
             }
             else if (item == Language.Resource.KeyUp)
             {
-                tbxCode.AppendText("//KeyUp(KeyCode, Delay Time)" + Environment.NewLine);
-                tbxCode.AppendText("//KeyCode: Keyboard characters" + Environment.NewLine);
-
-                tbxCode.AppendText("KeyUp('A', 0);" + Environment.NewLine);
+                tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                tbxCode.AppendText("KeyUp('A', 5);" + Environment.NewLine);
             }
             else if (item == Language.Resource.GetDatabase)
             {
@@ -2578,6 +2647,16 @@ namespace WebAutomation
             {
                 tbxCode.AppendText("//Open Explorer" + Environment.NewLine);
                 tbxCode.AppendText("explorer('path');" + Environment.NewLine);
+            }
+            else if (item == Language.Resource.CopyFolder)
+            {
+                tbxCode.AppendText("//Copy" + Environment.NewLine);
+                tbxCode.AppendText("copyfolder('source', 'destination', isIncludeSubFolder);" + Environment.NewLine);
+            }
+            else if (item == Language.Resource.CopyFile)
+            {
+                tbxCode.AppendText("//Copy" + Environment.NewLine);
+                tbxCode.AppendText("copyfile('source', 'destination', isOverride);" + Environment.NewLine);
             }
             else if (item == Language.Resource.Go)
             {
@@ -2867,6 +2946,11 @@ namespace WebAutomation
                                                 /* remove a file, a = location of file will be removed */
                                                 function remove(a) { CheckAbort(); window.external.remove(a);}
                                                 function removefolder(a) {CheckAbort(); window.external.removefolder(a);}
+                                                
+                                                function copyfolder(a,b,c) {CheckAbort(); window.external.copyFolder(a,b,c);}
+                                                function copyfile(a,b,c) {CheckAbort(); window.external.copyFile(a,b,c);}
+
+                                                function replacetextinfile(a, b, c) { CheckAbort(); window.external.replaceTextinFile(a,b,c); }
 
                                                 function explorer(a) { CheckAbort(); window.external.explorer(a); }
 
@@ -3100,11 +3184,17 @@ namespace WebAutomation
             wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;            
         }
 
+        private int CurrentMouseX = 0;
+        private int CurrentMouseY = 0;
+
         void wbBrowser_DomContextMenu(object sender, DomMouseEventArgs e)
         {
             if (e.Button.ToString().IndexOf("Right") != -1)
             {
                 contextMenuBrowser.Show(Cursor.Position);
+                
+                CurrentMouseX = Cursor.Position.X;
+                CurrentMouseY = Cursor.Position.Y;
 
                 GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
                 if (wb != null)
@@ -3470,21 +3560,14 @@ namespace WebAutomation
 
         #region Mouse Keyboard Library Event
 
-        int mouseX = 0;
-        int mouseY = 0;
-        int mouseTickCount = 0;
-
         void mouseHook_MouseMove(object sender, MouseEventArgs e)
         {
-            mouseX = e.X;
-            mouseY = e.Y;
-            mouseTickCount = Environment.TickCount;
+            tbxCode.AppendText("MouseMove(" + e.X + "," + e.Y + ",true, " + (Environment.TickCount - lastTimeRecorded) + ");" + Environment.NewLine);
+            lastTimeRecorded = Environment.TickCount;
         }
 
         void mouseHook_MouseDown(object sender, MouseEventArgs e)
         {
-            tbxCode.AppendText("MouseMove(" + mouseX + "," + mouseY + ",true, " + (Environment.TickCount - mouseTickCount) + ");" + Environment.NewLine);
-            tbxCode.AppendText("MouseClick('Left', 0);" + Environment.NewLine);
             tbxCode.AppendText("MouseDown('" + e.Button.ToString() + "', " + (Environment.TickCount - lastTimeRecorded) + ");" + Environment.NewLine);
             lastTimeRecorded = Environment.TickCount;
         }
