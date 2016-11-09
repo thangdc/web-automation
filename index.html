@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Web Automation by thangdc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Web Automation</h1>
+      <h2 class="project-tagline">Web Automation written in C#, using Web Browser control to automate many things. You can do many things by write JavaScript code to control a Web Browser.</h2>
+      <a href="https://github.com/thangdc/web-automation" class="btn">View on GitHub</a>
+      <a href="https://github.com/thangdc/web-automation/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/thangdc/web-automation/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="what-is-web-automation" class="anchor" href="#what-is-web-automation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is Web Automation?</h1>
+
+<p>Web automation can help to automate some repeated task on web such as: navigate to the website, click on the button, link, extract the data from the website, fill the value to the text box, dropdown, checkbox...</p>
+
+<h1>
+<a id="how-web-automation-work" class="anchor" href="#how-web-automation-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How Web Automation work?</h1>
+
+<hr>
+
+<p>As you see in the picture, the web automation program has two part: web browser to display website, developer tool where you can write the javascript to control the web browser.</p>
+
+<p>When you enter the script to the developer tool then you click Execute button, the script text was executed in the hidden web browser by InvokeScript and this second web browser we define all function we want to use.</p>
+
+<p>Regarding the second hidden web browser we define the function and in the function will be callback to C# code by using window.external.(name of function in C#).</p>
+
+<h1>
+<a id="how-to-use-web-automation" class="anchor" href="#how-to-use-web-automation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use Web Automation?</h1>
+
+<p>I have created 2 ways for the user to use the Web Application, the first way for the developer who know the javascript and  all the functions were used, the second way for the user who can use in the GUI.</p>
+
+<p>Download the Web Automation: <a href="Web-Automation-1.0.6">http://www.mediafire.com/file/pve90adavwx99h5/Web-Automation-1.0.6.zip</a></p>
+
+<h2>
+<a id="1-for-developer" class="anchor" href="#1-for-developer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. For Developer</h2>
+
+<ul>
+<li>Step 1: Open WebAutomation.exe</li>
+<li>Step 2: Click on the Show Developer Tool from the Toolbar</li>
+<li>Step 3: In the Developer Tool, enter some function and click Excecute to verify.</li>
+</ul>
+
+<p>Example: I want to navigate to google, in the Developer tool I will enter: <code>go('http://www.google.com');</code> and click Execute, the web browser will be displayed the google web site.</p>
+
+<h2>
+<a id="2-for-normal-user" class="anchor" href="#2-for-normal-user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. For normal user</h2>
+
+<ul>
+<li>Step 1: Open WebAutomation.exe</li>
+<li>Step 2: Input some web site url in the textbox and click Go button, please wait until the website has been loaded.</li>
+<li>Step 3: Right click on the web browser, you will see the context menu with all functions list.</li>
+<li>Step 4: Choose one function you want to try, for example I want to navigate to google, I choose Go the the message box display ask you "Do you want to go the website?", select Yes then enter <a href="http://www.google.com">http://www.google.com</a>, click OK</li>
+<li>Step 5: The Developer Tool was opened and you will see the function <code>go('http://www.google.com');</code>, click Execute, the web browser will be displayed the google web site.</li>
+</ul>
+
+<h1>
+<a id="list-functions-were-support-by-web-automation" class="anchor" href="#list-functions-were-support-by-web-automation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>List functions were support by Web Automation</h1>
+
+<ol>
+<li>stringtoXML(data), convert xml string to javascript object.</li>
+<li>tabnew(), it will open new tab</li>
+<li>tabclose(), it will close the current tab</li>
+<li>tabcloseall(), it will close all tabs</li>
+<li>go(url), it will navigate to the url parameter</li>
+<li>back(), it will call the web browser go back</li>
+<li>next(), it will call the web browser go next</li>
+<li>reload(), it will call the web browser to reload page</li>
+<li>stop(), it will stop the loading web browser</li>
+<li>sleep(time, isWaitWebBrowserLoaded), it will wait with the specific time, or if isWaitWebBrowserLoaded = true, it will run next function if the web browser has been loaded even the specific time still not come.</li>
+<li>exit(), it will close the program</li>
+<li>click(element), it will click on specific xpath element provided.
+....</li>
+</ol>
+
+<p>They have many functions, I will continue update it later.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/thangdc/web-automation">Web Automation</a> is maintained by <a href="https://github.com/thangdc">thangdc</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
