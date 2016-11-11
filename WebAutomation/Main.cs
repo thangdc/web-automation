@@ -39,7 +39,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.0.6";
+        public string Version = "1.0.7";
 
         #endregion
 
@@ -1159,21 +1159,9 @@ namespace WebAutomation
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                if (xpath.StartsWith("/"))
-                {
-                    elm = GetElementByXpath(wb.Document, xpath);
-
-                    if (elm != null)
-                        UpdateUrlAbsolute(wb.Document, elm);
-                    
-                }
-                else
-                {
-                    var id = xpath;
-                    elm = wb.Document.GetHtmlElementById(id);
-                    if (elm != null)
-                        UpdateUrlAbsolute(wb.Document, elm);
-                }
+                elm = GetCompleteElementByXPath(wb, xpath);
+                if (elm != null)
+                    UpdateUrlAbsolute(wb.Document, elm);
 
                 if (elm != null)
                 {
@@ -1247,7 +1235,7 @@ namespace WebAutomation
                 if (id.StartsWith("/"))
                 {
                     string xpath = id;
-                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
+                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
                     if (elm != null)
                     {
                         switch (elm.TagName)
@@ -1295,21 +1283,23 @@ namespace WebAutomation
             
         }
 
-        public void filldropdown(string id, string value)
+        public void filldropdown(string xpath, string value)
         {
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                if (id.StartsWith("/"))
+                if (xpath.StartsWith("/"))
                 {
-                    string xpath = id;
-                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
-                    elm.SetAttribute("selectedIndex", value);
-                    
-                    elm.Focus();
+                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
+                    if (elm != null)
+                    {
+                        elm.SetAttribute("selectedIndex", value);
+                        elm.Focus();
+                    }
                 }
                 else
                 {
+                    var id = xpath;
                     using (AutoJSContext context = new AutoJSContext(wb.Window.JSContext))
                     {
                         string javascript = string.Empty;
@@ -1322,19 +1312,20 @@ namespace WebAutomation
             }
         }
 
-        public void click(string id)
+        public void click(string xpath)
         {
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                if (id.StartsWith("/"))
+                if (xpath.StartsWith("/"))
                 {
-                    string xpath = id;
-                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
-                    elm.Click();
+                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
+                    if (elm != null)
+                        elm.Click();
                 }
                 else
                 {
+                    var id = xpath;
                     using (AutoJSContext context = new AutoJSContext(wb.Window.JSContext))
                     {
                         context.EvaluateScript("document.getElementById('" + id + "').click();");
@@ -1780,7 +1771,7 @@ namespace WebAutomation
                 {
                     GeckoImageElement element = null;
                     if (xpath.StartsWith("/"))
-                        element = (GeckoImageElement)GetElementByXpath(wbBrowser.Document, xpath);
+                        element = (GeckoImageElement)wbBrowser.Document.GetElements(xpath).FirstOrDefault();
                     else
                         element = (GeckoImageElement)wbBrowser.Document.GetElementById(xpath);
                     GeckoSelection selection = wbBrowser.Window.Selection;
@@ -3209,7 +3200,7 @@ namespace WebAutomation
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
+                GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
                 if (elm != null)
                 {
                     UpdateUrlAbsolute(wb.Document, elm);
@@ -3345,20 +3336,40 @@ namespace WebAutomation
             return ele;
         }
 
-        private string GetXpath(GeckoHtmlElement ele)
+        private string GetXpath(GeckoNode node)
         {
-            string xpath = "";
-            while (ele != null)
+            if (node.NodeType == NodeType.Attribute)
             {
-                int ind = GetXpathIndex(ele);
-                if (ind > 1)
-                    xpath = "/" + ele.TagName.ToLower() + "[" + ind + "]" + xpath;
-                else
-                    xpath = "/" + ele.TagName.ToLower() + xpath;
 
-                ele = ele.Parent;
+                return String.Format("{0}/@{1}", GetXpath(((GeckoAttribute)node).OwnerDocument), node.LocalName);
             }
-            return xpath;
+            if (node.ParentNode == null)
+            {
+                return "";
+            }
+            string elementId = ((GeckoHtmlElement)node).Id;
+            if (!String.IsNullOrEmpty(elementId))
+            {
+                return String.Format("//*[@id='{0}']", elementId);
+
+            }
+
+
+            int indexInParent = 1;
+            GeckoNode siblingNode = node.PreviousSibling;
+
+            while (siblingNode != null)
+            {
+
+                if (siblingNode.LocalName == node.LocalName)
+                {
+                    indexInParent++;
+                }
+                siblingNode = siblingNode.PreviousSibling;
+            }
+
+
+            return String.Format("{0}/{1}[{2}]", GetXpath(node.ParentNode), node.LocalName, indexInParent);
         }
 
         private int GetXpathIndex(GeckoHtmlElement ele)
@@ -3395,6 +3406,25 @@ namespace WebAutomation
                 if (!it.GetAttribute("href").StartsWith("http://"))
                     it.SetAttribute("href", link + it.GetAttribute("href"));
             }
+        }
+
+        private GeckoHtmlElement GetCompleteElementByXPath(GeckoWebBrowser wb, string xpath)
+        {
+            GeckoHtmlElement elm = null;
+            while (elm == null)
+            {
+                if (IsStop) break;
+                if (xpath.StartsWith("/"))
+                {
+                    elm = wb.Document.DocumentElement.GetElements(xpath).FirstOrDefault();
+                }
+                else
+                {
+                    elm = (GeckoHtmlElement)wb.Document.GetElementById(xpath);
+                }
+                sleep(1, false);
+            }
+            return elm;
         }
 
         #endregion  
