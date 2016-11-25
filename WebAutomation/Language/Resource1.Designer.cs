@@ -1830,6 +1830,15 @@ namespace WebAutomation.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send Text.
+        /// </summary>
+        public static string SendText {
+            get {
+                return ResourceManager.GetString("SendText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server.
         /// </summary>
         public static string Server {
