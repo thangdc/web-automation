@@ -75,7 +75,7 @@ namespace WebAutomation
             CallBackWinAppWebBrowser();
             InitMouseKeyBoardEvent();
 
-            Xpcom.Initialize("xulrunner");
+            Xpcom.Initialize("Firefox");
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -92,12 +92,26 @@ namespace WebAutomation
         {
             switch (e.KeyValue)
             {
+                //F12
                 case 123:
                     TooglePanel();
                     if (developerToolsToolStripMenuItem.Checked) tbxCode.Focus();
                     break;
+                //F5
                 case 116:
                     toolStripRunning_Click(this, null);
+                    break;
+                //F3
+                case 114:
+                    tbxCode.AppendText("MouseMove(" + Cursor.Position.X + ", " + Cursor.Position.Y + ", true, 10);" + Environment.NewLine);
+                    break;
+                //F4
+                case 115:
+                    GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+                    if (wb != null)
+                    {
+                        htmlElm = (GeckoHtmlElement)wb.Document.ElementFromPoint(Cursor.Position.X, Cursor.Position.Y);
+                    }
                     break;
                 default:
                     break;
@@ -1198,7 +1212,7 @@ namespace WebAutomation
 
         public void filliframe(string title, string value)
         {
-            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+            /*GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
                 foreach (GeckoWindow ifr in wb.Window.Frames)
@@ -1224,31 +1238,30 @@ namespace WebAutomation
                         break;
                     }
                 }
-            }
+            }*/
         }
 
-        public void fill(string id, string value)
+        public void fill(string xpath, string value)
         {
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                if (id.StartsWith("/"))
+                if (xpath.StartsWith("/"))
                 {
-                    string xpath = id;
                     GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
                     if (elm != null)
                     {
                         switch (elm.TagName)
                         {
                             case "IFRAME":
-                                foreach (GeckoWindow ifr in wb.Window.Frames)
+                                /*foreach (GeckoWindow ifr in wb.Window.Frames)
                                 {
                                     if (ifr.Document == elm.DOMElement)
                                     {
                                         ifr.Document.TextContent = value;
                                         break;
                                     }
-                                }
+                                }*/
                                 break;
                             case "INPUT":
                                 GeckoInputElement input = (GeckoInputElement)elm;
@@ -1272,12 +1285,12 @@ namespace WebAutomation
                         else
                             asAscii.AppendFormat("\\u{0:x4}", codepoint);
                     }
-
+                    /*var id = xpath;
                     using (AutoJSContext context = new AutoJSContext(wb.Window.JSContext))
                     {
                         context.EvaluateScript("document.getElementById('" + id + "').value = '" + asAscii.ToString() + "';");
                         context.EvaluateScript("document.getElementById('" + id + "').scrollIntoView();");
-                    }
+                    }*/
                 }
             }
             
@@ -1299,7 +1312,7 @@ namespace WebAutomation
                 }
                 else
                 {
-                    var id = xpath;
+                    /*var id = xpath;
                     using (AutoJSContext context = new AutoJSContext(wb.Window.JSContext))
                     {
                         string javascript = string.Empty;
@@ -1307,7 +1320,7 @@ namespace WebAutomation
                         JQueryExecutor jquery = new JQueryExecutor(wb.Window);
                         jquery.ExecuteJQuery("$('#" + id + "').trigger('change');");
                         context.EvaluateScript("document.getElementById('" + id + "').scrollIntoView();");
-                    }
+                    }*/
                 }
             }
         }
@@ -1325,12 +1338,12 @@ namespace WebAutomation
                 }
                 else
                 {
-                    var id = xpath;
+                    /*var id = xpath;
                     using (AutoJSContext context = new AutoJSContext(wb.Window.JSContext))
                     {
                         context.EvaluateScript("document.getElementById('" + id + "').click();");
                         context.EvaluateScript("document.getElementById('" + id + "').scrollIntoView();");
-                    }
+                    }*/
                 }
             }
         }
@@ -1771,7 +1784,7 @@ namespace WebAutomation
                 {
                     GeckoImageElement element = null;
                     if (xpath.StartsWith("/"))
-                        element = (GeckoImageElement)wbBrowser.Document.GetElements(xpath).FirstOrDefault();
+                        element = (GeckoImageElement)wbBrowser.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
                     else
                         element = (GeckoImageElement)wbBrowser.Document.GetElementById(xpath);
                     GeckoSelection selection = wbBrowser.Window.Selection;
@@ -2084,6 +2097,31 @@ namespace WebAutomation
             MouseKeyboardLibrary.KeyboardSimulator.KeyUp(mykey);
         }
 
+        public void sendText(string text)
+        {
+            var actualValue = string.Empty;
+            var values = Enum.GetValues(typeof(Keys));
+            KeysConverter converter = new KeysConverter();
+            foreach (var item in text.ToArray())
+            {
+                WaitApp(2);
+                if (item.ToString() == "_")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.OemMinus);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == " ")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Space);
+                }
+                else
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown((Keys)converter.ConvertFromString(item.ToString().ToUpper()));
+                }
+            }
+        }
+
         private void WaitApp(int seconds)
         {
             Application.DoEvents();
@@ -2346,12 +2384,15 @@ namespace WebAutomation
             var keyboardItem = new ToolStripMenuItem(Language.Resource.Keyboard);
             var keyDownItem = new ToolStripMenuItem(Language.Resource.KeyDown);
             var keyUpItem = new ToolStripMenuItem(Language.Resource.KeyUp);
+            var sendTextItem = new ToolStripMenuItem(Language.Resource.SendText);
 
             keyDownItem.Click += item_Click;
             keyUpItem.Click += item_Click;
+            sendTextItem.Click += item_Click;
 
             keyboardItem.DropDownItems.Add(keyDownItem);
             keyboardItem.DropDownItems.Add(keyUpItem);
+            keyboardItem.DropDownItems.Add(sendTextItem);
 
             var sqlItem = new ToolStripMenuItem(Language.Resource.Sql);
             var getDatabaseItem = new ToolStripMenuItem(Language.Resource.GetDatabase);
@@ -2459,14 +2500,8 @@ namespace WebAutomation
 
         void item_Click(object sender, EventArgs e)
         {
-            string xpath = string.Empty;
-            xpath = htmlElm.GetAttribute("id");
+            string xpath = GetXpath(htmlElm);
             contextMenuBrowser.Hide();
-
-            if (string.IsNullOrEmpty(xpath))
-            {
-                xpath = GetXpath(htmlElm);
-            }
 
             string item = sender.ToString();
             if (item == Language.Resource.GetCurrentMouse)
@@ -2514,6 +2549,15 @@ namespace WebAutomation
                 tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
                 tbxCode.AppendText("KeyUp('A', 5);" + Environment.NewLine);
             }
+            else if (item == Language.Resource.SendText)
+            {
+                string promptValue = Prompt.ShowDialog(Language.Resource.SendText, Language.Resource.Message, "", false);
+                if (!string.IsNullOrEmpty(promptValue))
+                {
+                    tbxCode.AppendText("MouseMove(" + CurrentMouseX + ", " + CurrentMouseY + ", true, 10);" + Environment.NewLine);
+                    tbxCode.AppendText("sendText('" + promptValue + "');" + Environment.NewLine);
+                }
+            }
             else if (item == Language.Resource.GetDatabase)
             {
                 tbxCode.AppendText("//List All Database" + Environment.NewLine);
@@ -2555,7 +2599,7 @@ namespace WebAutomation
                 tbxCode.AppendText("//Take Snapshot" + Environment.NewLine);
                 tbxCode.AppendText("var location = getCurrentPath() + '\\\\image.png';" + Environment.NewLine);
                 tbxCode.AppendText("takesnapshot(location);" + Environment.NewLine);
-                
+
             }
             else if (item == Language.Resource.TextToJson)
             {
@@ -3036,6 +3080,8 @@ namespace WebAutomation
 
                                                 function KeyUp(a,b) { CheckAbort(); window.external.Key_Up(a,b); }
 
+                                                function sendText(a) { CheckAbort(); window.external.sendText(a); }
+
                                                 function Reload() { CheckAbort(); window.external.Reload(); }
 
                                                 function sendEmail(name, email, subject, content) { CheckAbort(); return window.external.sendEmail(name, email, subject, content); }" +
@@ -3089,18 +3135,18 @@ namespace WebAutomation
 
             GeckoWebBrowser wbBrowser = new GeckoWebBrowser();
 
-            wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
+            //wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
             wbBrowser.ProgressChanged += wbBrowser_ProgressChanged;
-            wbBrowser.Navigated -= wbBrowser_Navigated;
+            //wbBrowser.Navigated -= wbBrowser_Navigated;
             wbBrowser.Navigated += wbBrowser_Navigated;
-            wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
+            //wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
             wbBrowser.DocumentCompleted += wbBrowser_DocumentCompleted;
-            wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
+            //wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
             wbBrowser.CanGoBackChanged += wbBrowser_CanGoBackChanged;
-            wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
+            //wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
             wbBrowser.CanGoForwardChanged += wbBrowser_CanGoForwardChanged;
 
-            if (cfgShowImages.Checked)
+            /*if (cfgShowImages.Checked)
             {
                 GeckoPreferences.Default["image.animation_mode"] = "none";
                 GeckoPreferences.Default["browser.display.show_image_placeholders"] = false;
@@ -3113,7 +3159,7 @@ namespace WebAutomation
                 GeckoPreferences.Default["browser.display.show_image_placeholders"] = true;
                 GeckoPreferences.Default["extensions.blocklist.enabled"] = false;
                 GeckoPreferences.User["permissions.default.image"] = 1;
-            }
+            }*/
 
             currentTab.Controls.Add(wbBrowser);
             wbBrowser.Dock = DockStyle.Fill;
@@ -3170,9 +3216,36 @@ namespace WebAutomation
             currentTab.Text = (title.Length > 10 ? title.Substring(0, 10) + "..." : title);
             tbxAddress.Text = wbBrowser.Url.ToString();
 
+            //wbBrowser.ShowContextMenu += new EventHandler<GeckoContextMenuEventArgs>(wbBrowser_ShowContextMenu);
             wbBrowser.DomContextMenu += wbBrowser_DomContextMenu;
             wbBrowser.NoDefaultContextMenu = true;
-            wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;            
+        }
+
+        void wbBrowser_ShowContextMenu(object sender, GeckoContextMenuEventArgs e)
+        {
+            contextMenuBrowser.Show(Cursor.Position);
+
+            CurrentMouseX = Cursor.Position.X;
+            CurrentMouseY = Cursor.Position.Y;
+
+            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+            if (wb != null)
+            {
+                htmlElm = (GeckoHtmlElement)wb.Document.ElementFromPoint(Cursor.Position.X, Cursor.Position.Y);
+                if (htmlElm != null)
+                {
+                    if (htmlElm.GetType().Name == "GeckoIFrameElement")
+                    {
+                        var iframe = (GeckoIFrameElement)wb.Document.GetElementById(htmlElm.Id);
+                        if (iframe != null)
+                        {
+                            var contentDocument = iframe.ContentWindow.Document;
+                            if (contentDocument != null)
+                                htmlElm = (GeckoHtmlElement)contentDocument.ElementFromPoint(Cursor.Position.X, Cursor.Position.Y);
+                        }
+                    }
+                }
+            }
         }
 
         private int CurrentMouseX = 0;
@@ -3183,14 +3256,14 @@ namespace WebAutomation
             if (e.Button.ToString().IndexOf("Right") != -1)
             {
                 contextMenuBrowser.Show(Cursor.Position);
-                
+
                 CurrentMouseX = Cursor.Position.X;
                 CurrentMouseY = Cursor.Position.Y;
 
                 GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
                 if (wb != null)
                 {
-                    htmlElm = wb.Document.ElementFromPoint(e.ClientX, e.ClientY);
+                    htmlElm = (GeckoHtmlElement)wb.Document.ElementFromPoint(e.ClientX, e.ClientY);
                 }
             }
         }
@@ -3338,9 +3411,11 @@ namespace WebAutomation
 
         private string GetXpath(GeckoNode node)
         {
+            if (node == null)
+                return string.Empty;
+
             if (node.NodeType == NodeType.Attribute)
             {
-
                 return String.Format("{0}/@{1}", GetXpath(((GeckoAttribute)node).OwnerDocument), node.LocalName);
             }
             if (node.ParentNode == null)
@@ -3351,9 +3426,7 @@ namespace WebAutomation
             if (!String.IsNullOrEmpty(elementId))
             {
                 return String.Format("//*[@id='{0}']", elementId);
-
             }
-
 
             int indexInParent = 1;
             GeckoNode siblingNode = node.PreviousSibling;
@@ -3367,7 +3440,6 @@ namespace WebAutomation
                 }
                 siblingNode = siblingNode.PreviousSibling;
             }
-
 
             return String.Format("{0}/{1}[{2}]", GetXpath(node.ParentNode), node.LocalName, indexInParent);
         }
@@ -3416,7 +3488,7 @@ namespace WebAutomation
                 if (IsStop) break;
                 if (xpath.StartsWith("/"))
                 {
-                    elm = wb.Document.DocumentElement.GetElements(xpath).FirstOrDefault();
+                    elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
                 }
                 else
                 {

@@ -49,13 +49,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Geckofx-Core, Version=22.0.7.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=x86">
+    <Reference Include="Geckofx-Core, Version=45.0.22.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Geckofx-Core.dll</HintPath>
+      <HintPath>ThirdParty\Geckofx-Core.dll</HintPath>
     </Reference>
-    <Reference Include="Geckofx-Winforms, Version=22.0.7.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=MSIL">
+    <Reference Include="Geckofx-Winforms, Version=45.0.22.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Geckofx-Winforms.dll</HintPath>
+      <HintPath>ThirdParty\Geckofx-Winforms.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\..\..\..\Album Downloader\Code\Version 5\AlbumDownloader\AlbumDownloader\DLL\HtmlAgilityPack.dll</HintPath>
@@ -189,84 +189,74 @@
     <Compile Include="UI\UserAccount.designer.cs">
       <DependentUpon>UserAccount.cs</DependentUpon>
     </Compile>
-    <Content Include="xulrunner\AccessibleMarshal.dll">
+    <Content Include="Firefox\AccessibleMarshal.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\breakpadinjector.dll">
+    <Content Include="Firefox\breakpadinjector.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\crashreporter.exe">
+    <Content Include="Firefox\D3DCompiler_43.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\D3DCompiler_43.dll">
+    <Content Include="Firefox\d3dcompiler_47.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\freebl3.dll">
+    <Content Include="Firefox\freebl3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\gkmedias.dll">
+    <Content Include="Firefox\icudt56.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\IA2Marshal.dll">
+    <Content Include="Firefox\icuin56.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\js.exe">
+    <Content Include="Firefox\icuuc56.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\libEGL.dll">
+    <Content Include="Firefox\lgpllibs.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\libGLESv2.dll">
+    <Content Include="Firefox\libEGL.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\mozalloc.dll">
+    <Content Include="Firefox\libGLESv2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\mozglue.dll">
+    <Content Include="Firefox\mozglue.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\mozjs.dll">
+    <Content Include="Firefox\msvcp120.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\msvcp100.dll">
+    <Content Include="Firefox\msvcr120.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\msvcr100.dll">
+    <Content Include="Firefox\nss3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\nss3.dll">
+    <Content Include="Firefox\nssckbi.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\nssckbi.dll">
+    <Content Include="Firefox\nssdbm3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\nssdbm3.dll">
+    <Content Include="Firefox\plugin-container.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\plugin-container.exe">
+    <Content Include="Firefox\plugin-hang-ui.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\plugin-hang-ui.exe">
+    <Content Include="Firefox\sandboxbroker.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\redit.exe">
+    <Content Include="Firefox\softokn3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\softokn3.dll">
+    <Content Include="Firefox\xul.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="xulrunner\updater.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\xul.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\xulrunner-stub.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="xulrunner\xulrunner.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="ThirdParty\Geckofx-Core.dll" />
+    <Content Include="ThirdParty\Geckofx-Winforms.dll" />
     <EmbeddedResource Include="Resources\kor.png" />
     <Content Include="ThirdParty\ThangDC.dll" />
     <EmbeddedResource Include="Language\Resource.en-US.resx">
@@ -282,9 +272,10 @@
     <EmbeddedResource Include="Resources\document_text_add.png" />
     <EmbeddedResource Include="Resources\download_run.png" />
     <EmbeddedResource Include="Resources\firewall_pause.png" />
+    <None Include="Firefox\omni.ja">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\clipboard.png" />
-    <Content Include="ThirdParty\Geckofx-Core.dll" />
-    <Content Include="ThirdParty\Geckofx-Winforms.dll" />
     <Content Include="ThirdParty\HtmlAgilityPack.dll" />
     <Content Include="ThirdParty\MouseKeyboardLibrary.dll" />
     <Content Include="ThirdParty\NPOI.dll" />
@@ -377,45 +368,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="xulrunner\crashreporter.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\dependentlibs.list">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\dictionaries\en-US.aff">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\dictionaries\en-US.dic">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\freebl3.chk">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\js-gdb.py">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\LICENSE">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\nssdbm3.chk">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\omni.ja">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\platform.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\precomplete">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\README.xulrunner">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="xulrunner\softokn3.chk">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -836,4 +836,7 @@ Dong A Bank Account: 596667</value>
   <data name="a" xml:space="preserve">
     <value />
   </data>
+  <data name="SendText" xml:space="preserve">
+    <value>Send Text</value>
+  </data>
 </root>
