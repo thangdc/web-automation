@@ -3565,8 +3565,14 @@ namespace WebAutomation
                 {
                     var sheet = workbook.GetSheet(sheetname);
                     NPOI.SS.Util.CellReference celRef = new NPOI.SS.Util.CellReference(cellName); 
-                    var row = sheet.CreateRow(celRef.Row);
-                    var cell = row.CreateCell(celRef.Col);
+                    var row = sheet.GetRow(celRef.Row);
+                    if (row == null)
+                        row = sheet.CreateRow(celRef.Row);
+
+                    var cell = row.GetCell(celRef.Col);
+                    if (cell == null)
+                        cell = row.CreateCell(celRef.Col);
+
                     cell.SetCellValue(value);
                 }
             }
