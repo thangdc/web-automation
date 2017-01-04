@@ -3482,19 +3482,27 @@ namespace WebAutomation
 
         private GeckoHtmlElement GetCompleteElementByXPath(GeckoWebBrowser wb, string xpath)
         {
-            GeckoHtmlElement elm = null;
+            GeckoHtmlElement elm = GetElement(wb, xpath);
+
             while (elm == null)
             {
                 if (IsStop) break;
-                if (xpath.StartsWith("/"))
-                {
-                    elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
-                }
-                else
-                {
-                    elm = (GeckoHtmlElement)wb.Document.GetElementById(xpath);
-                }
+                elm = GetElement(wb, xpath);
                 sleep(1, false);
+            }
+            return elm;
+        }
+
+        private GeckoHtmlElement GetElement(GeckoWebBrowser wb, string xpath)
+        {
+            GeckoHtmlElement elm = null;
+            if (xpath.StartsWith("/"))
+            {
+                elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
+            }
+            else
+            {
+                elm = (GeckoHtmlElement)wb.Document.GetElementById(xpath);
             }
             return elm;
         }
@@ -3558,6 +3566,15 @@ namespace WebAutomation
         public void writeCellExcel(string filePath, string sheetname, string cellName, string value)
         {
             NPOI.HSSF.UserModel.HSSFWorkbook workbook;
+            if (!File.Exists(filePath))
+            {
+                workbook = NPOI.HSSF.UserModel.HSSFWorkbook.Create(NPOI.HSSF.Model.InternalWorkbook.CreateWorkbook());
+                var sheet = workbook.CreateSheet(sheetname);
+                using (var fs = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    workbook.Write(fs);
+                }
+            }
             using (var input = new StreamReader(filePath))
             {
                 workbook = new NPOI.HSSF.UserModel.HSSFWorkbook(new NPOI.POIFS.FileSystem.POIFSFileSystem(input.BaseStream));
