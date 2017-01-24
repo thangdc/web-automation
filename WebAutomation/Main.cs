@@ -951,7 +951,15 @@ namespace WebAutomation
             {
                 if (currentTab.Controls.Count > 0)
                 {
-                    currentTab.Controls.RemoveAt(0);
+                    Control ctr = currentTab.Controls[0];
+                    if (ctr != null)
+                    {
+                        var wb = (GeckoWebBrowser)ctr;
+                        wb.Stop();
+                        wb.Dispose();
+                        wb = null;
+                    }                    
+                    currentTab.Controls.Clear();
                 }
 
                 GoWebBrowser(url);
@@ -2421,6 +2429,8 @@ namespace WebAutomation
             var getAccountByItem = new ToolStripMenuItem(Language.Resource.GetAccount);
             var sendEmailItem = new ToolStripMenuItem(Language.Resource.SendEmail);
 
+            imageToTextItem.Enabled = false;
+
             imageToTextItem.Click += item_Click;
             takesnapshotItem.Click += item_Click;
             textToJsonItem.Click += item_Click;
@@ -3135,31 +3145,16 @@ namespace WebAutomation
 
             GeckoWebBrowser wbBrowser = new GeckoWebBrowser();
 
-            //wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
+            wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
             wbBrowser.ProgressChanged += wbBrowser_ProgressChanged;
-            //wbBrowser.Navigated -= wbBrowser_Navigated;
+            wbBrowser.Navigated -= wbBrowser_Navigated;
             wbBrowser.Navigated += wbBrowser_Navigated;
-            //wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
+            wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
             wbBrowser.DocumentCompleted += wbBrowser_DocumentCompleted;
-            //wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
+            wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
             wbBrowser.CanGoBackChanged += wbBrowser_CanGoBackChanged;
-            //wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
+            wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
             wbBrowser.CanGoForwardChanged += wbBrowser_CanGoForwardChanged;
-
-            /*if (cfgShowImages.Checked)
-            {
-                GeckoPreferences.Default["image.animation_mode"] = "none";
-                GeckoPreferences.Default["browser.display.show_image_placeholders"] = false;
-                GeckoPreferences.Default["extensions.blocklist.enabled"] = true;
-                GeckoPreferences.User["permissions.default.image"] = 2;
-            }
-            else
-            {
-                GeckoPreferences.Default["image.animation_mode"] = "once";
-                GeckoPreferences.Default["browser.display.show_image_placeholders"] = true;
-                GeckoPreferences.Default["extensions.blocklist.enabled"] = false;
-                GeckoPreferences.User["permissions.default.image"] = 1;
-            }*/
 
             currentTab.Controls.Add(wbBrowser);
             wbBrowser.Dock = DockStyle.Fill;
@@ -3490,6 +3485,7 @@ namespace WebAutomation
                 elm = GetElement(wb, xpath);
                 sleep(1, false);
             }
+
             return elm;
         }
 
