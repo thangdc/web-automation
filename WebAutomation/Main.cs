@@ -39,7 +39,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.0.7";
+        public string Version = "1.0.8";
 
         #endregion
 
