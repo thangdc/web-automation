@@ -19,12 +19,14 @@ using System.Xml.Linq;
 using System.Linq;
 using System.Text.RegularExpressions;
 using WebAutomation.UI;
+using System.Configuration;
+using WebAutomation.SingleInstancing;
 
 namespace WebAutomation
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
-    public partial class frmMain : Form
+    public partial class frmMain : Form, ISingleInstanceEnforcer
     {
         #region static variable
 
@@ -39,7 +41,9 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.0.8";
+        public string Version = "1.0.9";
+
+        public string MaxWait = string.Empty;
 
         #endregion
 
@@ -53,7 +57,7 @@ namespace WebAutomation
 
         #region Mouse Keyboard Init Event
 
-        private void InitMouseKeyBoardEvent()
+        public void InitMouseKeyBoardEvent()
         {
             //Record
             mouseHook.MouseMove += new MouseEventHandler(mouseHook_MouseMove);
@@ -72,20 +76,6 @@ namespace WebAutomation
         public frmMain()
         {
             InitializeComponent();
-            CallBackWinAppWebBrowser();
-            InitMouseKeyBoardEvent();
-
-            Xpcom.Initialize("Firefox");
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            FormLoad();
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            exit();
         }
 
         private void KeyEvent(object sender, KeyEventArgs e)
@@ -615,7 +605,8 @@ namespace WebAutomation
 
         public void exit()
         {
-            this.Dispose();
+            Stop();
+            //this.Dispose();
             Application.Exit();
         }
 
@@ -726,13 +717,13 @@ namespace WebAutomation
                 if (!string.IsNullOrEmpty(tbxCode.Text))
                 {
                     ExcuteJSCode(tbxCode.Text);
-
                 }
 
                 toolStripRunning.Text = Language.Resource.Run;
                 btnRunTwo.Text = Language.Resource.Run;
                 toolStripStatus.Text = Language.Resource.RunComplete;
                 btnRecord.Enabled = true;
+                MessageBox.Show(wbMain.Document.Body.InnerHtml);
             }
             else
             {
@@ -1119,7 +1110,7 @@ namespace WebAutomation
 
         #region System Function
 
-        private void FormLoad()
+        public void FormLoad()
         {
             TooglePanel();
 
@@ -1131,6 +1122,8 @@ namespace WebAutomation
 
             EnableDownloadButton(false);
             downloadList1.SelectionChange += downloadList1_SelectionChange;
+
+            MaxWait = (ConfigurationManager.AppSettings["MaxWait"] != null ? ConfigurationManager.AppSettings["MaxWait"] : string.Empty);
         }
 
         void downloadList1_SelectionChange(object sender, EventArgs e)
@@ -1167,6 +1160,53 @@ namespace WebAutomation
                 }
             }
             return null;
+        }
+
+        public void LoadScript(string[] args)
+        {
+            var path = args[0];
+            if (!string.IsNullOrEmpty(path))
+            {
+                btnGo_Click(null, null);
+                if (System.IO.File.Exists(path))
+                {
+                    sleep(1, false);
+                    tbxCode.Text = read(path);
+                    RunCode();
+                }
+            }
+        }
+
+        public void HideForm()
+        {
+            this.ShowInTaskbar = false;
+            this.Visible = false;
+        }
+
+        #endregion
+
+        #region ISingleInstanceEnforcer Members
+
+        public void OnMessageReceived(MessageEventArgs e)
+        {
+            string[] args = (string[])e.Message;
+
+            if (args.Length == 2 && args[0] == "/sw")
+            {
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+
+                });
+            }
+            else
+            {
+
+            }
+        }
+
+        public void OnNewInstanceCreated(EventArgs e)
+        {
+            this.Focus();
         }
 
         #endregion
@@ -2896,7 +2936,7 @@ namespace WebAutomation
 
         #region WebBrowser
 
-        void CallBackWinAppWebBrowser()
+        public void CallBackWinAppWebBrowser()
         {
             wbMain = new WebBrowser();
             wbMain.ObjectForScripting = this;
@@ -3479,11 +3519,22 @@ namespace WebAutomation
         {
             GeckoHtmlElement elm = GetElement(wb, xpath);
 
+            int waitUntil = 0;
+            int count = 0;
+
+            int.TryParse(MaxWait, out waitUntil);
+
             while (elm == null)
             {
+                //Stop when click Stop button
                 if (IsStop) break;
+
+                //It will stop when get the limit configuration
+                if (count > waitUntil) break;
+
                 elm = GetElement(wb, xpath);
                 sleep(1, false);
+                count++;
             }
 
             return elm;
