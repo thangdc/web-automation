@@ -723,7 +723,6 @@ namespace WebAutomation
                 btnRunTwo.Text = Language.Resource.Run;
                 toolStripStatus.Text = Language.Resource.RunComplete;
                 btnRecord.Enabled = true;
-                MessageBox.Show(wbMain.Document.Body.InnerHtml);
             }
             else
             {
@@ -1190,18 +1189,10 @@ namespace WebAutomation
         public void OnMessageReceived(MessageEventArgs e)
         {
             string[] args = (string[])e.Message;
-
-            if (args.Length == 2 && args[0] == "/sw")
+            this.BeginInvoke((MethodInvoker)delegate
             {
-                this.BeginInvoke((MethodInvoker)delegate
-                {
-
-                });
-            }
-            else
-            {
-
-            }
+                LoadScript(args);
+            });
         }
 
         public void OnNewInstanceCreated(EventArgs e)

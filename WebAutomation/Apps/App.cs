@@ -76,7 +76,6 @@ namespace WebAutomation
 
                             if (args.Length > 0)
                             {
-                                form.LoadScript(args);
                                 form.OnMessageReceived(new MessageEventArgs(args));
                             }
                         };
