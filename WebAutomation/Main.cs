@@ -41,7 +41,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.0.9";
+        public string Version = "1.1.0";
 
         public string MaxWait = string.Empty;
 
@@ -946,6 +946,13 @@ namespace WebAutomation
                     {
                         var wb = (GeckoWebBrowser)ctr;
                         wb.Stop();
+                        wb.ProgressChanged -= wbBrowser_ProgressChanged;
+                        wb.Navigated -= wbBrowser_Navigated;
+                        wb.DocumentCompleted -= wbBrowser_DocumentCompleted;
+                        wb.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
+                        wb.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
+                        wb.ShowContextMenu -= new EventHandler<GeckoContextMenuEventArgs>(wbBrowser_ShowContextMenu);
+                        wb.DomContextMenu -= wbBrowser_DomContextMenu;
                         wb.Dispose();
                         wb = null;
                     }                    
@@ -1223,9 +1230,6 @@ namespace WebAutomation
                         case "html":
                             result = elm.OuterHtml;
                             break;
-                        case "src":
-                            result = elm.GetAttribute("src").Trim();
-                            break;
                         case "text":
                             if (elm.GetType().Name == "GeckoTextAreaElement")
                             {
@@ -1236,11 +1240,8 @@ namespace WebAutomation
                                 result = elm.TextContent.Trim();
                             }
                             break;
-                        case "href":
-                            result = elm.GetAttribute("href").Trim();
-                            break;
                         default:
-                            result = elm.GetAttribute(type).Trim();
+                            result = extractData(elm, type);
                             break;
                     }
                 }
@@ -2868,8 +2869,15 @@ namespace WebAutomation
                             tbxCode.AppendText("\tlog(text);" + Environment.NewLine);
                             tbxCode.AppendText("}" + Environment.NewLine);
                         }
-                        else if (repeatItem[index - 1] == '[')
+                        else
                         {
+                            while (repeatItem[index] != '[')
+                            {
+                                index--;
+                            }
+
+                            index = index + 1;
+
                             int endIndex = 0;
                             end = string.Empty;
 
@@ -2921,6 +2929,23 @@ namespace WebAutomation
         public void AddDownload(string title, string url, string folder, int segnments)
         {
             downloadList1.NewFileDownload(title, url, folder, segnments);
+        }
+
+        private string extractData(GeckoHtmlElement ele, string attribute)
+        {
+            var result = string.Empty;
+
+            if (ele != null)
+            {
+                var tmp = ele.GetAttribute(attribute);
+                if (tmp == null)
+                {
+                    tmp = extractData(ele.Parent, attribute);
+                }
+                result = tmp.Trim();
+            }
+
+            return result;
         }
 
         #endregion
@@ -3176,16 +3201,14 @@ namespace WebAutomation
 
             GeckoWebBrowser wbBrowser = new GeckoWebBrowser();
 
-            wbBrowser.ProgressChanged -= wbBrowser_ProgressChanged;
             wbBrowser.ProgressChanged += wbBrowser_ProgressChanged;
-            wbBrowser.Navigated -= wbBrowser_Navigated;
             wbBrowser.Navigated += wbBrowser_Navigated;
-            wbBrowser.DocumentCompleted -= wbBrowser_DocumentCompleted;
             wbBrowser.DocumentCompleted += wbBrowser_DocumentCompleted;
-            wbBrowser.CanGoBackChanged -= wbBrowser_CanGoBackChanged;
             wbBrowser.CanGoBackChanged += wbBrowser_CanGoBackChanged;
-            wbBrowser.CanGoForwardChanged -= wbBrowser_CanGoForwardChanged;
             wbBrowser.CanGoForwardChanged += wbBrowser_CanGoForwardChanged;
+            wbBrowser.ShowContextMenu += new EventHandler<GeckoContextMenuEventArgs>(wbBrowser_ShowContextMenu);
+            wbBrowser.DomContextMenu += wbBrowser_DomContextMenu;
+            wbBrowser.NoDefaultContextMenu = true;
 
             currentTab.Controls.Add(wbBrowser);
             wbBrowser.Dock = DockStyle.Fill;
@@ -3241,10 +3264,6 @@ namespace WebAutomation
             string title = wbBrowser.DocumentTitle;
             currentTab.Text = (title.Length > 10 ? title.Substring(0, 10) + "..." : title);
             tbxAddress.Text = wbBrowser.Url.ToString();
-
-            //wbBrowser.ShowContextMenu += new EventHandler<GeckoContextMenuEventArgs>(wbBrowser_ShowContextMenu);
-            wbBrowser.DomContextMenu += wbBrowser_DomContextMenu;
-            wbBrowser.NoDefaultContextMenu = true;
         }
 
         void wbBrowser_ShowContextMenu(object sender, GeckoContextMenuEventArgs e)
@@ -3254,7 +3273,7 @@ namespace WebAutomation
             CurrentMouseX = Cursor.Position.X;
             CurrentMouseY = Cursor.Position.Y;
 
-            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+            /*GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
                 htmlElm = (GeckoHtmlElement)wb.Document.ElementFromPoint(Cursor.Position.X, Cursor.Position.Y);
@@ -3271,7 +3290,7 @@ namespace WebAutomation
                         }
                     }
                 }
-            }
+            }*/
         }
 
         private int CurrentMouseX = 0;
@@ -3303,7 +3322,7 @@ namespace WebAutomation
                 if (elm != null)
                 {
                     UpdateUrlAbsolute(wb.Document, elm);
-                    string url = elm.GetAttribute("href");
+                    string url = extractData(elm, "href");
                     if (!string.IsNullOrEmpty(url))
                         wb.Navigate(url);
                 }
