@@ -2938,11 +2938,12 @@ namespace WebAutomation
             if (ele != null)
             {
                 var tmp = ele.GetAttribute(attribute);
-                if (tmp == null)
+                /*if (tmp == null)
                 {
                     tmp = extractData(ele.Parent, attribute);
-                }
-                result = tmp.Trim();
+                }*/
+                if (tmp != null)
+                    result = tmp.Trim();
             }
 
             return result;
