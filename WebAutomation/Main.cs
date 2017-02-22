@@ -41,9 +41,11 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.1.0";
+        public string Version = "1.1.2";
 
         public string MaxWait = string.Empty;
+
+        private bool IsBreakSleep = false;
 
         #endregion
 
@@ -76,6 +78,20 @@ namespace WebAutomation
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        public frmMain(string[] args)
+        {
+            InitializeComponent();
+
+            CallBackWinAppWebBrowser();
+            InitMouseKeyBoardEvent();
+
+            Xpcom.Initialize("Firefox");
+
+            LoadScript(args);
+
+            FormLoad();
         }
 
         private void KeyEvent(object sender, KeyEventArgs e)
@@ -1170,15 +1186,18 @@ namespace WebAutomation
 
         public void LoadScript(string[] args)
         {
-            var path = args[0];
-            if (!string.IsNullOrEmpty(path))
+            if (args.Length > 0)
             {
-                btnGo_Click(null, null);
-                if (System.IO.File.Exists(path))
+                var path = args[0];
+                if (!string.IsNullOrEmpty(path))
                 {
-                    sleep(1, false);
-                    tbxCode.Text = read(path);
-                    RunCode();
+                    btnGo_Click(null, null);
+                    if (System.IO.File.Exists(path))
+                    {
+                        sleep(1, false);
+                        tbxCode.Text = read(path);
+                        RunCode();
+                    }
                 }
             }
         }
@@ -1214,6 +1233,46 @@ namespace WebAutomation
         public string extract(string xpath, string type)
         {
             string result = string.Empty;
+            GeckoHtmlElement elm = null;
+
+            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+            if (wb != null)
+            {
+                elm = GetElementByXpath(wb.Document, xpath);
+                if (elm != null)
+                    UpdateUrlAbsolute(wb.Document, elm);
+
+                if (elm != null)
+                {
+                    switch (type)
+                    {
+                        case "html":
+                            result = elm.OuterHtml;
+                            break;
+                        case "text":
+                            if (elm.GetType().Name == "GeckoTextAreaElement")
+                            {
+                                result = ((GeckoTextAreaElement)elm).Value;
+                            }
+                            else
+                            {
+                                result = elm.TextContent.Trim();
+                            }
+                            break;
+                        default:
+                            result = extractData(elm, type);
+                            break;
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public string extractUntil(string xpath, string type)
+        {
+            var result = string.Empty;
+
             GeckoHtmlElement elm = null;
 
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
@@ -1390,6 +1449,7 @@ namespace WebAutomation
 
         public void sleep(int seconds, bool isBreakWhenWBCompleted)
         {
+            IsBreakSleep = false;
             for (int i = 0; i < seconds * 10; i++)
             {
                 if (IsStop == false)
@@ -1398,6 +1458,10 @@ namespace WebAutomation
                     System.Threading.Thread.Sleep(100);
 
                     toolStripStatus.Text = "Sleep: " + ((i + 1) * 100) + "/" + (seconds * 1000);
+                    if (isBreakWhenWBCompleted && IsBreakSleep)
+                    {
+                        break;
+                    }
                 }
                 else
                 {
@@ -3008,6 +3072,8 @@ namespace WebAutomation
                                                 //function extract(a) {CheckAbort(); return window.external.extract(a);}
                                                 function extract(xpath, type) {CheckAbort(); return window.external.extract(xpath, type);}
 
+                                                function extractUntil(xpath, type){ CheckAbort(); return window.external.extractUntil(xpath, type); }
+
                                                 function filliframe(title, value) { CheckAbort(); window.external.filliframe(title, value); }                                                
 
                                                 /* fill xpath by value, a = xpath, b = value  */
@@ -3258,13 +3324,18 @@ namespace WebAutomation
                 tbxAddress.Text = url;
         }
 
-        void wbBrowser_DocumentCompleted(object sender, EventArgs e)
+        void wbBrowser_DocumentCompleted(object sender, Gecko.Events.GeckoDocumentCompletedEventArgs e)
         {
+            if (e.Uri.AbsolutePath != (sender as GeckoWebBrowser).Url.AbsolutePath)
+                return; 
+
             GeckoWebBrowser wbBrowser = (GeckoWebBrowser)sender;
 
             string title = wbBrowser.DocumentTitle;
             currentTab.Text = (title.Length > 10 ? title.Substring(0, 10) + "..." : title);
             tbxAddress.Text = wbBrowser.Url.ToString();
+
+            IsBreakSleep = true;
         }
 
         void wbBrowser_ShowContextMenu(object sender, GeckoContextMenuEventArgs e)

@@ -41,7 +41,7 @@ namespace WebAutomation
             return new frmMain();
         }
 
-        public void Start(string[] args)
+        public void StartSingleInstance(string[] args)
         {
             try
             {
@@ -113,6 +113,12 @@ namespace WebAutomation
                 if (tracker != null)
                     tracker.Dispose();
             }
+        }
+
+        public void Start(string[] args)
+        {
+            var form = new frmMain(args);
+            Application.Run(form);
         }
 
         public void Dispose()
