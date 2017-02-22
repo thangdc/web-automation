@@ -41,7 +41,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.1.2";
+        public string Version = "1.1.3";
 
         public string MaxWait = string.Empty;
 
@@ -945,6 +945,7 @@ namespace WebAutomation
             go(tbxAddress.Text);
         }
 
+        nsIMemory _memoryService = null;
         public void go(string url)
         {
             if (currentTab == null)
@@ -971,6 +972,14 @@ namespace WebAutomation
                         wb.DomContextMenu -= wbBrowser_DomContextMenu;
                         wb.Dispose();
                         wb = null;
+
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        if (_memoryService == null)
+                        {
+                            _memoryService = Xpcom.GetService<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
+                        }
+                        _memoryService.HeapMinimize(false);
                     }                    
                     currentTab.Controls.Clear();
                 }
