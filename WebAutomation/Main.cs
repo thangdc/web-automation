@@ -3255,6 +3255,8 @@ namespace WebAutomation
                                                 function addToDownload(fileName, url, folder) { CheckAbort(); return window.external.AddToDownload(fileName, url, folder); }
 
                                                 function startDownload() { CheckAbort(); return window.external.StartDownload(); }
+
+                                                function hide() { CheckAbort(); return window.external.MinimizeWindow(); }
                                             </script>
                                         </head>
                                         <body>
