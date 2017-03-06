@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using WebAutomation.UI;
 using System.Configuration;
 using WebAutomation.SingleInstancing;
+using System.Threading.Tasks;
 
 namespace WebAutomation
 {
@@ -41,7 +42,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.1.3";
+        public string Version = "1.1.4";
 
         public string MaxWait = string.Empty;
 
@@ -87,11 +88,12 @@ namespace WebAutomation
             CallBackWinAppWebBrowser();
             InitMouseKeyBoardEvent();
 
-            Xpcom.Initialize("Firefox");
+            var path = Application.StartupPath + "\\Firefox";
+            Xpcom.Initialize(path);
+            
+            FormLoad();
 
             LoadScript(args);
-
-            FormLoad();
         }
 
         private void KeyEvent(object sender, KeyEventArgs e)
@@ -698,6 +700,7 @@ namespace WebAutomation
         {
             this.Show();
             this.WindowState = FormWindowState.Maximized;
+            this.Activate();
         }
 
         public void Regconization()
@@ -972,7 +975,7 @@ namespace WebAutomation
                         wb.DomContextMenu -= wbBrowser_DomContextMenu;
                         wb.Dispose();
                         wb = null;
-
+                        
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
                         if (_memoryService == null)
@@ -983,7 +986,6 @@ namespace WebAutomation
                     }                    
                     currentTab.Controls.Clear();
                 }
-
                 GoWebBrowser(url);
             }
             else
@@ -992,6 +994,14 @@ namespace WebAutomation
             }
         }
 
+        public void goWithProxy(string url, string proxyUrl)
+        {
+            //var proxyAddress = new Uri(proxyUrl);
+            //GeckoPreferences.Default["network.proxy.type"] = 1;
+            //GeckoPreferences.Default["network.proxy.http"] =  proxyAddress.Host;
+            //GeckoPreferences.Default["network.proxy.http_port"] = proxyAddress.Port;
+            go(url);
+        }
         private void TabSelected()
         {
             TabSelectedWebBrowser();
@@ -1146,7 +1156,6 @@ namespace WebAutomation
             TooglePanel();
 
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(KeyEvent);
-
             Language.Resource.Culture = CultureInfo.CreateSpecificCulture("en-US");
             InitLanguage();
             InitContextMenu();
@@ -1155,6 +1164,8 @@ namespace WebAutomation
             downloadList1.SelectionChange += downloadList1_SelectionChange;
 
             MaxWait = (ConfigurationManager.AppSettings["MaxWait"] != null ? ConfigurationManager.AppSettings["MaxWait"] : string.Empty);
+
+            ShowWindow();
         }
 
         void downloadList1_SelectionChange(object sender, EventArgs e)
@@ -1216,7 +1227,7 @@ namespace WebAutomation
             this.ShowInTaskbar = false;
             this.Visible = false;
         }
-
+        
         #endregion
 
         #region ISingleInstanceEnforcer Members
@@ -1247,7 +1258,7 @@ namespace WebAutomation
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                elm = GetElementByXpath(wb.Document, xpath);
+                elm = GetElement(wb, xpath);
                 if (elm != null)
                     UpdateUrlAbsolute(wb.Document, elm);
 
@@ -1267,6 +1278,9 @@ namespace WebAutomation
                             {
                                 result = elm.TextContent.Trim();
                             }
+                            break;
+                        case "value":
+                            result = ((GeckoInputElement)elm).Value;
                             break;
                         default:
                             result = extractData(elm, type);
@@ -1356,7 +1370,7 @@ namespace WebAutomation
             {
                 if (xpath.StartsWith("/"))
                 {
-                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
+                    GeckoHtmlElement elm = GetElement(wb, xpath);
                     if (elm != null)
                     {
                         switch (elm.TagName)
@@ -1411,11 +1425,26 @@ namespace WebAutomation
             {
                 if (xpath.StartsWith("/"))
                 {
-                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
+                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
                     if (elm != null)
                     {
-                        elm.SetAttribute("selectedIndex", value);
+                        var dropdown = elm as GeckoSelectElement;
+                        var length = dropdown.Options.Length;
+                        var items = dropdown.Options;
+                        for(var i = 0; i < length; i++){
+                            var item = dropdown.Options.item((uint)i);
+                            if(item.Text.ToUpper() == value.ToUpper()){
+                                item.SetAttribute("selected", "selected");
+                            }
+                            else
+                            {
+                                item.RemoveAttribute("selected");
+                            }
+                        }
                         elm.Focus();
+                        //elm.SetAttribute("value", value);
+                        //elm.SetAttribute("selectedIndex", value);
+                        //elm.Focus();
                     }
                 }
                 else
@@ -1440,9 +1469,12 @@ namespace WebAutomation
             {
                 if (xpath.StartsWith("/"))
                 {
-                    GeckoHtmlElement elm = GetCompleteElementByXPath(wb, xpath);
+                    GeckoHtmlElement elm = GetElement(wb, xpath);
                     if (elm != null)
+                    {
                         elm.Click();
+                        elm.Focus();
+                    }
                 }
                 else
                 {
@@ -1915,10 +1947,38 @@ namespace WebAutomation
 
             return result;
         }
-        
-        public void FileUpload(string path, string xpath)
+
+        async Task PopulateInputFile(GeckoHtmlElement file, string location)
         {
-            
+            file.Focus();
+
+            // delay the execution of SendKey to let the Choose File dialog show up
+            var sendKeyTask = Task.Delay(500).ContinueWith((_) =>
+            {
+                // this gets executed when the dialog is visible
+                SendKeys.SendWait(location + "{ENTER}");
+            }, TaskScheduler.FromCurrentSynchronizationContext());
+
+            file.Click(); // this shows up the dialog
+
+            await sendKeyTask;
+
+            // delay continuation to let the Choose File dialog hide
+            await Task.Delay(500);
+        }
+
+        public async Task FileUpload(string xpath, string location)
+        {
+            GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
+            if (wb != null)
+            {
+                var file = GetElementByXpath(wb.Document, xpath);
+                if (file != null)
+                {
+                    file.Focus();
+                    await PopulateInputFile(file, location);
+                }
+            }
         }
 
         public string getCurrentUrl()
@@ -2890,7 +2950,7 @@ namespace WebAutomation
             }
             else if (item == Language.Resource.FileUpload)
             {
-
+                tbxCode.AppendText("fileUpload(\"" + xpath + "\", 'path');");
             }
             else if (item == Language.Resource.RepeatElement)
             {
@@ -3061,6 +3121,8 @@ namespace WebAutomation
                                                 function tabcloseall() { CheckAbort(); window.external.tabcloseall();}
                                                 /* Go to website by url or xpath  */
                                                 function go(a) { CheckAbort(); window.external.go(a);}
+                                                
+                                                function goWithProxy(url, proxyUrl){ CheckAbort(); window.external.goWithProxy(url, proxyUrl); }
 
                                                 function back() { CheckAbort(); window.external.Back(); }
                                                 function next() { CheckAbort(); window.external.Next(); }
@@ -3351,10 +3413,10 @@ namespace WebAutomation
 
         void wbBrowser_ShowContextMenu(object sender, GeckoContextMenuEventArgs e)
         {
-            contextMenuBrowser.Show(Cursor.Position);
+            //contextMenuBrowser.Show(Cursor.Position);
 
-            CurrentMouseX = Cursor.Position.X;
-            CurrentMouseY = Cursor.Position.Y;
+            //CurrentMouseX = Cursor.Position.X;
+            //CurrentMouseY = Cursor.Position.Y;
 
             /*GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
@@ -3638,13 +3700,44 @@ namespace WebAutomation
             GeckoHtmlElement elm = null;
             if (xpath.StartsWith("/"))
             {
-                elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
+                if (xpath.Contains("@class") || xpath.Contains("@data-type"))
+                {
+                    var html = GetHtmlFromGeckoDocument(wb.Document);
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(html);
+
+                    var node = doc.DocumentNode.SelectSingleNode(xpath);
+                    if (node != null)
+                    {
+                        var currentXpath = "/" + node.XPath;
+                        elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(currentXpath).GetNodes().FirstOrDefault();
+                    }
+                }
+                else
+                {
+                    elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
+                }
             }
             else
             {
                 elm = (GeckoHtmlElement)wb.Document.GetElementById(xpath);
             }
             return elm;
+        }
+
+        private string GetHtmlFromGeckoDocument(GeckoDocument doc)
+        {
+            var result = string.Empty;
+
+            GeckoHtmlElement element = null;
+            var geckoDomElement = doc.DocumentElement;
+            if (geckoDomElement is GeckoHtmlElement)
+            {
+                element = (GeckoHtmlElement)geckoDomElement;
+                result = element.InnerHtml;
+            }
+
+            return result;
         }
 
         #endregion  
