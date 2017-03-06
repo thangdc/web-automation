@@ -1,4 +1,5 @@
-﻿namespace WebAutomation
+﻿using ScintillaNET;
+namespace WebAutomation
 {
     partial class frmMain
     {
@@ -89,14 +90,7 @@
             this.btnSaveAsScript = new System.Windows.Forms.ToolStripButton();
             this.btnScriptClear = new System.Windows.Forms.ToolStripButton();
             this.tbxCode = new ScintillaNET.Scintilla();
-            this.tbxCode.ConfigurationManager.Language = "js";
-            this.tbxCode.Margins[0].Width = 40;
-            //this.tbxCode = new System.Windows.Forms.RichTextBox();
             this.tabTemplate = new System.Windows.Forms.TabPage();
-            this.tbxTemplate = new ScintillaNET.Scintilla();
-            this.tbxTemplate.ConfigurationManager.Language = "js";
-            this.tbxTemplate.Margins[0].Width = 40;
-            //this.tbxTemplate = new System.Windows.Forms.RichTextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnOpenTemplate = new System.Windows.Forms.ToolStripButton();
@@ -104,10 +98,7 @@
             this.btnSaveAsTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnTemplateClear = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            //this.tbxPreview = new System.Windows.Forms.RichTextBox();
             this.tbxPreview = new ScintillaNET.Scintilla();
-            this.tbxPreview.ConfigurationManager.Language = "js";
-            this.tbxPreview.Margins[0].Width = 40;
             this.tabDownload = new System.Windows.Forms.TabPage();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolNewDownload = new System.Windows.Forms.ToolStripButton();
@@ -119,6 +110,7 @@
             this.tbxAutoBot = new System.Windows.Forms.TabPage();
             this.tbxAsk = new System.Windows.Forms.TextBox();
             this.tbxAnswer = new System.Windows.Forms.RichTextBox();
+            this.tbxTemplate = new ScintillaNET.Scintilla();
             this.contextMenuBrowser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.goToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,12 +146,15 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCode)).BeginInit();
             this.tabTemplate.SuspendLayout();
             this.toolStrip2.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPreview)).BeginInit();
             this.tabDownload.SuspendLayout();
             this.toolStrip3.SuspendLayout();
             this.tbxAutoBot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxTemplate)).BeginInit();
             this.contextMenuBrowser.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -730,16 +725,24 @@
             // 
             // tbxCode
             // 
+            this.tbxCode.ConfigurationManager.Language = "js";
             this.tbxCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxCode.Location = new System.Drawing.Point(0, 0);
             this.tbxCode.Name = "tbxCode";
             this.tbxCode.Size = new System.Drawing.Size(989, 138);
+            this.tbxCode.Styles.BraceBad.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.BraceLight.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.CallTip.FontName = "Segoe UI\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.ControlChar.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.Default.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.IndentGuide.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.LastPredefined.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.LineNumber.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxCode.Styles.Max.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
             this.tbxCode.TabIndex = 0;
-            this.tbxCode.Text = "";
             // 
             // tabTemplate
             // 
-            this.tabTemplate.Controls.Add(this.tbxTemplate);
             this.tabTemplate.Controls.Add(this.toolStrip2);
             this.tabTemplate.Location = new System.Drawing.Point(4, 22);
             this.tabTemplate.Name = "tabTemplate";
@@ -748,15 +751,6 @@
             this.tabTemplate.TabIndex = 2;
             this.tabTemplate.Text = "Template";
             this.tabTemplate.UseVisualStyleBackColor = true;
-            // 
-            // tbxTemplate
-            // 
-            this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
-            this.tbxTemplate.Name = "tbxTemplate";
-            this.tbxTemplate.Size = new System.Drawing.Size(989, 142);
-            this.tbxTemplate.TabIndex = 2;
-            this.tbxTemplate.Text = "";
             // 
             // toolStrip2
             // 
@@ -830,12 +824,21 @@
             // 
             // tbxPreview
             // 
+            this.tbxPreview.ConfigurationManager.Language = "js";
             this.tbxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxPreview.Location = new System.Drawing.Point(3, 3);
             this.tbxPreview.Name = "tbxPreview";
             this.tbxPreview.Size = new System.Drawing.Size(989, 167);
+            this.tbxPreview.Styles.BraceBad.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.BraceLight.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.CallTip.FontName = "Segoe UI\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.ControlChar.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.Default.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.IndentGuide.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.LastPredefined.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.LineNumber.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxPreview.Styles.Max.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
             this.tbxPreview.TabIndex = 0;
-            this.tbxPreview.Text = "";
             // 
             // tabDownload
             // 
@@ -949,6 +952,24 @@
             this.tbxAnswer.Size = new System.Drawing.Size(974, 154);
             this.tbxAnswer.TabIndex = 0;
             this.tbxAnswer.Text = "";
+            // 
+            // tbxTemplate
+            // 
+            this.tbxTemplate.ConfigurationManager.Language = "js";
+            this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
+            this.tbxTemplate.Name = "tbxTemplate";
+            this.tbxTemplate.Size = new System.Drawing.Size(989, 142);
+            this.tbxTemplate.Styles.BraceBad.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.BraceLight.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.CallTip.FontName = "Segoe UI\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.ControlChar.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.Default.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.IndentGuide.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.LastPredefined.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.LineNumber.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.Styles.Max.FontName = "Verdana\0\0\0\0\0\0\0\0\0\0\0\0\0";
+            this.tbxTemplate.TabIndex = 2;
             // 
             // contextMenuBrowser
             // 
@@ -1105,17 +1126,20 @@
             this.splitContainer3.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxCode)).EndInit();
             this.tabTemplate.ResumeLayout(false);
             this.tabTemplate.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbxPreview)).EndInit();
             this.tabDownload.ResumeLayout(false);
             this.tabDownload.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
             this.tbxAutoBot.ResumeLayout(false);
             this.tbxAutoBot.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbxTemplate)).EndInit();
             this.contextMenuBrowser.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1149,8 +1173,8 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripRunning;
-        private ScintillaNET.Scintilla tbxCode;
-        private ScintillaNET.Scintilla tbxPreview;
+        private Scintilla tbxCode;
+        private Scintilla tbxPreview;
         private System.Windows.Forms.ContextMenuStrip contextMenuBrowser;
         private System.Windows.Forms.ToolStripMenuItem goToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
@@ -1158,7 +1182,7 @@
         private System.Windows.Forms.ToolStripButton btnSaveScript;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.TabPage tabTemplate;
-        private ScintillaNET.Scintilla tbxTemplate;
+        private Scintilla tbxTemplate;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton btnOpenTemplate;
         private System.Windows.Forms.ToolStripButton btnSaveTemplate;
@@ -1221,9 +1245,6 @@
         private System.Windows.Forms.ToolStripButton toolRemove;
         private System.Windows.Forms.ToolStripButton toolRemoveCompleted;
         private System.Windows.Forms.ToolStripButton toolNewDownload;
-        //private System.Windows.Forms.RichTextBox tbxCode;
-        //private System.Windows.Forms.RichTextBox tbxTemplate;
-        //private System.Windows.Forms.RichTextBox tbxPreview;
     }
 }
 

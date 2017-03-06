@@ -72,7 +72,11 @@
     <Reference Include="NPOI">
       <HintPath>..\..\..\Version 4 - BatDongSan\Automation\bin\Debug\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNET, Version=2.6.0.0, Culture=neutral, PublicKeyToken=948d6c9751444115, processorArchitecture=MSIL" />
+    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -291,6 +295,7 @@
     <None Include="Firefox\omni.ja">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Resources\clipboard.png" />
     <Content Include="ThirdParty\HtmlAgilityPack.dll" />
     <Content Include="ThirdParty\MouseKeyboardLibrary.dll" />
