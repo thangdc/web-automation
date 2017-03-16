@@ -1425,7 +1425,7 @@ namespace WebAutomation
             {
                 if (xpath.StartsWith("/"))
                 {
-                    GeckoHtmlElement elm = GetElementByXpath(wb.Document, xpath);
+                    GeckoHtmlElement elm = GetElement(wb, xpath);
                     if (elm != null)
                     {
                         var dropdown = elm as GeckoSelectElement;
@@ -1972,7 +1972,7 @@ namespace WebAutomation
             GeckoWebBrowser wb = (GeckoWebBrowser)GetCurrentWB();
             if (wb != null)
             {
-                var file = GetElementByXpath(wb.Document, xpath);
+                var file = GetElement(wb, xpath);
                 if (file != null)
                 {
                     file.Focus();
