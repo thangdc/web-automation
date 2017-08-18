@@ -42,7 +42,7 @@ namespace WebAutomation
         private string LastTemplateFile = "";
 
         private User CurrentUser = null;
-        public string Version = "1.1.4";
+        public string Version = Application.ProductVersion;
 
         public string MaxWait = string.Empty;
 
@@ -1981,6 +1981,11 @@ namespace WebAutomation
             }
         }
 
+        public void sendKeys(string key)
+        {
+            SendKeys.SendWait(key);
+        }
+
         public string getCurrentUrl()
         {
             string url = string.Empty;
@@ -2270,11 +2275,41 @@ namespace WebAutomation
             MouseKeyboardLibrary.KeyboardSimulator.KeyUp(mykey);
         }
 
+        private Keys ConvertCharToVirtualKey(char ch)
+        {
+            short vkey = VkKeyScan(ch);
+            Keys retval = (Keys)(vkey & 0xff);
+            int modifiers = vkey >> 8;
+            if ((modifiers & 1) != 0) retval |= Keys.Shift;
+            if ((modifiers & 2) != 0) retval |= Keys.Control;
+            if ((modifiers & 4) != 0) retval |= Keys.Alt;
+            return retval;
+        }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern short VkKeyScan(char ch);
+
         public void sendText(string text)
         {
-            var actualValue = string.Empty;
+            foreach (var item in text.ToArray())
+            {
+                if (item.ToString() == ":")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Oem1);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else
+                {
+                    var key = ConvertCharToVirtualKey(item);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(key);
+                }
+            }
+            /*var actualValue = string.Empty;
             var values = Enum.GetValues(typeof(Keys));
             KeysConverter converter = new KeysConverter();
+            string data = converter.ConvertToString(text);
+
             foreach (var item in text.ToArray())
             {
                 WaitApp(2);
@@ -2288,11 +2323,47 @@ namespace WebAutomation
                 {
                     MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Space);
                 }
+                else if (item.ToString() == ":")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Oem1);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == "\\")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Oem5);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == "-")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.OemMinus);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == ".")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.OemPeriod);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == "/")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.OemQuestion);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+                else if (item.ToString() == "/")
+                {
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Shift);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyDown(Keys.Oemcomma);
+                    MouseKeyboardLibrary.KeyboardSimulator.KeyUp(Keys.Shift);
+                }
                 else
                 {
                     MouseKeyboardLibrary.KeyboardSimulator.KeyDown((Keys)converter.ConvertFromString(item.ToString().ToUpper()));
                 }
-            }
+            }*/
         }
 
         private void WaitApp(int seconds)
@@ -3319,6 +3390,9 @@ namespace WebAutomation
                                                 function startDownload() { CheckAbort(); return window.external.StartDownload(); }
 
                                                 function hide() { CheckAbort(); return window.external.MinimizeWindow(); }
+
+                                                function sendKeys(key) { CheckAbort(); window.external.sendKeys(key); }
+
                                             </script>
                                         </head>
                                         <body>
