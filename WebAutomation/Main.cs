@@ -3021,7 +3021,18 @@ namespace WebAutomation
             }
             else if (item == Language.Resource.FileUpload)
             {
-                tbxCode.AppendText("fileUpload(\"" + xpath + "\", 'path');");
+                tbxCode.AppendText("setTimeout(function(){" + Environment.NewLine);
+                tbxCode.AppendText("\tsendText('filePath');" + Environment.NewLine);
+                tbxCode.AppendText("\tsleep(1, false);" + Environment.NewLine);
+                tbxCode.AppendText("\tsendKeys('\\t');" + Environment.NewLine);
+                tbxCode.AppendText("\tsleep(1, false);" + Environment.NewLine);
+                tbxCode.AppendText("\tsendKeys('\\t');" + Environment.NewLine);
+                tbxCode.AppendText("\tsleep(1, false);" + Environment.NewLine);
+                tbxCode.AppendText("\tsendKeys('\\t');" + Environment.NewLine);
+                tbxCode.AppendText("\tsendKeys('{ENTER}');" + Environment.NewLine);
+                tbxCode.AppendText("}, 3000);" + Environment.NewLine);
+                tbxCode.AppendText("click(\"" + xpath + "\");");
+                //tbxCode.AppendText("fileUpload(\"" + xpath + "\", 'path');");
             }
             else if (item == Language.Resource.RepeatElement)
             {
