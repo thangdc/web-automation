@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using System;
 using System.IO;
 using System.Globalization;
@@ -1389,6 +1389,11 @@ namespace WebAutomation
                                 GeckoInputElement input = (GeckoInputElement)elm;
                                 input.Value = value;
                                 input.Focus();
+                                break;
+                            case "TEXTAREA":
+                                GeckoTextAreaElement input1 = (GeckoTextAreaElement)elm;
+                                input1.Value = value;
+                                input1.Focus();
                                 break;
                             default:
                                 break;
