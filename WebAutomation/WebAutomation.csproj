@@ -80,11 +80,6 @@
     <Reference Include="NPOI">
       <HintPath>..\..\..\Version 4 - BatDongSan\Automation\bin\Debug\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="ScintillaNET, Version=3.6.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\jacobslusser.ScintillaNET.3.6.3\lib\net40\ScintillaNET.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -308,15 +303,6 @@
     <Content Include="ThirdParty\HtmlAgilityPack.dll" />
     <Content Include="ThirdParty\MouseKeyboardLibrary.dll" />
     <Content Include="ThirdParty\NPOI.dll" />
-    <Content Include="SciLexer.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SciLexer64.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="ScintillaNET.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EmbeddedResource Include="Resources\images.png" />
     <EmbeddedResource Include="Resources\login.png" />
     <EmbeddedResource Include="Resources\logo.png" />
