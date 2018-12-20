@@ -1522,7 +1522,7 @@ namespace WebAutomation
             tbxPreview.Text += text + "\n";
             //tbxPreview.SelectionStart = tbxPreview.Text.Length;
             //tbxPreview.ScrollToCaret();
-            tbxPreview.Scrolling.ScrollBy(0, tbxPreview.Lines.Count);
+            //tbxPreview.ScrollRange(0, tbxPreview.Lines.Count);
         }
 
         public void clearlog()
