@@ -1,10 +1,10 @@
-##How is web automation work?
+## How is web automation work?
 
 Web automation is a web browser which can help automation the browser like fill text, click on button, extract the data, save file from web automatically by javascript only.
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/HBultD9tnTw/0.jpg)](https://www.youtube.com/watch?v=HBultD9tnTw)
 
-##Example
+## Example
 
 1. Login to Gmail
 
@@ -27,7 +27,7 @@ Web automation is a web browser which can help automation the browser like fill 
 
 ![](https://github.com/thangdc/web-automation/raw/master/web-automation.png)
 
-##Which thirdparty was used in the Web Automation project?
+## Which thirdparty was used in the Web Automation project?
 
 1. [GeckoFx](https://bitbucket.org/geckofx)
   - Replace web browser control
@@ -46,9 +46,10 @@ Web automation is a web browser which can help automation the browser like fill 
   - Record your mouse and keyboard
   - MouseKeyboardLibrary.dll
 
-##How to run Web Automation project?
+## How to run Web Automation project?
 
 - Make sure all thirdparty exists in output folder
 - Click WebAutomation.sln to open project
 - Because all dll above was inorge when upload to github so please get it from links above.
 - [More Infomation](http://www.codeproject.com/Tips/525426/Web-Automation)
+
