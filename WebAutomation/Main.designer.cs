@@ -1,4 +1,3 @@
-﻿using ScintillaNET;
 namespace WebAutomation
 {
     partial class frmMain
