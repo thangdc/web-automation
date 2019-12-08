@@ -1,3 +1,6 @@
+using ScintillaNET;
+using System.Drawing;
+
 namespace WebAutomation
 {
     partial class frmMain
@@ -721,7 +724,31 @@ namespace WebAutomation
             // 
             // tbxCode
             // 
+            
+            // Configuring the default style with properties
+            // we have common to every lexer style saves time.
+            this.tbxCode.StyleResetDefault();
+            this.tbxCode.Styles[Style.Default].Font = "Consolas";
+            this.tbxCode.Styles[Style.Default].Size = 10;
+            this.tbxCode.StyleClearAll();
+
+            // Configure the CPP (C#) lexer styles
+            this.tbxCode.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
+            this.tbxCode.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxCode.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxCode.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
+            this.tbxCode.Styles[Style.Cpp.Number].ForeColor = Color.Olive;
+            this.tbxCode.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
+            this.tbxCode.Styles[Style.Cpp.Word2].ForeColor = Color.Blue;
+            this.tbxCode.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxCode.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxCode.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxCode.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
+            this.tbxCode.Styles[Style.Cpp.Operator].ForeColor = Color.Purple;
+            this.tbxCode.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
+            this.tbxCode.Margins[0].Width = 35;
             this.tbxCode.Lexer = ScintillaNET.Lexer.Cpp;
+
             this.tbxCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxCode.Location = new System.Drawing.Point(0, 0);
             //this.tbxCode.Multiline = true;
@@ -743,7 +770,31 @@ namespace WebAutomation
             // 
             // tbxTemplate
             // 
+
+            // Configuring the default style with properties
+            // we have common to every lexer style saves time.
+            this.tbxTemplate.StyleResetDefault();
+            this.tbxTemplate.Styles[Style.Default].Font = "Consolas";
+            this.tbxTemplate.Styles[Style.Default].Size = 10;
+            this.tbxTemplate.StyleClearAll();
+
+            // Configure the CPP (C#) lexer styles
+            this.tbxTemplate.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
+            this.tbxTemplate.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxTemplate.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxTemplate.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
+            this.tbxTemplate.Styles[Style.Cpp.Number].ForeColor = Color.Olive;
+            this.tbxTemplate.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
+            this.tbxTemplate.Styles[Style.Cpp.Word2].ForeColor = Color.Blue;
+            this.tbxTemplate.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxTemplate.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxTemplate.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxTemplate.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
+            this.tbxTemplate.Styles[Style.Cpp.Operator].ForeColor = Color.Purple;
+            this.tbxTemplate.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
+            this.tbxTemplate.Margins[0].Width = 35;
             this.tbxTemplate.Lexer = ScintillaNET.Lexer.Cpp;
+
             this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
             //this.tbxTemplate.Multiline = true;
@@ -823,7 +874,31 @@ namespace WebAutomation
             // 
             // tbxPreview
             // 
+
+            // Configuring the default style with properties
+            // we have common to every lexer style saves time.
+            this.tbxPreview.StyleResetDefault();
+            this.tbxPreview.Styles[Style.Default].Font = "Consolas";
+            this.tbxPreview.Styles[Style.Default].Size = 10;
+            this.tbxPreview.StyleClearAll();
+
+            // Configure the CPP (C#) lexer styles
+            this.tbxPreview.Styles[Style.Cpp.Default].ForeColor = Color.Silver;
+            this.tbxPreview.Styles[Style.Cpp.Comment].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxPreview.Styles[Style.Cpp.CommentLine].ForeColor = Color.FromArgb(0, 128, 0); // Green
+            this.tbxPreview.Styles[Style.Cpp.CommentLineDoc].ForeColor = Color.FromArgb(128, 128, 128); // Gray
+            this.tbxPreview.Styles[Style.Cpp.Number].ForeColor = Color.Olive;
+            this.tbxPreview.Styles[Style.Cpp.Word].ForeColor = Color.Blue;
+            this.tbxPreview.Styles[Style.Cpp.Word2].ForeColor = Color.Blue;
+            this.tbxPreview.Styles[Style.Cpp.String].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxPreview.Styles[Style.Cpp.Character].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxPreview.Styles[Style.Cpp.Verbatim].ForeColor = Color.FromArgb(163, 21, 21); // Red
+            this.tbxPreview.Styles[Style.Cpp.StringEol].BackColor = Color.Pink;
+            this.tbxPreview.Styles[Style.Cpp.Operator].ForeColor = Color.Purple;
+            this.tbxPreview.Styles[Style.Cpp.Preprocessor].ForeColor = Color.Maroon;
+            this.tbxPreview.Margins[0].Width = 35;
             this.tbxPreview.Lexer = ScintillaNET.Lexer.Cpp;
+
             this.tbxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxPreview.Location = new System.Drawing.Point(3, 3);
             //this.tbxPreview.Multiline = true;
