@@ -88,9 +88,9 @@ namespace WebAutomation
             this.btnSaveScript = new System.Windows.Forms.ToolStripButton();
             this.btnSaveAsScript = new System.Windows.Forms.ToolStripButton();
             this.btnScriptClear = new System.Windows.Forms.ToolStripButton();
-            this.tbxCode = new System.Windows.Forms.TextBox();
+            this.tbxCode = new ScintillaNET.Scintilla();
             this.tabTemplate = new System.Windows.Forms.TabPage();
-            this.tbxTemplate = new System.Windows.Forms.TextBox();
+            this.tbxTemplate = new ScintillaNET.Scintilla();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnNewTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnOpenTemplate = new System.Windows.Forms.ToolStripButton();
@@ -98,7 +98,7 @@ namespace WebAutomation
             this.btnSaveAsTemplate = new System.Windows.Forms.ToolStripButton();
             this.btnTemplateClear = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbxPreview = new System.Windows.Forms.TextBox();
+            this.tbxPreview = new ScintillaNET.Scintilla();
             this.tabDownload = new System.Windows.Forms.TabPage();
             this.downloadList1 = new WebAutomation.UI.DownloadList();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -721,9 +721,10 @@ namespace WebAutomation
             // 
             // tbxCode
             // 
+            this.tbxCode.Lexer = ScintillaNET.Lexer.Cpp;
             this.tbxCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxCode.Location = new System.Drawing.Point(0, 0);
-            this.tbxCode.Multiline = true;
+            //this.tbxCode.Multiline = true;
             this.tbxCode.Name = "tbxCode";
             this.tbxCode.Size = new System.Drawing.Size(989, 138);
             this.tbxCode.TabIndex = 0;
@@ -742,9 +743,10 @@ namespace WebAutomation
             // 
             // tbxTemplate
             // 
+            this.tbxTemplate.Lexer = ScintillaNET.Lexer.Cpp;
             this.tbxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxTemplate.Location = new System.Drawing.Point(3, 28);
-            this.tbxTemplate.Multiline = true;
+            //this.tbxTemplate.Multiline = true;
             this.tbxTemplate.Name = "tbxTemplate";
             this.tbxTemplate.Size = new System.Drawing.Size(989, 142);
             this.tbxTemplate.TabIndex = 2;
@@ -821,9 +823,10 @@ namespace WebAutomation
             // 
             // tbxPreview
             // 
+            this.tbxPreview.Lexer = ScintillaNET.Lexer.Cpp;
             this.tbxPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxPreview.Location = new System.Drawing.Point(3, 3);
-            this.tbxPreview.Multiline = true;
+            //this.tbxPreview.Multiline = true;
             this.tbxPreview.Name = "tbxPreview";
             this.tbxPreview.Size = new System.Drawing.Size(989, 167);
             this.tbxPreview.TabIndex = 0;
@@ -1142,8 +1145,8 @@ namespace WebAutomation
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripRunning;
-        private System.Windows.Forms.TextBox tbxCode;
-        private System.Windows.Forms.TextBox tbxPreview;
+        private ScintillaNET.Scintilla tbxCode;
+        private ScintillaNET.Scintilla tbxPreview;
         private System.Windows.Forms.ContextMenuStrip contextMenuBrowser;
         private System.Windows.Forms.ToolStripMenuItem goToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sleepToolStripMenuItem;
@@ -1214,7 +1217,7 @@ namespace WebAutomation
         private System.Windows.Forms.ToolStripButton toolRemove;
         private System.Windows.Forms.ToolStripButton toolRemoveCompleted;
         private System.Windows.Forms.ToolStripButton toolNewDownload;
-        private System.Windows.Forms.TextBox tbxTemplate;
+        private ScintillaNET.Scintilla tbxTemplate;
     }
 }
 
