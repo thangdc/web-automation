@@ -3749,14 +3749,19 @@ namespace WebAutomation
             var eleColec = ele.GetElementsByTagName("IMG");
             foreach (GeckoHtmlElement it in eleColec)
             {
-                if (!it.GetAttribute("src").StartsWith("http://"))
+                if (it.GetAttribute("src") != null && 
+                    !it.GetAttribute("src").StartsWith("http"))
                     it.SetAttribute("src", link + it.GetAttribute("src"));
             }
             eleColec = ele.GetElementsByTagName("A");
             foreach (GeckoHtmlElement it in eleColec)
             {
-                if (!it.GetAttribute("href").StartsWith("http://"))
+                if (it.GetAttribute("href") != null && 
+                    !it.GetAttribute("href").StartsWith("http") &&
+                    !it.GetAttribute("href").StartsWith("javascript"))
+                {
                     it.SetAttribute("href", link + it.GetAttribute("href"));
+                }
             }
         }
 
