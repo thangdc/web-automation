@@ -28,9 +28,7 @@ namespace WebAutomation
 
             if (result == 1)
             {
-                main.ChangeButtonLogin(true);
-                main.CheckManager();
-                this.Close();
+                Close();
             }
             else if(result == -1)
             {
@@ -47,7 +45,7 @@ namespace WebAutomation
                 tbxUsername.Focus();
                 MessageBox.Show(Language.Resource.UserNotExists, message);
             }
-            else if (result == -4)
+            else if (result == -4 || result == 0)
             {
                 tbxUsername.Focus();
                 MessageBox.Show(Language.Resource.AccountIncorrect, message);

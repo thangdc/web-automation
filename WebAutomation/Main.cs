@@ -577,7 +577,13 @@ namespace WebAutomation
             user.Path = Application.StartupPath + "\\" + username + ".tdc";
             result = user.Login();
 
-            if (result == 1) { CurrentUser = user.GetBy(username); ; }
+            if (result == 1)
+            {
+                frmMain main = (frmMain)Application.OpenForms["frmMain"];
+                CurrentUser = user.GetBy(username);
+                main.ChangeButtonLogin(true);
+                main.CheckManager();
+            }
             else { CurrentUser = null; }
 
             return result;
