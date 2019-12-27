@@ -88,8 +88,7 @@ namespace WebAutomation
             CallBackWinAppWebBrowser();
             InitMouseKeyBoardEvent();
 
-            var folder = Environment.Is64BitProcess ? "Firefox64" : "Firefox";
-            var path = $"{Application.StartupPath}\\{folder}";
+            var path = $"{Application.StartupPath}\\Firefox64";
 
             Xpcom.Initialize(path);
             
