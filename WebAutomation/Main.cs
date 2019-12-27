@@ -88,7 +88,9 @@ namespace WebAutomation
             CallBackWinAppWebBrowser();
             InitMouseKeyBoardEvent();
 
-            var path = Application.StartupPath + "\\Firefox";
+            var folder = Environment.Is64BitProcess ? "Firefox64" : "Firefox";
+            var path = $"{Application.StartupPath}\\{folder}";
+
             Xpcom.Initialize(path);
             
             FormLoad();
@@ -1437,7 +1439,7 @@ namespace WebAutomation
                         var length = dropdown.Options.Length;
                         var items = dropdown.Options;
                         for(var i = 0; i < length; i++){
-                            var item = dropdown.Options.item((uint)i);
+                            var item = dropdown.Options.Item((uint)i);
                             if(item.Text.ToUpper() == value.ToUpper()){
                                 item.SetAttribute("selected", "selected");
                             }
@@ -3696,7 +3698,7 @@ namespace WebAutomation
 
             if (node.NodeType == NodeType.Attribute)
             {
-                return String.Format("{0}/@{1}", GetXpath(((GeckoAttribute)node).OwnerDocument), node.LocalName);
+                return string.Format("{0}/@{1}", GetXpath(((GeckoAttribute)node).OwnerDocument), node.NodeName);
             }
             if (node.ParentNode == null)
             {
@@ -3714,14 +3716,14 @@ namespace WebAutomation
             while (siblingNode != null)
             {
 
-                if (siblingNode.LocalName == node.LocalName)
+                if (siblingNode.NodeName == node.NodeName)
                 {
                     indexInParent++;
                 }
                 siblingNode = siblingNode.PreviousSibling;
             }
 
-            return String.Format("{0}/{1}[{2}]", GetXpath(node.ParentNode), node.LocalName, indexInParent);
+            return String.Format("{0}/{1}[{2}]", GetXpath(node.ParentNode), node.NodeName, indexInParent);
         }
 
         private int GetXpathIndex(GeckoHtmlElement ele)
