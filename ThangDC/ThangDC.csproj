@@ -52,9 +52,6 @@
     <Reference Include="MouseKeyboardLibrary">
       <HintPath>..\Automation\bin\Debug\MouseKeyboardLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>C:\Program Files\MySQL\MySQL Connector Net 6.4.4\Assemblies\v2.0\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">

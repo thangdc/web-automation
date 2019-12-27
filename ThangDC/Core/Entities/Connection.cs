@@ -55,22 +55,24 @@ namespace ThangDC.Core.Entities
 
         public List<Connection> GetAll()
         {
-            List<Connection> listConnection = new List<Connection>();
+            var listConnection = new List<Connection>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in connections.SelectNodes("root/connections/connection"))
                 {
-                    Connection conn = new Connection();
-                    conn.Name = node.SelectSingleNode("name").InnerText;
-                    conn.Server = node.SelectSingleNode("server").InnerText;
-                    conn.Database = node.SelectSingleNode("dbname").InnerText;
-                    conn.Username = node.SelectSingleNode("dbuser").InnerText;
-                    conn.Password = node.SelectSingleNode("dbpass").InnerText;
-                    conn.Provider = node.SelectSingleNode("provider").InnerText;
+                    var conn = new Connection
+                    {
+                        Name = node.SelectSingleNode("name").InnerText,
+                        Server = node.SelectSingleNode("server").InnerText,
+                        Database = node.SelectSingleNode("dbname").InnerText,
+                        Username = node.SelectSingleNode("dbuser").InnerText,
+                        Password = node.SelectSingleNode("dbpass").InnerText,
+                        Provider = node.SelectSingleNode("provider").InnerText
+                    };
                     listConnection.Add(conn);
                 }
             }
@@ -82,22 +84,24 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            List<Connection> listConnection = new List<Connection>();
+            var listConnection = new List<Connection>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in connections.SelectNodes("root/connections/connection"))
                 {
-                    Connection conn = new Connection();
-                    conn.Name = node.SelectSingleNode("name").InnerText;
-                    conn.Server = node.SelectSingleNode("server").InnerText;
-                    conn.Database = node.SelectSingleNode("dbname").InnerText;
-                    conn.Username = node.SelectSingleNode("dbuser").InnerText;
-                    conn.Password = node.SelectSingleNode("dbpass").InnerText;
-                    conn.Provider = node.SelectSingleNode("provider").InnerText;
+                    var conn = new Connection
+                    {
+                        Name = node.SelectSingleNode("name").InnerText,
+                        Server = node.SelectSingleNode("server").InnerText,
+                        Database = node.SelectSingleNode("dbname").InnerText,
+                        Username = node.SelectSingleNode("dbuser").InnerText,
+                        Password = node.SelectSingleNode("dbpass").InnerText,
+                        Provider = node.SelectSingleNode("provider").InnerText
+                    };
                     listConnection.Add(conn);
                 }
 
@@ -109,14 +113,14 @@ namespace ThangDC.Core.Entities
 
         public Connection GetBy(string name)
         {
-            Connection conn = new Connection();
+            var conn = new Connection();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
-                XmlNode node = connections.SelectSingleNode("/root/connections/connection[name='" + name + "']");
+                var node = connections.SelectSingleNode("/root/connections/connection[name='" + name + "']");
                 if (node != null)
                 {
                     conn.Name = node.SelectSingleNode("name").InnerText;
@@ -143,14 +147,14 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            Connection conn = new Connection();
+            var conn = new Connection();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
-                XmlNode node = connections.SelectSingleNode("/root/connections/connection[name='" + name + "']");
+                var node = connections.SelectSingleNode("/root/connections/connection[name='" + name + "']");
                 if (node != null)
                 {
                     conn.Name = node.SelectSingleNode("name").InnerText;
@@ -173,8 +177,8 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in connections.SelectNodes("root/connections/connection"))
                 {
@@ -201,7 +205,7 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
+                var security = new Security(User.Current.Password);
                 bool check = CheckExists(Name);
 
                 if (check)
@@ -210,34 +214,34 @@ namespace ThangDC.Core.Entities
                 }
                 else
                 {
-                    XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                    var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
-                    XmlNode node = connections.SelectSingleNode("/root/connections");
-                    XmlNode connectionNode = connections.CreateElement("connection");
+                    var node = connections.SelectSingleNode("/root/connections");
+                    var connectionNode = connections.CreateElement("connection");
 
                     node.AppendChild(connectionNode);
 
-                    XmlNode nameNode = connections.CreateElement("name");
+                    var nameNode = connections.CreateElement("name");
                     nameNode.AppendChild(connections.CreateTextNode(Name));
                     connectionNode.AppendChild(nameNode);
 
-                    XmlNode serverNode = connections.CreateElement("server");
+                    var serverNode = connections.CreateElement("server");
                     serverNode.AppendChild(connections.CreateTextNode(Server));
                     connectionNode.AppendChild(serverNode);
 
-                    XmlNode dbNode = connections.CreateElement("dbname");
+                    var dbNode = connections.CreateElement("dbname");
                     dbNode.AppendChild(connections.CreateTextNode(Database));
                     connectionNode.AppendChild(dbNode);
 
-                    XmlNode dbuserNode = connections.CreateElement("dbuser");
+                    var dbuserNode = connections.CreateElement("dbuser");
                     dbuserNode.AppendChild(connections.CreateTextNode(Username));
                     connectionNode.AppendChild(dbuserNode);
 
-                    XmlNode dbPassNode = connections.CreateElement("dbpass");
+                    var dbPassNode = connections.CreateElement("dbpass");
                     dbPassNode.AppendChild(connections.CreateTextNode(Password));
                     connectionNode.AppendChild(dbPassNode);
 
-                    XmlNode dbproviderNode = connections.CreateElement("provider");
+                    var dbproviderNode = connections.CreateElement("provider");
                     dbproviderNode.AppendChild(connections.CreateTextNode(Provider));
                     connectionNode.AppendChild(dbproviderNode);
 
@@ -268,8 +272,8 @@ namespace ThangDC.Core.Entities
                 }
                 else
                 {
-                    Security security = new Security();
-                    XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                    var security = new Security(User.Current.Password);
+                    var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
                     XmlNode node = connections.SelectSingleNode("/root/connections/connection[name='" + Name + "']");
                     if (node != null)
@@ -305,10 +309,10 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument connections = security.ReadConnectionConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var connections = security.ReadConnectionConfiguration(User.Current.Path);
 
-                XmlNode node = connections.SelectSingleNode("/root/connections/connection[name='" + Name + "']");
+                var node = connections.SelectSingleNode("/root/connections/connection[name='" + Name + "']");
                 if (node != null)
                 {
                     node.ParentNode.RemoveChild(node);
@@ -353,8 +357,7 @@ namespace ThangDC.Core.Entities
                             Password = conn.Password
                         }.ConnectionString;
 
-                        //string connection = "Server=" + conn.Server + ";User ID=" + conn.Username + ";Password=" + conn.Password + ";";
-                        using (SqlConnection sqlConn = new SqlConnection(connection))
+                        using (var sqlConn = new SqlConnection(connection))
                         {
                             sqlConn.Open();
 
@@ -383,21 +386,28 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                 Connection conn = new Connection();
+                 var conn = new Connection();
                  conn = GetBy(name);
                 
-                List<string> tables = new List<string>();
+                var tables = new List<string>();
 
                 if (conn != null)
                 {
                     if (conn.Provider == "System.Data.SqlClient")
                     {
-                        string connection = "Data Source=" + conn.Server + ";User ID=" + conn.Username + ";Password=" + conn.Password + ";";
-                        using (SqlConnection sqlConn = new SqlConnection(connection))
+                        var connection = new SqlConnectionStringBuilder()
+                        {
+                            DataSource = conn.Server,
+                            InitialCatalog = conn.Database,
+                            UserID = conn.Username,
+                            Password = conn.Password
+                        }.ConnectionString; 
+
+                        using (var sqlConn = new SqlConnection(connection))
                         {
                             sqlConn.Open();
 
-                            SqlCommand cmd = new SqlCommand();
+                            var cmd = new SqlCommand();
                             if (string.IsNullOrEmpty(dbName))
                             {
                                 cmd.CommandText = "USE " + conn.Database + " SELECT * FROM sys.Tables";
@@ -409,7 +419,7 @@ namespace ThangDC.Core.Entities
 
                             cmd.Connection = sqlConn;
 
-                            SqlDataReader reader = cmd.ExecuteReader();
+                            var reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
                                 tables.Add(reader[0].ToString());
@@ -432,27 +442,34 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Connection conn = new Connection();
+                var conn = new Connection();
                 conn = GetBy(name);
 
-                List<string> tables = new List<string>();
+                var tables = new List<string>();
 
                 if (conn != null)
                 {
                     if (conn.Provider == "System.Data.SqlClient")
                     {
-                        string connection = "Data Source=" + conn.Server + ";User ID=" + conn.Username + ";Password=" + conn.Password + ";";
-                        using (SqlConnection sqlConn = new SqlConnection(connection))
+                        var connection = new SqlConnectionStringBuilder()
+                        {
+                            DataSource = conn.Server,
+                            InitialCatalog = conn.Database,
+                            UserID = conn.Username,
+                            Password = conn.Password
+                        }.ConnectionString; 
+
+                        using (var sqlConn = new SqlConnection(connection))
                         {
                             sqlConn.Open();
 
-                            SqlCommand cmd = new SqlCommand();
+                            var cmd = new SqlCommand
+                            {
+                                CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " Select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + tableName + "'",
+                                Connection = sqlConn
+                            };
 
-                            cmd.CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " Select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + tableName + "'";
-                            
-                            cmd.Connection = sqlConn;
-
-                            SqlDataReader reader = cmd.ExecuteReader();
+                            var reader = cmd.ExecuteReader();
                             while (reader.Read())
                             {
                                 tables.Add(reader[3].ToString());
@@ -475,36 +492,43 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Connection conn = new Connection();
+                var conn = new Connection();
                 conn = GetBy(name);
 
-                DataTable Tables = new DataTable();
+                var tables = new DataTable();
 
                 if (conn != null)
                 {
                     if (conn.Provider == "System.Data.SqlClient")
                     {
-                        string connection = "Data Source=" + conn.Server + ";User ID=" + conn.Username + ";Password=" + conn.Password + ";";
-                        using (SqlConnection sqlConn = new SqlConnection(connection))
+                        var connection = new SqlConnectionStringBuilder()
+                        {
+                            DataSource = conn.Server,
+                            InitialCatalog = conn.Database,
+                            UserID = conn.Username,
+                            Password = conn.Password
+                        }.ConnectionString; 
+
+                        using (var sqlConn = new SqlConnection(connection))
                         {
                             sqlConn.Open();
 
-                            SqlCommand cmd = new SqlCommand();
+                            var cmd = new SqlCommand
+                            {
+                                CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " " + sql,
+                                Connection = sqlConn
+                            };
 
-                            cmd.CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " " + sql;
+                            var reader = cmd.ExecuteReader();
 
-                            cmd.Connection = sqlConn;
+                            tables.Load(reader);
 
-                            SqlDataReader reader = cmd.ExecuteReader();
-
-                            Tables.Load(reader);
-
-                            if (Tables.Rows.Count > 0)
+                            if (tables.Rows.Count > 0)
                             {
                                 string rowDelimiter = "";
 
-                                StringBuilder sb = new StringBuilder("[");
-                                foreach (DataRow row in Tables.Rows)
+                                var sb = new StringBuilder("[");
+                                foreach (DataRow row in tables.Rows)
                                 {
                                     sb.Append(rowDelimiter);
                                     sb.Append(FromDataRow(row));
@@ -530,28 +554,34 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Connection conn = new Connection();
+                var conn = new Connection();
                 conn = GetBy(name);
 
-                DataTable Tables = new DataTable();
+                var tables = new DataTable();
 
                 if (conn != null)
                 {
                     if (conn.Provider == "System.Data.SqlClient")
                     {
-                        string connection = "Data Source=" + conn.Server + ";User ID=" + conn.Username + ";Password=" + conn.Password + ";";
-                        using (SqlConnection sqlConn = new SqlConnection(connection))
+                        var connection = new SqlConnectionStringBuilder()
+                        {
+                            DataSource = conn.Server,
+                            InitialCatalog = conn.Database,
+                            UserID = conn.Username,
+                            Password = conn.Password
+                        }.ConnectionString; 
+
+                        using (var sqlConn = new SqlConnection(connection))
                         {
                             sqlConn.Open();
 
-                            SqlCommand cmd = new SqlCommand();
-
-                            cmd.CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " " + sql;
-
-                            cmd.Connection = sqlConn;
+                            var cmd = new SqlCommand
+                            {
+                                CommandText = "USE " + (string.IsNullOrEmpty(dbName) ? conn.Database : dbName) + " " + sql,
+                                Connection = sqlConn
+                            };
 
                             result = cmd.ExecuteNonQuery();
-
                             sqlConn.Close();
                         }
                     }
@@ -568,7 +598,7 @@ namespace ThangDC.Core.Entities
             DataColumnCollection cols = row.Table.Columns;
             string colDelimiter = "";
 
-            StringBuilder result = new StringBuilder("{");
+            var result = new StringBuilder("{");
             for (int i = 0; i < cols.Count; i++)
             {
                 result.Append(colDelimiter).Append("\"")
