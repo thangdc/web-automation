@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using ThangDC.Core.Entities;
-using ThangDC.Core.Securities;
 
 namespace WebAutomation
 {
@@ -96,10 +90,8 @@ namespace WebAutomation
 
         private void AddNew()
         {
-            MailServer mailServer = new MailServer();
-            string message = Language.Resource.Message;
-            Security security = new Security();
-            
+            var mailServer = new MailServer();
+            string message = Language.Resource.Message;            
 
             bool check = mailServer.CheckExists(tbxName.Text);
 
@@ -109,8 +101,7 @@ namespace WebAutomation
             }
             else
             {
-                int Num;
-                bool isNum = int.TryParse(tbxPort.Text, out Num);
+                bool isNum = int.TryParse(tbxPort.Text, out int num);
 
                 if (isNum)
                 {
@@ -118,14 +109,14 @@ namespace WebAutomation
                     mailServer.Server = tbxServer.Text;
                     mailServer.Username = tbxUsername.Text;
                     mailServer.Password = tbxPassword.Text;
-                    mailServer.Port = Num;
+                    mailServer.Port = num;
 
                     int result = mailServer.Add();
                     if (result == 1)
                     {
-                        frmManager manager = (frmManager)Application.OpenForms["frmManager"];
+                        var manager = (frmManager)Application.OpenForms["frmManager"];
                         manager.SelectTab("tabMails");
-                        this.Close();
+                        Close();
                     }
                 }
                 else
@@ -138,7 +129,7 @@ namespace WebAutomation
 
         public void UpdateMail(string name)
         {
-            MailServer mailServer = new MailServer();
+            var mailServer = new MailServer();
             var current = mailServer.GetBy(name);
 
             if (current != null)
@@ -157,9 +148,9 @@ namespace WebAutomation
                     int result = current.Update();
                     if (result == 1)
                     {
-                        frmManager manager = (frmManager)Application.OpenForms["frmManager"];
+                        var manager = (frmManager)Application.OpenForms["frmManager"];
                         manager.SelectTab("tabMails");
-                        this.Close();
+                        Close();
                     }
                 }                
             }

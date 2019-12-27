@@ -38,12 +38,12 @@ namespace ThangDC.Core.Entities
 
         public List<Account> GetAll()
         {
-            List<Account> lstAccount = new List<Account>();
+            var lstAccount = new List<Account>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in accounts.SelectNodes("root/accounts/account"))
                 {
@@ -64,14 +64,14 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            List<Account> lstAccount = new List<Account>();
+            var lstAccount = new List<Account>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                foreach (System.Xml.XmlNode node in accounts.SelectNodes("root/accounts/account"))
+                foreach (XmlNode node in accounts.SelectNodes("root/accounts/account"))
                 {
                     Account account = new Account();
                     account.Name = node.SelectSingleNode("name").InnerText;
@@ -90,13 +90,13 @@ namespace ThangDC.Core.Entities
 
         public Account GetBy(string name)
         {
-            Account account = new Account();
+            var account = new Account();
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                XmlNode node = accounts.SelectSingleNode("/root/accounts/account[name='" + name + "']");
+                var node = accounts.SelectSingleNode("/root/accounts/account[name='" + name + "']");
                 if (node != null)
                 {
                     account.Name = node.SelectSingleNode("name").InnerText;
@@ -112,14 +112,14 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            Account account = new Account();
+            var account = new Account();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                XmlNode node = accounts.SelectSingleNode("/root/accounts/account[name='" + name + "']");
+                var node = accounts.SelectSingleNode("/root/accounts/account[name='" + name + "']");
                 if (node != null)
                 {
                     account.Name = node.SelectSingleNode("name").InnerText;
@@ -140,10 +140,10 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                foreach (System.Xml.XmlNode node in accounts.SelectNodes("root/accounts/account"))
+                foreach (XmlNode node in accounts.SelectNodes("root/accounts/account"))
                 {
                     string _name = node.SelectSingleNode("name").InnerText;
 
@@ -167,7 +167,7 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
+                var security = new Security(User.Current.Password);
 
                 bool check = CheckExists(Name);
 
@@ -178,26 +178,26 @@ namespace ThangDC.Core.Entities
                 else
                 {
 
-                    XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                    var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                    XmlNode node = accounts.SelectSingleNode("/root/accounts");
-                    XmlNode accountNode = accounts.CreateElement("account");
+                    var node = accounts.SelectSingleNode("/root/accounts");
+                    var accountNode = accounts.CreateElement("account");
 
                     node.AppendChild(accountNode);
 
-                    XmlNode nameNode = accounts.CreateElement("name");
+                    var nameNode = accounts.CreateElement("name");
                     nameNode.AppendChild(accounts.CreateTextNode(Name));
                     accountNode.AppendChild(nameNode);
 
-                    XmlNode userNode = accounts.CreateElement("username");
+                    var userNode = accounts.CreateElement("username");
                     userNode.AppendChild(accounts.CreateTextNode(Username));
                     accountNode.AppendChild(userNode);
 
-                    XmlNode passNode = accounts.CreateElement("password");
+                    var passNode = accounts.CreateElement("password");
                     passNode.AppendChild(accounts.CreateTextNode(Password));
                     accountNode.AppendChild(passNode);
 
-                    XmlNode desNode = accounts.CreateElement("description");
+                    var desNode = accounts.CreateElement("description");
                     desNode.AppendChild(accounts.CreateTextNode(Description));
                     accountNode.AppendChild(desNode);
 
@@ -220,10 +220,10 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                XmlNode node = accounts.SelectSingleNode("/root/accounts/account[name='" + Name + "']");
+                var node = accounts.SelectSingleNode("/root/accounts/account[name='" + Name + "']");
 
                 if (node != null)
                 {
@@ -255,10 +255,10 @@ namespace ThangDC.Core.Entities
             if (User.Current != null)
             {
 
-                ThangDC.Core.Securities.Security security = new ThangDC.Core.Securities.Security();
-                System.Xml.XmlDocument accounts = security.ReadAccountConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var accounts = security.ReadAccountConfiguration(User.Current.Path);
 
-                System.Xml.XmlNode node = accounts.SelectSingleNode("/root/accounts/account[name='" + Name + "']");
+                var node = accounts.SelectSingleNode("/root/accounts/account[name='" + Name + "']");
                 if (node != null)
                 {
                     node.ParentNode.RemoveChild(node);

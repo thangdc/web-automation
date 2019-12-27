@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using ThangDC.Core.Entities;
 using ThangDC.Core.Securities;
 
@@ -187,63 +182,63 @@ namespace WebAutomation
 
         private void LoadUser()
         {
-            User user = new User();
-            List<User> listUser = user.GetAll();
+            var user = new User();
+            var listUser = user.GetAll();
 
-            Security security = new Security();           
+            var security = new Security(User.Current.Password);           
 
             lvUsers.Items.Clear();
             
-            foreach (User usr in listUser)
+            foreach (var usr in listUser)
             {
-                ListViewItem item = new ListViewItem(new[] { usr.UserName, usr.Email, security.encrypt(User.Current.PublicKey, usr.Password), usr.PublicKey, usr.PrivateKey });
+                var item = new ListViewItem(new[] { usr.UserName, usr.Email, security.encrypt(User.Current.PublicKey, usr.Password), usr.PublicKey, usr.PrivateKey });
                 lvUsers.Items.Add(item);
             }
         }
 
         private void LoadConnection()
         {
-            Connection connection = new Connection();
-            Security security = new Security();
-            List<Connection> lstConnection = connection.GetAll();
+            var connection = new Connection();
+            var security = new Security(User.Current.Password);
+            var lstConnection = connection.GetAll();
 
             lvConnections.Items.Clear();
 
-            foreach (Connection conn in lstConnection)
+            foreach (var conn in lstConnection)
             {
-                ListViewItem item = new ListViewItem(new[] { conn.Name, conn.Server, conn.Database, conn.Username, security.encrypt(User.Current.PublicKey, conn.Password), conn.Provider });
+                var item = new ListViewItem(new[] { conn.Name, conn.Server, conn.Database, conn.Username, security.encrypt(User.Current.PublicKey, conn.Password), conn.Provider });
                 lvConnections.Items.Add(item);
             }
         }
 
         private void LoadMail()
         {
-            MailServer mailserver = new MailServer();
-            List<MailServer> lstMail = mailserver.GetAll();
+            var mailserver = new MailServer();
+            var lstMail = mailserver.GetAll();
 
-            Security security = new Security();
+            var security = new Security(User.Current.Password);
 
             lvMails.Items.Clear();
 
-            foreach(MailServer m in lstMail)
+            foreach(var m in lstMail)
             {
-                ListViewItem item = new ListViewItem(new[] { m.Name, m.Server, m.Username, security.encrypt(User.Current.PublicKey, m.Password), m.Port.ToString() });
+                var item = new ListViewItem(new[] { m.Name, m.Server, m.Username, security.encrypt(User.Current.PublicKey, m.Password), m.Port.ToString() });
                 lvMails.Items.Add(item);
             }
         }
 
         private void LoadAccount()
         {
-            Account account = new Account();
-            List<Account> lstAccount = new List<Account>();
+            var account = new Account();
+            var lstAccount = new List<Account>();
             lstAccount = account.GetAll();
 
             lvAccounts.Items.Clear();
-            Security security = new Security();
+            var security = new Security(User.Current.Password);
 
-            foreach (Account acc in lstAccount)
+            foreach (var acc in lstAccount)
             {
-                ListViewItem item = new ListViewItem(new[] { acc.Name, acc.Username, security.encrypt(User.Current.PublicKey, acc.Password), acc.Description });
+                var item = new ListViewItem(new[] { acc.Name, acc.Username, security.encrypt(User.Current.PublicKey, acc.Password), acc.Description });
                 lvAccounts.Items.Add(item);
             }
         }
@@ -274,7 +269,7 @@ namespace WebAutomation
 
         public void DeleteMail(string name)
         {
-            MailServer mail = new MailServer();
+            var mail = new MailServer();
             mail.Name = name;
             bool result = mail.Delete();
             if (result)
@@ -285,7 +280,7 @@ namespace WebAutomation
 
         public void DeleteConnection(string name)
         {
-            Connection connection = new Connection();
+            var connection = new Connection();
             connection.Name = name;
             bool result = connection.Delete();
             if (result)
@@ -296,7 +291,7 @@ namespace WebAutomation
 
         public void DeleteAccount(string name)
         {
-            Account account = new Account();
+            var account = new Account();
             account.Name = name;
             bool result = account.Delete();
             if (result)
@@ -307,13 +302,15 @@ namespace WebAutomation
 
         public void DeleteUser(string name)
         {
-            User user = new User();
-            user.UserName = name;
+            var user = new User
+            {
+                UserName = name
+            };
             bool result = user.Delete();
             
             if (result)
             {
-                frmMain main = (frmMain)Application.OpenForms["frmMain"];
+                var main = (frmMain)Application.OpenForms["frmMain"];
                 main.Logout();
                 this.Close();
             }

@@ -15,155 +15,122 @@ namespace ThangDC.Core.Securities
         private string rolecfg = "role.cfg";
         private string mailcfg = "mail.cfg";
         private string accountcfg = "account.cfg";
+        
+        public Security(string password)
+        {
+            _Password = password;
+        }
 
         public void SaveConnectionConfiguration(string path, string connectionName, string server, string dbname, string dbuser, string dbpassword, string provider)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             string content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><connections><connection><name>" + connectionName + "</name><server>" + server + "</server><dbname>" + dbname + "</dbname><dbuser>" + dbuser + "</dbuser><dbpass>" + dbpassword + "</dbpass><provider>" + provider + "</provider></connection></connections></root>";
             zip.Save(path, connectioncfg, content, _Password);
         }
 
         public void SaveConnectionConfiguration(string path, string content)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             zip.Save(path, connectioncfg, content, _Password);
         }
 
         public void SaveUserConfiguration(string path, string username, string email, string password, string privatekey, string publickey, string salt)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             string content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><users><user><username>" + username + "</username><email>" + email + "</email><password><![CDATA[" + password + "]]></password><privatekey><![CDATA[" + privatekey + "]]></privatekey><publickey><![CDATA[" + publickey + "]]></publickey><salt><![CDATA[" + salt + "]]></salt></user></users></root>";
             zip.Save(path, usercfg, content, _Password);
         }
 
         public void SaveUserConfiguration(string path, string content)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             zip.Save(path, usercfg, content, _Password);
         }
 
         public void SaveRoleConfiguration(string path, string role, string description)
         {
-            Zip zip = new Zip();
-            string content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><roles><role><name>" + role + "</name><description>" + description + "</description></role></roles></root>";
+            var zip = new Zip();
+            var content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><roles><role><name>" + role + "</name><description>" + description + "</description></role></roles></root>";
             zip.Save(path, rolecfg, content, _Password);
         }
 
         public void SaveMailConfiguration(string path, string mailname, string server, int port, string user, string password)
         {
-            Zip zip = new Zip();
-            string content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><mails><mail><name>" + mailname + "</name><server>" + server + "</server><port>" + port + "</port><user>" + user + "</user><password>" + password + "</password></mail></mails></root>";
+            var zip = new Zip();
+            var content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><mails><mail><name>" + mailname + "</name><server>" + server + "</server><port>" + port + "</port><user>" + user + "</user><password>" + password + "</password></mail></mails></root>";
             zip.Save(path, mailcfg, content, _Password);
         }
 
         public void SaveMailConfiguration(string path, string content)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             zip.Save(path, mailcfg, content, _Password);
         }
 
         public void SaveAccountsConfiguration(string path, string name, string username, string password, string description)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             string content = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root><accounts><account><name>" + name + "</name><username>" + username + "</username><password>" + password + "</password><description>" + description + "</description></account></accounts></root>";
             zip.Save(path, accountcfg, content, _Password);
         }
 
         public XmlDocument ReadConnectionConfiguration(string path)
         {
-            XmlDocument result = new XmlDocument();
-
-            if (User.Current != null)
-            {
-                Zip zip = new Zip();
-                result = zip.ReadXML(path, connectioncfg, _Password);
-            }
-            else
-            {
-                result = null;
-            }
+            var zip = new Zip();
+            var result = zip.ReadXML(path, connectioncfg, _Password);
 
             return result;
         }
 
         public XmlDocument ReadUserConfiguration(string path)
         {
-            XmlDocument result = new XmlDocument();
-
-            Zip zip = new Zip();
-            result = zip.ReadXML(path, usercfg, _Password);
+            var zip = new Zip();
+            var result = zip.ReadXML(path, usercfg, _Password);
 
             return result;
         }
 
         public XmlDocument ReadRoleConfiguration(string path)
         {
-            XmlDocument result = new XmlDocument();
-
-            if (User.Current != null)
-            {
-                Zip zip = new Zip();
-                result = zip.ReadXML(path, rolecfg, _Password);
-            }
-            else
-            {
-                result = null;
-            }
+            var zip = new Zip();
+            var result = zip.ReadXML(path, rolecfg, _Password);
 
             return result;
         }
 
         public XmlDocument ReadMailConfiguration(string path)
         {
-            XmlDocument result = new XmlDocument();
-
-            if (User.Current != null)
-            {
-                Zip zip = new Zip();
-                result = zip.ReadXML(path, mailcfg, _Password);
-            }
-            else
-            {
-                result = null;
-            }
+            var zip = new Zip();
+            var result = zip.ReadXML(path, mailcfg, _Password);
 
             return result;
         }
 
         public XmlDocument ReadAccountConfiguration(string path)
         {
-            XmlDocument result = new XmlDocument();
-
-            if (User.Current != null)
-            {
-                Zip zip = new Zip();
-                result = zip.ReadXML(path, accountcfg, _Password);
-            }
-            else
-            {
-                result = null;
-            }
+            var zip = new Zip();
+            var result = zip.ReadXML(path, accountcfg, _Password);
 
             return result;
         }
 
-        public void SaveAccountsConfiguration(string path, System.Xml.XmlNode document)
+        public void SaveAccountsConfiguration(string path, XmlNode document)
         {
-            Zip zip = new Zip();
-            string content = document.InnerXml;
+            var zip = new Zip();
+            var content = document.InnerXml;
             zip.Save(path, accountcfg, content, _Password);
         }
 
-        public void SaveConnection(string path, System.Xml.XmlNode document)
+        public void SaveConnection(string path, XmlNode document)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             string content = document.InnerXml;
             zip.Save(path, connectioncfg, content, _Password);
         }
 
-        public void SaveUsersConfiguration(string path, System.Xml.XmlNode document)
+        public void SaveUsersConfiguration(string path, XmlNode document)
         {
-            Zip zip = new Zip();
+            var zip = new Zip();
             string content = document.InnerXml;
             zip.Save(path, usercfg, content, _Password);
         }
@@ -178,8 +145,10 @@ namespace ThangDC.Core.Securities
             string result = "";
             try
             {
-                cspParams = new CspParameters();
-                cspParams.ProviderType = 1;
+                cspParams = new CspParameters
+                {
+                    ProviderType = 1
+                };
                 rsaProvider = new RSACryptoServiceProvider(cspParams);
 
                 rsaProvider.FromXmlString(publicKey);

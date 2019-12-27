@@ -44,21 +44,23 @@ namespace ThangDC.Core.Entities
 
         public List<MailServer> GetAll()
         {
-            List<MailServer> listMailServer = new List<MailServer>();
+            var listMailServer = new List<MailServer>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in mails.SelectNodes("root/mails/mail"))
                 {
-                    MailServer mail = new MailServer();
-                    mail.Name = node.SelectSingleNode("name").InnerText;
-                    mail.Server = node.SelectSingleNode("server").InnerText;
-                    mail.Port = int.Parse(node.SelectSingleNode("port").InnerText);
-                    mail.Username = node.SelectSingleNode("user").InnerText;
-                    mail.Password = node.SelectSingleNode("password").InnerText;
+                    var mail = new MailServer
+                    {
+                        Name = node.SelectSingleNode("name").InnerText,
+                        Server = node.SelectSingleNode("server").InnerText,
+                        Port = int.Parse(node.SelectSingleNode("port").InnerText),
+                        Username = node.SelectSingleNode("user").InnerText,
+                        Password = node.SelectSingleNode("password").InnerText
+                    };
                     listMailServer.Add(mail);
                 }
             }
@@ -70,21 +72,23 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            List<MailServer> listMailServer = new List<MailServer>();
+            var listMailServer = new List<MailServer>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in mails.SelectNodes("root/mails/mail"))
                 {
-                    MailServer mail = new MailServer();
-                    mail.Name = node.SelectSingleNode("name").InnerText;
-                    mail.Server = node.SelectSingleNode("server").InnerText;
-                    mail.Port = int.Parse(node.SelectSingleNode("port").InnerText);
-                    mail.Username = node.SelectSingleNode("user").InnerText;
-                    mail.Password = node.SelectSingleNode("password").InnerText;
+                    var mail = new MailServer
+                    {
+                        Name = node.SelectSingleNode("name").InnerText,
+                        Server = node.SelectSingleNode("server").InnerText,
+                        Port = int.Parse(node.SelectSingleNode("port").InnerText),
+                        Username = node.SelectSingleNode("user").InnerText,
+                        Password = node.SelectSingleNode("password").InnerText
+                    };
                     listMailServer.Add(mail);
                 }
 
@@ -96,35 +100,26 @@ namespace ThangDC.Core.Entities
 
         public MailServer GetBy(string name)
         {
-            MailServer mailServer = new MailServer();
+            MailServer mailServer = null;
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
                 XmlNode node = mails.SelectSingleNode("/root/mails/mail[name='" + name + "']");
                 if (node != null)
                 {
+                    mailServer = new MailServer();
                     mailServer.Name = node.SelectSingleNode("name").InnerText;
                     mailServer.Server = node.SelectSingleNode("server").InnerText;
                     mailServer.Username = node.SelectSingleNode("user").InnerText;
                     mailServer.Password = node.SelectSingleNode("password").InnerText;
 
-                    int port = 0;
-
-                    int.TryParse(node.SelectSingleNode("port").InnerText, out port);
+                    int.TryParse(node.SelectSingleNode("port").InnerText, out int port);
 
                     mailServer.Port = port;
                 }
-                else
-                {
-                    mailServer = null;
-                }
-            }
-            else
-            {
-                mailServer = null;
             }
 
             return mailServer;
@@ -134,24 +129,25 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            MailServer mailServer = new MailServer();
+            MailServer mailServer = null;
 
             if (User.Current != null)
             {
-                Security security = new Security();
+                var security = new Security(User.Current.Password);
                 XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
 
                 XmlNode node = mails.SelectSingleNode("/root/mails/mail[name='" + name + "']");
                 if (node != null)
                 {
-                    mailServer.Name = node.SelectSingleNode("name").InnerText;
-                    mailServer.Server = node.SelectSingleNode("server").InnerText;
-                    mailServer.Username = node.SelectSingleNode("user").InnerText;
-                    mailServer.Password = node.SelectSingleNode("password").InnerText;
+                    mailServer = new MailServer
+                    {
+                        Name = node.SelectSingleNode("name").InnerText,
+                        Server = node.SelectSingleNode("server").InnerText,
+                        Username = node.SelectSingleNode("user").InnerText,
+                        Password = node.SelectSingleNode("password").InnerText
+                    };
 
-                    int port = 0;
-
-                    int.TryParse(node.SelectSingleNode("port").InnerText, out port);
+                    int.TryParse(node.SelectSingleNode("port").InnerText, out int port);
 
                     mailServer.Port = port;
 
@@ -168,8 +164,8 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
                 foreach (XmlNode node in mails.SelectNodes("root/mails/mail"))
                 {
@@ -196,7 +192,7 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
+                var security = new Security(User.Current.Password);
 
                 bool check = CheckExists(Name);
 
@@ -206,35 +202,34 @@ namespace ThangDC.Core.Entities
                 }
                 else
                 {
-                    int Num;
-                    bool isNum = int.TryParse(Port.ToString(), out Num);
+                    bool isNum = int.TryParse(Port.ToString(), out int num);
 
                     if (isNum)
                     {
-                        XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                        var mails = security.ReadMailConfiguration(User.Current.Path);
 
-                        XmlNode node = mails.SelectSingleNode("/root/mails");
-                        XmlNode mailNode = mails.CreateElement("mail");
+                        var node = mails.SelectSingleNode("/root/mails");
+                        var mailNode = mails.CreateElement("mail");
 
                         node.AppendChild(mailNode);
 
-                        XmlNode nameNode = mails.CreateElement("name");
+                        var nameNode = mails.CreateElement("name");
                         nameNode.AppendChild(mails.CreateTextNode(Name));
                         mailNode.AppendChild(nameNode);
 
-                        XmlNode serverNode = mails.CreateElement("server");
+                        var serverNode = mails.CreateElement("server");
                         serverNode.AppendChild(mails.CreateTextNode(Server));
                         mailNode.AppendChild(serverNode);
 
-                        XmlNode userNode = mails.CreateElement("user");
+                        var userNode = mails.CreateElement("user");
                         userNode.AppendChild(mails.CreateTextNode(Username));
                         mailNode.AppendChild(userNode);
 
-                        XmlNode passNode = mails.CreateElement("password");
+                        var passNode = mails.CreateElement("password");
                         passNode.AppendChild(mails.CreateTextNode(Password));
                         mailNode.AppendChild(passNode);
 
-                        XmlNode portNode = mails.CreateElement("port");
+                        var portNode = mails.CreateElement("port");
                         portNode.AppendChild(mails.CreateTextNode(Port.ToString()));
                         mailNode.AppendChild(portNode);
 
@@ -262,10 +257,10 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
-                XmlNode node = mails.SelectSingleNode("/root/mails/mail[name='" + Name + "']");
+                var node = mails.SelectSingleNode("/root/mails/mail[name='" + Name + "']");
                 if (node != null)
                 {
                     node.SelectSingleNode("name").InnerText = Name;
@@ -327,11 +322,10 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
+                var security = new Security(User.Current.Password);
+                var mails = security.ReadMailConfiguration(User.Current.Path);
 
-                Security security = new Security();
-                XmlDocument mails = security.ReadMailConfiguration(User.Current.Path);
-
-                XmlNode node = mails.SelectSingleNode("/root/mails/mail[name='" + Name + "']");
+                var node = mails.SelectSingleNode("/root/mails/mail[name='" + Name + "']");
                 if (node != null)
                 {
                     node.ParentNode.RemoveChild(node);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Script.Serialization;
@@ -104,11 +105,11 @@ namespace ThangDC.Core.Entities
             }
             else
             {
-                if (System.IO.File.Exists(Path))
+                if (File.Exists(Path))
                 {
-                    Security security = new Security();
+                    var security = new Security(Password);
 
-                    XmlDocument doc = security.ReadUserConfiguration(Path);
+                    var doc = security.ReadUserConfiguration(Path);
 
                     string _username = "";
                     string _password = "";
@@ -128,7 +129,7 @@ namespace ThangDC.Core.Entities
 
                             if (UserName == _username && security.CheckPassword(Password, Convert.FromBase64String(_salt), Convert.FromBase64String(_password)))
                             {
-                                User us = new User();
+                                var us = new User();
 
                                 _email = node.SelectSingleNode("email").InnerText;
                                 _publickey = node.SelectSingleNode("publickey").InnerText;
@@ -141,16 +142,14 @@ namespace ThangDC.Core.Entities
                                 us.PublicKey = _publickey;
                                 us.PrivateKey = _privatekey;
                                 us.Path = _path;
+                                us.Password = Password;
 
                                 _username = null;
                                 _password = null;
                                 _email = null;
                                 _publickey = null;
                                 _privatekey = null;
-
-                                UserName = null;
-                                Password = null;
-
+                                
 
                                 User.Current = us;
                                 result = 1;
@@ -232,7 +231,7 @@ namespace ThangDC.Core.Entities
                         publicKey = rsaProvider.ToXmlString(false);
                         privateKey = rsaProvider.ToXmlString(true);
 
-                        User us = new User();
+                        var us = new User();
                         us.UserName = UserName;
                         us.Email = Email;
                         
@@ -243,7 +242,7 @@ namespace ThangDC.Core.Entities
                         byte[] salt = new byte[16];
                         byte[] hashPassword = new byte[16];
 
-                        Security security = new Security();
+                        var security = new Security(Password);
                         security.HashPassword(Password, out salt, out hashPassword);
 
                         string s = Convert.ToBase64String(salt);
@@ -267,37 +266,37 @@ namespace ThangDC.Core.Entities
                         else
                         {
                             
-                            XmlDocument users = security.ReadUserConfiguration(Path);
+                            var users = security.ReadUserConfiguration(Path);
                             
                             bool check = CheckUserAndEmailExists(UserName, Email, users);
                             if (!check)
                             {
-                                XmlNode node = users.SelectSingleNode("/root/users");
-                                XmlNode userNode = users.CreateElement("user");
+                                var node = users.SelectSingleNode("/root/users");
+                                var userNode = users.CreateElement("user");
 
                                 node.AppendChild(userNode);
 
-                                XmlNode usernameNode = users.CreateElement("username");
+                                var usernameNode = users.CreateElement("username");
                                 usernameNode.AppendChild(users.CreateTextNode(UserName));
                                 userNode.AppendChild(usernameNode);
 
-                                XmlNode emailNode = users.CreateElement("email");
+                                var emailNode = users.CreateElement("email");
                                 emailNode.AppendChild(users.CreateTextNode(Email));
                                 userNode.AppendChild(emailNode);
 
-                                XmlNode passNode = users.CreateElement("password");
+                                var passNode = users.CreateElement("password");
                                 passNode.AppendChild(users.CreateTextNode(p));
                                 userNode.AppendChild(passNode);
 
-                                XmlNode publickeyNode = users.CreateElement("publickey");
+                                var publickeyNode = users.CreateElement("publickey");
                                 publickeyNode.AppendChild(users.CreateCDataSection(PublicKey));
                                 userNode.AppendChild(publickeyNode);
 
-                                XmlNode privateNode = users.CreateElement("privatekey");
+                                var privateNode = users.CreateElement("privatekey");
                                 privateNode.AppendChild(users.CreateCDataSection(PrivateKey));
                                 userNode.AppendChild(privateNode);
 
-                                XmlNode saltNode = users.CreateElement("salt");
+                                var saltNode = users.CreateElement("salt");
                                 saltNode.AppendChild(users.CreateCDataSection(s));
                                 userNode.AppendChild(saltNode);
 
@@ -321,21 +320,23 @@ namespace ThangDC.Core.Entities
 
         public List<User> GetAll()
         {
-            List<User> lstUser = new List<User>();
+            var lstUser = new List<User>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument users = security.ReadUserConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var users = security.ReadUserConfiguration(User.Current.Path);
 
-                foreach (System.Xml.XmlNode node in users.SelectNodes("root/users/user"))
+                foreach (XmlNode node in users.SelectNodes("root/users/user"))
                 {
-                    User user = new User();
-                    user.UserName = node.SelectSingleNode("username").InnerText;
-                    user.Password = node.SelectSingleNode("password").InnerText;
-                    user.PublicKey = node.SelectSingleNode("publickey").InnerText;
-                    user.PrivateKey = node.SelectSingleNode("privatekey").InnerText;
-                    user.Email = node.SelectSingleNode("email").InnerText;
+                    var user = new User
+                    {
+                        UserName = node.SelectSingleNode("username").InnerText,
+                        Password = node.SelectSingleNode("password").InnerText,
+                        PublicKey = node.SelectSingleNode("publickey").InnerText,
+                        PrivateKey = node.SelectSingleNode("privatekey").InnerText,
+                        Email = node.SelectSingleNode("email").InnerText
+                    };
                     lstUser.Add(user);
                 }
             }
@@ -347,21 +348,23 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            List<User> lstUser = new List<User>();
+            var lstUser = new List<User>();
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument users = security.ReadUserConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var users = security.ReadUserConfiguration(User.Current.Path);
 
-                foreach (System.Xml.XmlNode node in users.SelectNodes("root/users/user"))
+                foreach (XmlNode node in users.SelectNodes("root/users/user"))
                 {
-                    User user = new User();
-                    user.UserName = node.SelectSingleNode("username").InnerText;
-                    user.Password = node.SelectSingleNode("password").InnerText;
-                    user.PublicKey = node.SelectSingleNode("publickey").InnerText;
-                    user.PrivateKey = node.SelectSingleNode("privatekey").InnerText;
-                    user.Email = node.SelectSingleNode("email").InnerText;
+                    var user = new User
+                    {
+                        UserName = node.SelectSingleNode("username").InnerText,
+                        Password = node.SelectSingleNode("password").InnerText,
+                        PublicKey = node.SelectSingleNode("publickey").InnerText,
+                        PrivateKey = node.SelectSingleNode("privatekey").InnerText,
+                        Email = node.SelectSingleNode("email").InnerText
+                    };
                     lstUser.Add(user);
                 }
 
@@ -373,13 +376,13 @@ namespace ThangDC.Core.Entities
 
         public User GetBy(string name)
         {
-            User user = new User();
-            if (Current != null)
+            var user = new User();
+            if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument users = security.ReadUserConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var users = security.ReadUserConfiguration(User.Current.Path);
 
-                XmlNode node = users.SelectSingleNode("/root/users/user[username='" + name + "']");
+                var node = users.SelectSingleNode("/root/users/user[username='" + name + "']");
                 if (node != null)
                 {
                     user.UserName = node.SelectSingleNode("username").InnerText;
@@ -401,14 +404,14 @@ namespace ThangDC.Core.Entities
         {
             string result = "";
 
-            User user = new User();
+            var user = new User();
 
-            if (Current != null)
+            if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument users = security.ReadUserConfiguration(User.Current.Path);
+                var security = new Security(User.Current.Password);
+                var users = security.ReadUserConfiguration(User.Current.Path);
 
-                XmlNode node = users.SelectSingleNode("/root/users/user[username='" + name + "']");
+                var node = users.SelectSingleNode("/root/users/user[username='" + name + "']");
                 if (node != null)
                 {
                     user.UserName = node.SelectSingleNode("username").InnerText;
@@ -427,7 +430,7 @@ namespace ThangDC.Core.Entities
         {
             bool result = false;
 
-            foreach (System.Xml.XmlNode node in doc.SelectNodes("/root/users/user"))
+            foreach (XmlNode node in doc.SelectNodes("/root/users/user"))
             {
                 if (node.SelectSingleNode("username") != null && node.SelectSingleNode("email") != null)
                 {
@@ -459,9 +462,9 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                if (System.IO.File.Exists(User.Current.Path))
+                if (File.Exists(User.Current.Path))
                 {
-                    System.IO.File.Delete(User.Current.Path);
+                    File.Delete(User.Current.Path);
                     result = true;
                 }
             }
@@ -475,9 +478,9 @@ namespace ThangDC.Core.Entities
 
             if (User.Current != null)
             {
-                Security security = new Security();
-                XmlDocument users = security.ReadUserConfiguration(User.Current.Path);
-                XmlNode node = users.SelectSingleNode("/root/users/user[username='" + UserName + "']");
+                var security = new Security(User.Current.Password);
+                var users = security.ReadUserConfiguration(User.Current.Path);
+                var node = users.SelectSingleNode("/root/users/user[username='" + UserName + "']");
                 if (node != null)
                 {
                     node.SelectSingleNode("username").InnerText = UserName;

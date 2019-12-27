@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using ThangDC.Core.Entities;
 using ThangDC.Core.Securities;
 
@@ -98,11 +92,8 @@ namespace WebAutomation
 
         private void AddNew()
         {
-            Connection conn = new Connection();
+            var conn = new Connection();
             string message = Language.Resource.Message;
-            Security security = new Security();
-
-
             bool check = conn.CheckExists(tbxName.Text);
 
             if (check)
@@ -121,9 +112,9 @@ namespace WebAutomation
                 int result = conn.Add();
                 if (result == 1)
                 {
-                    frmManager manager = (frmManager)Application.OpenForms["frmManager"];
+                    var manager = (frmManager)Application.OpenForms["frmManager"];
                     manager.SelectTab("tabConnections");
-                    this.Close();
+                    Close();
                 }
             }
         }
@@ -140,9 +131,9 @@ namespace WebAutomation
             int result = conn.Update();
             if (result == 1)
             {
-                frmManager manager = (frmManager)Application.OpenForms["frmManager"];
+                var manager = (frmManager)Application.OpenForms["frmManager"];
                 manager.SelectTab("tabConnections");
-                this.Close();
+                Close();
             }
         }
     }
