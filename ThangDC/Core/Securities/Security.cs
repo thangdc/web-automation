@@ -9,7 +9,7 @@ namespace ThangDC.Core.Securities
 {
     public class Security
     {
-        private string _Password = "123456789";
+        private string _Password = "$1!3#554$7^5%8&(8)*&iajbjasf3jhsd8*3k0JDAD123!";
         private string connectioncfg = "connection.cfg";
         private string usercfg = "user.cfg";
         private string rolecfg = "role.cfg";
