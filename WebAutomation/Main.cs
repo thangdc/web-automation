@@ -85,7 +85,7 @@ namespace WebAutomation
             CallBackWinAppWebBrowser();
             InitMouseKeyBoardEvent();
 
-            var path = $"{Application.StartupPath}\\Firefox64";
+            var path = $"{Application.StartupPath}\\Firefox";
 
             Xpcom.Initialize(path);
             
@@ -3880,14 +3880,10 @@ namespace WebAutomation
                     var node = doc.DocumentNode.SelectSingleNode(xpath);
                     if (node != null)
                     {
-                        var currentXpath = "/" + node.XPath;
-                        elm = (GeckoHtmlElement)GetElementInIframe(wb, currentXpath).GetNodes().FirstOrDefault();
-                    }
+                        xpath = "/" + node.XPath;                        
+                    }                    
                 }
-                else
-                {
-                    elm = (GeckoHtmlElement)GetElementInIframe(wb, xpath).GetNodes().FirstOrDefault();
-                }
+                elm = (GeckoHtmlElement)GetElementInIframe(wb, xpath).GetNodes().FirstOrDefault();
             }
             else
             {
