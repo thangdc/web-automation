@@ -1,0 +1,43 @@
+clearlog();
+
+function navigate(url) {
+    tabcloseall();
+    go(url);
+    sleep(15, false);
+}
+
+function getDetails(url) {
+    tabnew();
+    go(url);
+    sleep(15, false);
+    var item = { title : '', content: '' };
+    var title = extract("//*[@id='main-content']/DIV[5]/DIV[1]/H1[1]", "text");
+    var content = extract("//*[@id='main-content']/DIV[5]/DIV[3]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/DIV[1]/DIV[1]/DIV[1]", "text");
+    item = { title: title, content: content };
+    tabclose();
+    return item;
+}
+
+function extractUrls(url){
+    navigate(url);
+    var forum = 'https://yenbai.forumvi.com';
+    for(i = 1; i <= 21; i++)
+    {
+        var shortUrl = extract("//*[@id='main-content']/DIV[5]/DIV[3]/TABLE[1]/TBODY[1]/TR["+ i +"]/TD[1]/H2[1]/A[1]", "href");
+        var view = extract("//*[@id='main-content']/DIV[5]/DIV[3]/TABLE[1]/TBODY[1]/TR["+ i +"]/TD[3]", "text");
+        var date = extract("//*[@id='main-content']/DIV[5]/DIV[3]/TABLE[1]/TBODY[1]/TR["+ i +"]/TD[4]", "text");
+        
+        var fullUrl = forum + shortUrl;
+        log(fullUrl);
+        var data = getDetails(fullUrl);
+
+        log("Title: " + data.title);
+        log("Content: " + data.content);
+        log("View: " + view);
+        log("Date: " + date);
+    }
+    tabcloseall();
+}
+
+var url = 'https://yenbai.forumvi.com/f1-forum';
+extractUrls(url);

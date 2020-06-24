@@ -1315,23 +1315,23 @@ namespace WebAutomation
                         switch (type)
                         {
                             case "html":
-                                result.AppendLine($"{{ value: '{item.OuterHtml.Replace("\'", "\\'")}'}},");
+                                result.AppendLine($"{{ value: '{item.OuterHtml.Replace("\'", "\\'").Replace("{", "").Replace("}", "") }'}},");
                                 break;
                             case "text":
                                 if (elm.GetType().Name == "GeckoTextAreaElement")
                                 {
-                                    result.AppendLine($"{{ value: '{((GeckoTextAreaElement)item).Value.Replace("\'", "\\'")}'}},");
+                                    result.AppendLine($"{{ value: '{((GeckoTextAreaElement)item).Value.Replace("\'", "\\'").Replace("{", "").Replace("}", "")}'}},");
                                 }
                                 else
                                 {
-                                    result.AppendLine($"{{ value: '{item.TextContent.Trim().Replace("\'", "\\'")}'}},");
+                                    result.AppendLine($"{{ value: '{item.TextContent.Trim().Replace("\'", "\\'").Replace("{", "").Replace("}", "")}'}},");
                                 }
                                 break;
                             case "value":
-                                result.AppendLine($"{{ value: '{((GeckoInputElement)item).Value.Replace("\'", "\\'")}'}},");
+                                result.AppendLine($"{{ value: '{((GeckoInputElement)item).Value.Replace("\'", "\\'").Replace("{", "").Replace("}", "")}'}},");
                                 break;
                             default:
-                                result.AppendLine($"{{ value: '{extractData(item, type).Replace("\'", "\\'")}'}},");
+                                result.AppendLine($"{{ value: '{extractData(item, type).Replace("\'", "\\'").Replace("{", "").Replace("}", "")}'}},");
                                 break;
                         }
                     }
@@ -3871,7 +3871,7 @@ namespace WebAutomation
             GeckoHtmlElement elm = null;
             if (xpath.StartsWith("/"))
             {
-                if (xpath.Contains("@class") || xpath.Contains("@data-type"))
+                if (xpath.Contains("@id") || xpath.Contains("@class") || xpath.Contains("@data-type"))
                 {
                     var html = GetHtmlFromGeckoDocument(wb.Document);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -3880,10 +3880,14 @@ namespace WebAutomation
                     var node = doc.DocumentNode.SelectSingleNode(xpath);
                     if (node != null)
                     {
-                        xpath = "/" + node.XPath;                        
-                    }                    
+                        xpath = "/" + node.XPath;
+                    }
+                    elm = (GeckoHtmlElement)wb.Document.EvaluateXPath(xpath).GetNodes().FirstOrDefault();
                 }
-                elm = (GeckoHtmlElement)GetElementInIframe(wb, xpath).GetNodes().FirstOrDefault();
+                else
+                {
+                    elm = (GeckoHtmlElement)GetElementInIframe(wb, xpath).GetNodes().FirstOrDefault();
+                }
             }
             else
             {
@@ -3903,10 +3907,13 @@ namespace WebAutomation
                 {
                     if (xpath.StartsWith("/"))
                     {
-                        var childIframes = iframe.ContentDocument.GetElementsByTagName("iframe");
-                        elm = iframe.ContentDocument.EvaluateXPath(xpath);
-                        if (elm != null)
-                            break;
+                        var contentDocument = iframe.ContentDocument;
+                        if (contentDocument != null)
+                        {
+                            elm = contentDocument.EvaluateXPath(xpath);
+                            if (elm != null)
+                                break;
+                        }
                     }
                 }
             }
@@ -3932,7 +3939,11 @@ namespace WebAutomation
                     var node = doc.DocumentNode.SelectSingleNode(xpath);
                     if (node != null)
                     {
-                        var currentXpath = "/" + node.XPath;
+                        var currentXpath = xpath;
+                        if (!node.XPath.StartsWith("/body"))
+                        {
+                            currentXpath = "/" + node.XPath;
+                        }
                         elm = wb.Document.EvaluateXPath(currentXpath).GetNodes().ToList();
                     }
                 }

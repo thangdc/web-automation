@@ -1,0 +1,32 @@
+clearlog();
+
+function navigate(url) {
+    tabcloseall();
+    go(url);
+    sleep(15, false);
+}
+
+function getDetails(url) {
+    navigate(url);
+    log(url);
+    var title = extract("//h1[@class='post-title']", "text");
+    var date = extract("//*[@class='post-date']", "text");
+    var view = extract("//*[@class='post-views']", "text");
+    var content = extract("//*[@class='post-content']", "text");
+    log('Title: ' + title);
+    log('Date: ' + date);
+    log('View: ' + view);
+    log('Content: ' + content);
+}
+
+function extractUrls(url){
+    navigate(url);
+    var items = extractAll("//*[@class='post-content-container']/a", "href");
+    for(var index in items){
+        var link = items[index].value;
+        getDetails(link);
+    }
+}
+
+var url = 'https://blog.traveloka.com/vn/tag/yen-bai/';
+extractUrls(url);

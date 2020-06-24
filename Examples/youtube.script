@@ -1,0 +1,40 @@
+clearlog();
+
+function navigate(url) {
+    tabcloseall();
+    go(url);
+    sleep(15, false);
+}
+
+function getDetails(url) {
+    navigate(url);
+    var title = extract("//*[@id='container']/h1", "text");
+    var view = extract("//*[@id='count']/yt-view-count-renderer/span[1]", "text");
+    var date = extract("//*[@id='date']/yt-formatted-string", "text");
+    var like = extract("//*[@id='top-level-buttons']/ytd-toggle-button-renderer/a/yt-formatted-string", "text");
+    var dislike = extract("//*[@id='top-level-buttons']/ytd-toggle-button-renderer[2]/a/yt-formatted-string", "text");
+    var description = extract("//*[@id='description']", "text");
+    var comment = extract("//*[@id='header']/ytd-comments-header-renderer/div/h2/yt-formatted-string", "text");
+
+    log('Title: ' + title);
+    log('View: ' + view);
+    log('Date: ' + date);
+    log('Like: ' + like);
+    log('Dislike: ' + dislike);
+    log('Description: ' + description);
+    log('Comment: ' + comment);
+}
+
+function extractUrls(url){
+    navigate(url);
+    var youtube = 'https://www.youtube.com';
+    var links = extractAll("//*[@id='video-title']", "href");
+    for(var index in links) {
+        var shortUrl = links[index].value;
+        var fullUrl = youtube + shortUrl;
+        getDetails(fullUrl);
+    }
+}
+
+var url = 'https://www.youtube.com/channel/UCWLKSWEvSWbJZzh31J44C2g/videos';
+extractUrls(url);
