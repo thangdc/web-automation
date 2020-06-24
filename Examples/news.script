@@ -1,0 +1,33 @@
+clearlog();
+
+function navigate(url) {
+    tabcloseall();
+    go(url);
+    sleep(15, false);
+}
+
+function getDetails(url) {
+    navigate(url);
+    var title = extract("//*[@class='title-detail']", "text");
+    var date = extract("//*[@class='date']", "text");
+    var content = extract("//article[@class='fck_detail']", "text");
+
+    log('Url: ' + url);
+    log('Title: ' + title);
+    log('Date: ' + date);
+    log('Content: ' + content);
+}
+
+function extractUrls(url){
+    navigate(url);
+    var items = extractAll("//article/h3[@class='title-news']/a", "href");
+    for(var index in items) {
+        var link = items[index].value;
+        if(link.indexOf('http://') != -1 || link.indexOf('https://') != -1){
+            getDetails(link);
+        }
+    }
+}
+
+var url = 'https://vnexpress.net/the-gioi';
+extractUrls(url);
