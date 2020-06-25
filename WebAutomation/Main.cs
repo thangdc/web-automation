@@ -45,6 +45,8 @@ namespace WebAutomation
 
         private bool IsBreakSleep = false;
 
+        private string arguments = string.Empty;
+
         #endregion
 
         #region Mouse Keyboard Library
@@ -90,6 +92,8 @@ namespace WebAutomation
             Xpcom.Initialize(path);
             
             FormLoad();
+            
+            arguments = string.Join(",", args);
 
             LoadScript(args);
         }
@@ -1240,6 +1244,7 @@ namespace WebAutomation
         public void OnMessageReceived(MessageEventArgs e)
         {
             string[] args = (string[])e.Message;
+
             this.BeginInvoke((MethodInvoker)delegate
             {
                 LoadScript(args);
@@ -2135,7 +2140,7 @@ namespace WebAutomation
         public void explorer(string path)
         {
             string argument = "/select, \"" + path + "\"";
-            System.Diagnostics.Process.Start("explorer.exe", argument);
+            Process.Start("explorer.exe", argument);
         }
 
         public void loadHTML(string path)
@@ -2619,6 +2624,11 @@ namespace WebAutomation
             tabMain.SelectedTab = tabDownload;
             downloadList1.SelectAll();
             downloadList1.StartSelections();
+        }
+
+        public string GetArguments()
+        {
+            return arguments;
         }
 
         private void InitContextMenu()
@@ -3481,6 +3491,8 @@ namespace WebAutomation
                                                 function hide() { CheckAbort(); return window.external.MinimizeWindow(); }
 
                                                 function sendKeys(key) { CheckAbort(); window.external.sendKeys(key); }
+
+                                                function getArguments() { CheckAbort(); return window.external.GetArguments(); }
 
                                             </script>
                                         </head>
