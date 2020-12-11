@@ -3883,7 +3883,7 @@ namespace WebAutomation
             GeckoHtmlElement elm = null;
             if (xpath.StartsWith("/"))
             {
-                if (xpath.Contains("@id") || xpath.Contains("@class") || xpath.Contains("@data-type"))
+                if (xpath.Contains("@"))
                 {
                     var html = GetHtmlFromGeckoDocument(wb.Document);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
@@ -3942,7 +3942,7 @@ namespace WebAutomation
             List<GeckoNode> elm = new List<GeckoNode>();
             if (xpath.StartsWith("/"))
             {
-                if (xpath.Contains("@class") || xpath.Contains("@data-type"))
+                if (xpath.Contains("@"))
                 {
                     var html = GetHtmlFromGeckoDocument(wb.Document);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
