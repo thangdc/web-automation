@@ -1,7 +1,12 @@
 **/bin/Debug/**
 **/bin/Release/**
+**/bin/**
 **/obj/**
 /packages
 /.vs/WebAutomation/v16
 /WebAutomation/bin/x64/Debug
 /WebAutomation/bin
+**/*.suo
+**/*.user
+**/*.pfx
+**/*.pdb
